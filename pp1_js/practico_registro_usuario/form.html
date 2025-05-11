@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/practico_registro_usuario/styles.css">
+    <title>Registro de Usuario</title>
+</head>
+<body>
+    <form action="" id="formulario" class="formulario">
+        <h1>Registro Formulario</h1>
+
+        <label for=""> Nombre Completo
+            <input type="text" name="" id="usuario" placeholder="John Doe" required>
+        </label>
+        
+        <p id="errorUsuario"></p>
+
+        <label for=""> Edad
+            <input type="number" name="" id="edad" placeholder="Tu edad" required>
+        </label>
+
+        <p id="errorEdad"></p>
+
+        <label for=""> Correo
+            <input type="email" name="" id="correo" placeholder="example@gmail.com" required>
+        </label>
+
+        <p id="errorCorreo"></p>
+        
+        <label for=""> Contraseña
+            <input type="password" name="" id="password" placeholder="Al menos 6 caracteres" required>
+        </label>
+
+        <p id="errorPassword"></p>
+
+        <button type="submit"> Registrarse </button>
+        <div id="mensaje" class="mensaje-exito"></div>
+
+    </form>
+
+    <script src="/practico_registro_usuario/form.js"></script>
+</body>
+</html>
