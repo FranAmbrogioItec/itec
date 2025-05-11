@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+
+{% block contenido %}
+<h2> Selecciona una ciudad: </h2>
+<ul class="city-list">
+    {% for nombre in ciudades.keys() %}
+    <li><a href="{{ url_for('clima') }}?ciudad={{ nombre }}">{{ nombre }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title> App de Clima </title>
+</head>
+<body>
+    <nav>
+        Práctico 1
+    </nav>
+    <div class="container">
+        <header>
+            <div class="title-container">
+                <h1>Aplicación del Clima</h1>
+                <p>Consulta el clima actual de la ciudad que quieras!</p>
+            </div>
+        </header>
+        <main>
+            {% block contenido %}{% endblock %}
+        </main>
+    </div>
+</body>
+</html>
