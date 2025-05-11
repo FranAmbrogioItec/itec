@@ -1,0 +1,212 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+/* ------------------------------Variables------------------------------ */
+:root {
+    --blue-color: #45e;
+    --dark-color: #313337;
+    /* tipografia */
+    --normal: 12px;
+}
+
+/* ------------------------------Diseño general------------------------------ */
+
+body {
+    font-family: "Open Sans", sans-serif;
+    background: linear-gradient(90deg,rgba(14, 28, 41, 1) 0%, rgba(59, 90, 140, 1) 50%, rgba(49, 31, 79, 1) 100%);
+    margin: 0;
+
+
+}
+
+h1 {
+    text-align: center;
+    font-size: 60px;
+    font-family: Georgia, 'Times New Roman', Times, sans-serif;
+    color: black;
+    text-transform: uppercase;
+    text-shadow:
+        0 0 5px var(--blue-color),
+        0 0 10px var(--blue-color),
+        0 0 20px var(--blue-color),
+        0 0 40px var(--blue-color),
+        0 0 80px var(--blue-color);
+    font-weight: bold;
+    
+}
+
+img:hover {
+    opacity: 0.7;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    max-width: 400px;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+
+h1, h2, p {
+    width: 80%;
+    margin: auto;
+    margin-top: 30px;
+}
+
+/* ------------------------------NAV BAR------------------------------ */
+
+.header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.header-logo {
+    max-width: 100%;
+    width: 70px;
+    margin: 10px 20px;
+}
+
+.header-nav {
+    background-color: #333;
+    padding: 20px 20px 20px 20px;
+    border-radius: 8px;
+}
+
+.header-nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 15px;
+    text-decoration: underline;
+    color: white;
+}
+
+.header-nav-item {
+    display: inline;
+}
+
+.header-nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 6px 12px;
+    transition: background-color 0.3s;
+}
+
+.header-nav a:hover {
+    background-color: #555;
+    border-radius: 5px;
+}
+
+
+/* ------------------------------Seccion datos de contacto------------------------------ */
+
+.form-contacto {
+    text-align: center;
+    padding: 20px;
+}
+
+.contacto-contenido {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.contacto-avatar {
+    width: 350px;
+    height: 350px;
+    border-radius: 20px;
+}
+
+.contacto-datos {
+    text-align: left;
+}
+
+.contacto-datos p {
+    margin: 8px 0;
+    font-size: 20px;
+}
+
+.button-submit {
+    padding: 5px 10px 5px 10px;
+}
+
+/* ------------------------------Inicio------------------------------ */
+
+.category {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    border-radius: 20px;
+    transition: background-color 0.3s;
+    text-align: center;
+    text-shadow: 6px 4px 4px rgba(43,92,141,0.66); 
+}
+
+
+.category:hover {
+    background-color: #ababab;
+}
+
+.category a {
+    display: block;
+    text-decoration: none;
+    color: #333;
+    padding: 12px 20px;
+    font-weight: bold;
+}
+
+.category a:hover {
+    color: black;
+    text-decoration: underline;
+}
+
+.form-contacto {
+    width: 20%;
+    margin: auto;
+}
+
+/* ------------------------------Volver-button------------------------------ */
+
+.volver-button {    
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px 20px 10px 20px;
+    margin: 0 0 0 60px;
+    background-color: #48e;
+    color: wheat;
+    border-radius: 42px;
+    text-shadow: 6px 4px 4px rgba(43,92,141,0.66);}
+
+.volver-button:hover {
+    opacity: 0.7;
+}
+
+/* ------------------------------Seccion redes sociales------------------------------ */
+
+.redes-list {
+    list-style: none;
+    margin-top: 20px;
+}
+
+.redes-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.redes-item a {
+    margin-left: 10px;
+    color: white;
+}
+
+.icons-redes {
+    width: 60px;
+    margin-right: 1 0px;
+}
+
+
