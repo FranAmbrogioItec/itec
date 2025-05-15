@@ -44,7 +44,8 @@ button {
 }
 
 .presente {
-    color: green;
+    background-color: #70ab70;
+    color: black;
     font-weight: bold;
     text-transform: uppercase;
 } 

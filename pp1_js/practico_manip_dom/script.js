@@ -17,7 +17,7 @@ function agregarParticipante(event) {
     li.textContent = nombre;
 
     const btnPresente = document.createElement('button');
-    btnPresente.textContent = 'Marcar como presenteXD';
+    btnPresente.textContent = 'Marcar como presente';
     btnPresente.onclick = function() { //cuando el button esta onclick le agrega la class 'presente'
         li.classList.toggle('presente');
     };
