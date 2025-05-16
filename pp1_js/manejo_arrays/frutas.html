@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manejo de arrays</title>
+</head>
+
+<body>
+    <input id="nuevaFruta" placeholder="Ingrese nueva fruta" type="text">
+    <button onclick="agregarFruta()">Agregar fruta</button>
+    <br />
+    <br />
+    <input id="posicionFruta" placeholder="Indique la posicion de la fruta" type="number">
+    <input id="cantidadFruta" placeholder="Indique la cantidad de frutas a eliminar" type="number">
+    <button onclick="eliminarFruta()">Eliminar fruta</button>
+    <br />
+    <br />
+    <button onclick="mostrarFrutas()">Mostrar frutas</button>
+    <br />
+    <ul id="listaFrutas"></ul>
+    <br />
+    <button onclick="transformarFrutas()">Frutas en mayuscula</button>
+    <br />
+    <p id="resultadoFrutas"></p>
+    <script src="./js/frutas.js"></script>
+</body>
+
+</html>
