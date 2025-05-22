@@ -1,0 +1,306 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
+
+/* -------------------- Variables -------------------- */
+:root {
+  --green-color: #7ACC2D;
+  --white-color: white;
+  --black-color: #313337;
+  --normal: 20px;
+  --space: 10px;
+  --box: 0px 0 2px 1px #e6e5e9;
+}
+/* -------------------- Reset + Base -------------------- */
+html, body {
+  padding: 0;
+  margin: 0;
+  font-size: var(--normal);
+  font-family: 'Open Sans', sans-serif;
+}
+/* -------------------- Navbar -------------------- */
+nav {
+  display: flex;
+  background-color: var(--green-color);
+  padding: var(--space);
+  color: var(--white-color);
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 0;
+}
+nav li {
+  list-style: none;
+  padding-left: 20px;
+}
+nav li a {
+  color: var(--black-color);
+  text-decoration: none;
+}
+nav li a:hover {
+  color: var(--white-color);
+}
+/* -------------------- Main Section -------------------- */
+.main_section {
+  padding: 15%;
+  text-align: center;
+}
+
+/* -------------------- Products -------------------- */
+.products {
+  background-image: url("../images/curve.png");
+  background-size: cover;
+  background-position: center top;
+  padding: 5% 10%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+
+.product .content {
+  background-color: var(--white-color);
+  padding: var(--space);
+  margin-top: 0;
+  flex: 1 1 300px;
+  max-width: 400px;
+  box-shadow: var(--box);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.product .content, h1{
+  font-size: 30px;
+}
+
+.product-title {
+  font-size: 20px;
+  text-align: left;
+}
+
+.img_content {
+  text-align: center;
+}
+
+.main_button {
+  background-color: var(--green-color);
+  width: 100%;
+  padding: var(--space);
+  font-size: var(--normal);
+  color: var(--white-color);
+  border: 0;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.main_button:hover {
+  background-color: #5e9e22;
+}
+
+/* -------------------- Destacado -------------------- */
+.destacado {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: column;
+  gap: 40px;
+  width: 100%;
+  margin: auto;
+  padding: 40px 20px;
+}
+
+.destacado1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.destacado img {
+  width: 100px;
+  height: auto;
+  margin: auto;
+}
+
+.contenedor-flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around; /* o space-between / center */
+  align-items: flex-start;
+  flex-wrap: nowrap; /* evita que se rompa en varias filas */
+  gap: 20px; /* espacio entre elementos */
+}
+
+.destacado {
+  width: 300px; /* o el tamaño que necesites */
+}
+
+.destacado, .destacado1, p {
+  font-size: 13px;
+}
+
+
+/* -------------------- Separador -------------------- */
+hr {
+  margin-top: 200px;
+}
+
+/* -------------------- Menciones -------------------- */
+.menciones {
+  text-align: center;
+}
+
+/* -------------------- Cards -------------------- */
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  width: 100%;
+  gap: 20px;
+  padding: 20px;
+  box-sizing: border-box;
+  margin-bottom: 50px;
+}
+
+.card {
+  flex: 1 1 250px;
+  max-width: 300px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 1px 12px rgb(56, 56, 56);
+  box-sizing: border-box;
+}
+
+.card .mencionado {
+  width: 100%;
+  height: auto;
+  background-color: #313337;
+}
+
+.card .mencionado img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.menciones {
+  margin-bottom: 4em;
+}
+
+.card .descripcion {
+  padding: 10px;
+  background-color: #e2e2e2;
+  font-size: 11px;
+}
+
+.card .descripcion h3, .card .descripcion p {
+  margin: 5px 0;
+}
+
+/* -------------------- Footer -------------------- */
+footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background-color: rgb(38, 38, 39);
+  padding: 15px 0;
+  text-align: center;
+}
+
+footer div {
+  margin: 5px 15px;
+  color: white;
+}
+
+/* -------------------- Media Query (Responsive) -------------------- */
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    text-align: center;
+    width: 100%;
+  }
+
+  nav ul {
+    flex-direction: column;
+  }
+
+  nav li {
+    padding: 10px 0;
+  }
+
+  .brand_image img {
+    width: 120px;
+  }
+
+  .main_section {
+    padding: 10%;
+    font-size: 1.1em;
+  }
+
+  .products {
+    flex-direction: column;
+    padding: 5%;
+    align-items: center;
+  }
+
+  .product {
+    max-width: 100%;
+  }
+  
+  hr {
+  margin-top: 20px;
+}
+  .img_content img {
+    width: 100%;
+    height: auto;
+  }
+
+  .contenedor-flex {
+    flex-wrap: wrap;
+  }
+
+  .destacado {
+    flex-direction: column;
+    gap: 20px;
+    padding: 10px; 
+    flex-wrap: wrap;
+  }
+
+  .destacado1 img {
+    width: 80px;
+  }
+
+  .cards {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 10px;
+  }
+
+  .card {
+    width: 90%;
+    max-width: 350px;
+  }
+
+  footer {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  footer div {
+    margin: 5px 0;
+  }
+}
