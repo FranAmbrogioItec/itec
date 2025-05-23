@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de autos</title>
+</head>
+<body>
+    <h2> Registro de autos </h2>
+    <form onsubmit="agregarAuto(); return false">
+        <input type="text" id="marca" placeholder="Marca del auto" required>
+        <input type="text" id="modelo" placeholder="Modelo del auto" required>
+        <input type="number" id="anio" placeholder="Año del auto" required>
+        <button type="submit">Agregar auto</button>
+    </form>
+    <br>
+    <table border="1" id="tablaAutos">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Año</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+    <script src="/manip_objetos/autos.js"></script>
+</body>
+</html>
