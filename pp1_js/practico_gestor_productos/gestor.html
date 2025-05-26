@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/practico_gestor_productos/styles.css">
+    <title>Gestor de Productos</title>
+</head>
+<body>
+    <div class="container">
+        <h2> Gestor de Productos </h2>
+
+        <form onsubmit="agregarProducto(); return false" class="form-container">
+            <input type="text" id="nombre" placeholder="Ingrese el nombre" required>
+            <input type="text" id="categoria" placeholder="Ingrese la categoria" required>
+            <input type="number" id="precio" placeholder="Ingrese el precio" required>
+            <button type="submit">Agregar producto</button>
+        </form>
+
+        <br>
+
+        <div class="table-container">
+            <table border="1" id="tablaProductos" class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nombre</th>
+                        <th>Categoria</th>
+                        <th>Precio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="/practico_gestor_productos/gestor.js"></script>
+</body>
+</html>
