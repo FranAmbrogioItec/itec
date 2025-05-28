@@ -139,10 +139,9 @@ nav li a:hover {
 .contenedor-flex {
   display: flex;
   flex-direction: row;
-  justify-content: space-around; /* o space-between / center */
+  justify-content: space-around;
   align-items: flex-start;
-  flex-wrap: nowrap; /* evita que se rompa en varias filas */
-  gap: 20px; /* espacio entre elementos */
+  flex-wrap: nowrap; 
 }
 
 .destacado {
