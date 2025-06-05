@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Películas Favoritas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="contenedor">
+        <h1>🎬 Mi Lista de Películas Favoritas</h1>
+
+        <section class="seccion-agregar-pelicula">
+            <h2>Agregar Película</h2>
+            <form >
+                <input type="text" id="entradaPelicula" placeholder="Nombre de la película" required>
+                <button onclick="agregarPelicula(event); return false;" type="submit">Agregar Película</button>
+            </form>
+        </section>
+
+        <section class="seccion-acciones">
+            <button onclick="renderizarPeliculas()">Ver Todas las Películas</button>
+            <button onclick="verListaNumerada()">Ver Lista Numerada</button>
+        </section>
+
+        <section class="seccion-lista-peliculas">
+            <h2>Lista de Películas</h2>
+            <ul id="listaPeliculas">
+                </ul>
+        </section>
+
+        <section class="seccion-eliminar-pelicula">
+            <h2>Eliminar Película</h2>
+            <form onsubmit="eliminarPelicula(event); return false;">
+                <input type="number" id="entradaIndiceEliminar" placeholder="Número de película (posición)" min="1" required>
+                <button type="submit">Eliminar Película</button>
+            </form>
+            <p class="texto-pequeno">Para eliminar, ingresa la posición de la película en la lista visible (empezando desde 1).</p>
+        </section>
+    </div>
+
+    <script src="/practico_gestor_peliculas/gestor.js"></script>
+</body>
+</html>
