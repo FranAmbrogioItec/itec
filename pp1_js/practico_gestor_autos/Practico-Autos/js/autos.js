@@ -21,6 +21,14 @@ const agregarAuto = () => {
     }
 }
 
+const filtrarAutos = () => {
+    const texto = document.getElementById('busqueda').value.toLowerCase()
+
+    const autosFiltrados = autos.filter(auto => auto.marca.toLowerCase().includes(texto))
+
+    console.log(autosFiltrados)
+}
+
 const renderizarAutos = () => {
     const tabla = document.getElementById('tablaAutos').querySelector('tbody')
 
