@@ -229,7 +229,7 @@ footer div {
 }
 
 
-/* -------------------- Media Query (Responsive) -------------------- */
+/* -------------------- Media Querys -------------------- */
 
 
 /* --------------------Tablets-------------------- */
@@ -303,7 +303,8 @@ footer div {
   }
   
   .main_section {
-    padding: 20% 1rem;
+    padding: 20% rem;
+
   }
   
   .products {
@@ -324,10 +325,15 @@ footer div {
     padding: 0.5rem;
   }
   
+  .menciones {
+    padding: 5px 5px;
+    margin-bottom: 0;
+  }
+
   .cards {
     grid-template-columns: 1fr;
     padding: 0.5rem;
-    gap: 1rem;
+    gap: 2rem;
   }
   
   .card .descripcion {
