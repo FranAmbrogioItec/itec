@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Libros</title>
+</head>
+
+<body>
+    <h2> - Registro de Libros - </h2>
+    <form onsubmit="agregarLibro(); return false">
+        <input type="text" id="titulo" placeholder="Titulo del libro" required>
+        <input type="text" id="autor" placeholder="Autor" required>
+        <input type="number" id="anio" placeholder="Año de publicacion" required>
+        <input type="text" id="genero" placeholder="Ficcion, terror, drama..." required>
+        <button id="buttonForm" type="submit">Agregar libro</button>
+    </form>
+    <br>
+    <h4>Filtrar autos</h4>
+    <input type="text" id="busqueda" placeholder="Buscar marca..." oninput="filtrarAutos()">
+    <br>
+    <h4>Filtrar libros por generos</h4>
+    <select id="filtroMarca" onchange="filtrarPorMarca()">
+        <option value="todas">Todas</option>
+    </select>
+    <br>
+    <br>
+    <button onclick="ordenarPorAnio()">Ordenar autos por año</button>
+    <table border="1" id="tablaAutos">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Titulo</th>
+                <th>Autor</th>
+                <th>Año</th>
+                <th>Genero</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <h3>Resumen de libros</h3>
+    <div id="resumenLibros"></div>
+
+    <script src="./js/autos.js"></script>
+</body>
+
+</html>

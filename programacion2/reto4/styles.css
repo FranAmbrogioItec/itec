@@ -1,0 +1,123 @@
+body {
+    font-family: Arial, sans-serif; /* Example font */
+}
+
+hr  {
+    color: black;
+    width: 90%;
+    margin: auto;
+}
+.navbar-top {
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.navbar-top .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+.navbar-top .icons a {
+    color: #333;
+    margin-left: 20px;
+    text-decoration: none;
+    position: relative;
+}
+
+.navbar-top .icons .badge-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: #ff9900; /* Orange color for badge */
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 10px;
+}
+
+.main-nav .nav-link {
+    color: #333;
+    font-weight: 500;
+    padding: 15px 20px;
+    transition: color 0.3s ease;
+    margin-left: 50px;
+    font-weight: bold;
+}
+
+.main-nav .nav-link:hover {
+    color: #ff9900;
+}
+
+.service-highlights {
+    background-color: #f8f8f8; /* Light background for highlights */
+    padding: 20px 0;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    margin-top: 20px; /* Space from nav */
+}
+
+.service-highlights .icon-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.service-highlights .icon-box i {
+    font-size: 24px;
+    color: #ff9900;
+    margin-right: 10px;
+}
+
+.service-highlights .icon-box span {
+    font-weight: 500;
+    color: #555;
+}
+
+.hero-section {
+    background-color: #e6e6e6; /* Light gray background */
+    padding: 80px 0;
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    min-height: 500px; /* Ensure sufficient height */
+}
+
+.hero-section .hero-image {
+    max-width: 100%;
+    height: auto;
+}
+
+.hero-content h5 {
+    color: #888;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.hero-content h2 {
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: #333;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.hero-content h2.highlight {
+    color: #c9884e; /* Orange-brown color */
+}
+
+.hero-content .btn-view-now {
+    background-color: transparent;
+    border: 1px solid #333;
+    color: #333;
+    padding: 10px 30px;
+    text-transform: uppercase;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.hero-content .btn-view-now:hover {
+    background-color: #333;
+    color: white;
+}
