@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Libros</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="/gestor_libros_EVALUATIVO/styles.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4 text-center">📚 Gestor de Libros Personal</h1>
+
+        <div class="card shadow-sm mb-5">
+            <div class="card-header bg-primary text-white">
+                <h2 class="card-title mb-0">Formulario de Libro</h2>
+            </div>
+            <div class="card-body">
+                <form id="bookForm">
+                    <input type="hidden" id="bookId" value=""> <div class="mb-3">
+                        <label for="title" class="form-label">Título:</label>
+                        <input type="text" class="form-control" id="title" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="author" class="form-label">Autor:</label>
+                        <input type="text" class="form-control" id="author" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="year" class="form-label">Año de Publicación:</label>
+                        <input type="number" class="form-control" id="year" min="1900" max="" required>
+                        </div>
+                    <div class="mb-3">
+                        <label for="genre" class="form-label">Género:</label>
+                        <input type="text" class="form-control" id="genre" placeholder="Ej: Ficción, Terror, Drama, Poesía" required>
+                        </div>
+                    <button type="submit" class="btn btn-primary me-2">Guardar Libro</button>
+                    <button type="button" class="btn btn-secondary" id="cancelEditBtn" style="display: none;">Cancelar Edición</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="card shadow-sm mb-5">
+            <div class="card-header bg-success text-white">
+                <h2 class="card-title mb-0">📊 Resumen Estadístico</h2>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 col-lg-4 mb-3">
+                        <div class="p-3 bg-light border rounded">
+                            <strong>Total de Libros:</strong> <span id="totalBooks">0</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 mb-3">
+                        <div class="p-3 bg-light border rounded">
+                            <strong>Promedio Año Publicación:</strong> <span id="avgYear">N/A</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 mb-3">
+                        <div class="p-3 bg-light border rounded">
+                            <strong>Libros Posteriores a 2010:</strong> <span id="after2010">0</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 mb-3">
+                        <div class="p-3 bg-light border rounded">
+                            <strong>Libro Más Antiguo:</strong> <span id="oldestBook">N/A</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 mb-3">
+                        <div class="p-3 bg-light border rounded">
+                            <strong>Libro Más Reciente:</strong> <span id="recentBook">N/A</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card shadow-sm mb-4">
+            <div class="card-header bg-info text-white">
+                <h2 class="card-title mb-0">🔎 Filtros y Ordenamiento</h2>
+            </div>
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label for="searchTitle" class="form-label">Buscar por Título:</label>
+                        <input type="text" class="form-control" id="searchTitle" placeholder="Escribe parte del título...">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="filterGenre" class="form-label">Filtrar por Género:</label>
+                        <select class="form-select" id="filterGenre">
+                            <option value="">Todos los Géneros</option>
+                            </select>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label">Ordenar por Año:</label>
+                        <div>
+                            <button type="button" class="btn btn-outline-dark me-2" id="sortByYearAsc">
+                                <i class="bi bi-sort-numeric-down"></i> Ascendente
+                            </button>
+                            <button type="button" class="btn btn-outline-dark" id="sortByYearDesc">
+                                <i class="bi bi-sort-numeric-up-alt"></i> Descendente
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card shadow-sm mb-5">
+            <div class="card-header bg-dark text-white">
+                <h2 class="card-title mb-0">📚 Listado de Libros</h2>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover table-bordered">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Nº</th>
+                                <th>Titulo</th>
+                                <th>Autor</th>
+                                <th>Año</th>
+                                <th>Genero</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="booksTableBody">
+                            <tr>
+                                <td colspan="6" class="text-center">No hay libros registrados aun.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="noBooksMessage" class="alert alert-info text-center" style="display: none;">
+                    No hay libros que coincidan con los criterios de búsqueda/filtro.
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="/gestor_libros_EVALUATIVO/script.js"></script>
+</body>
+</html>

@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
     <title>Registro de autos</title>
 </head>
 
@@ -14,33 +15,66 @@
         <input type="text" id="modelo" placeholder="Modelo del auto" required>
         <input type="number" id="anio" placeholder="Año del auto" required>
         <button id="buttonForm" type="submit">Agregar auto</button>
+=======
+    <title>Registro de Libros</title>
+</head>
+
+<body>
+    <h2> - Registro de Libros - </h2>
+    <form onsubmit="agregarLibro(); return false">
+        <input type="text" id="titulo" placeholder="Titulo del libro" required>
+        <input type="text" id="autor" placeholder="Autor" required>
+        <input type="number" id="anio" placeholder="Año de publicacion" required>
+        <input type="text" id="genero" placeholder="Ficcion, terror, drama..." required>
+        <button id="buttonForm" type="submit">Agregar libro</button>
+>>>>>>> 242aa66be0fbaf215887cf97f6acb0189cd547be
     </form>
     <br>
     <h4>Filtrar autos</h4>
     <input type="text" id="busqueda" placeholder="Buscar marca..." oninput="filtrarAutos()">
     <br>
+<<<<<<< HEAD
     <h4>Filtrar autos por selector de marca</h4>
+=======
+    <h4>Filtrar libros por generos</h4>
+>>>>>>> 242aa66be0fbaf215887cf97f6acb0189cd547be
     <select id="filtroMarca" onchange="filtrarPorMarca()">
         <option value="todas">Todas</option>
     </select>
     <br>
     <br>
+<<<<<<< HEAD
+=======
+    <button onclick="ordenarPorAnio()">Ordenar autos por año</button>
+>>>>>>> 242aa66be0fbaf215887cf97f6acb0189cd547be
     <table border="1" id="tablaAutos">
         <thead>
             <tr>
                 <th>#</th>
+<<<<<<< HEAD
                 <th>Marca</th>
                 <th>Modelo</th>
                 <th>Año</th>
                 <th>Acciones</th>
+=======
+                <th>Titulo</th>
+                <th>Autor</th>
+                <th>Año</th>
+                <th>Genero</th>
+>>>>>>> 242aa66be0fbaf215887cf97f6acb0189cd547be
             </tr>
         </thead>
         <tbody>
         </tbody>
     </table>
 
+<<<<<<< HEAD
     <h3>Resumen de autos</h3>
     <div id="resumenAutos"></div>
+=======
+    <h3>Resumen de libros</h3>
+    <div id="resumenLibros"></div>
+>>>>>>> 242aa66be0fbaf215887cf97f6acb0189cd547be
 
     <script src="./js/autos.js"></script>
 </body>

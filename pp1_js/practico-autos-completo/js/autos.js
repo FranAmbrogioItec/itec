@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 let autos = JSON.parse(localStorage.getItem('autos')) || []
 
 let editando = false;
@@ -16,6 +17,36 @@ const agregarAuto = () => {
             indiceEditar = null
             document.querySelector('button[type="submit"]').innerText = 'Agregar Auto'
         } else {
+=======
+let libros = JSON.parse(localStorage.getItem('libros')) || []
+
+let editando = false;
+let indiceEditar = null;
+let ordenAscendente = false;
+
+const agregarLibro = () => {
+    const titulo = document.getElementById('titulo').value.trim()
+    const autor = document.getElementById('autor').value.trim()
+    const anio = document.getElementById('anio').value
+    const genero = document.getElementById('genero').value.trim()
+
+    if (titulo !== '' && autor !== '' && anio !== '' && genero !== '') {
+
+        if (editando) {
+            libros[indiceEditar] = { titulo, autor, anio, genero }
+            editando = false
+            indiceEditar = null
+            document.querySelector('button[type="submit"]').innerText = 'Agregar libro'
+        } else {
+            const yaExiste = libros.some(libro =>
+                auto.marca.toLowerCase() === marca.toLowerCase() &&
+                auto.modelo.toLowerCase() === modelo.toLowerCase()
+            )
+            if (yaExiste) {
+                alert('Este auto ya se encuentra cargado en el listado')
+                return
+            }
+>>>>>>> 242aa66be0fbaf215887cf97f6acb0189cd547be
             // Guardamos en nuestro array local autos que vamos creando
             autos.push({ marca, modelo, anio })
         }
@@ -80,6 +111,10 @@ const editarAuto = (index) => {
 }
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 242aa66be0fbaf215887cf97f6acb0189cd547be
 const eliminarAuto = (index) => {
 
     // Eliminar el auto del array
@@ -92,6 +127,17 @@ const eliminarAuto = (index) => {
 
 }
 
+<<<<<<< HEAD
+=======
+const ordenarPorAnio = () => {
+    const autosOrdenados = [...autos].sort((a, b) => {
+        return ordenAscendente ? a.anio - b.anio : b.anio - a.anio
+    })
+
+    ordenAscendente = !ordenAscendente
+    renderizarAutos(autosOrdenados)
+}
+>>>>>>> 242aa66be0fbaf215887cf97f6acb0189cd547be
 
 const mostrarResumen = () => {
     const resumen = document.getElementById('resumenAutos')
