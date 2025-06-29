@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 let autos = JSON.parse(localStorage.getItem('autos')) || []
 
 let editando = false;
@@ -17,7 +16,6 @@ const agregarAuto = () => {
             indiceEditar = null
             document.querySelector('button[type="submit"]').innerText = 'Agregar Auto'
         } else {
-=======
 let libros = JSON.parse(localStorage.getItem('libros')) || []
 
 let editando = false;
