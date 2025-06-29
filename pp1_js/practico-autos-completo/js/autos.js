@@ -16,27 +16,7 @@ const agregarAuto = () => {
             indiceEditar = null
             document.querySelector('button[type="submit"]').innerText = 'Agregar Auto'
         } else {
-let libros = JSON.parse(localStorage.getItem('libros')) || []
-
-let editando = false;
-let indiceEditar = null;
-let ordenAscendente = false;
-
-const agregarLibro = () => {
-    const titulo = document.getElementById('titulo').value.trim()
-    const autor = document.getElementById('autor').value.trim()
-    const anio = document.getElementById('anio').value
-    const genero = document.getElementById('genero').value.trim()
-
-    if (titulo !== '' && autor !== '' && anio !== '' && genero !== '') {
-
-        if (editando) {
-            libros[indiceEditar] = { titulo, autor, anio, genero }
-            editando = false
-            indiceEditar = null
-            document.querySelector('button[type="submit"]').innerText = 'Agregar libro'
-        } else {
-            const yaExiste = libros.some(libro =>
+            const yaExiste = autos.some(auto =>
                 auto.marca.toLowerCase() === marca.toLowerCase() &&
                 auto.modelo.toLowerCase() === modelo.toLowerCase()
             )
@@ -44,7 +24,6 @@ const agregarLibro = () => {
                 alert('Este auto ya se encuentra cargado en el listado')
                 return
             }
->>>>>>> 242aa66be0fbaf215887cf97f6acb0189cd547be
             // Guardamos en nuestro array local autos que vamos creando
             autos.push({ marca, modelo, anio })
         }
@@ -71,16 +50,12 @@ const filtrarAutos = () => {
 }
 
 const renderizarAutos = (lista = autos) => {
-
     const tabla = document.getElementById('tablaAutos').querySelector('tbody')
-
     tabla.innerText = ''
 
     lista.forEach(auto => {
-        const indexReal = autos.indexOf(auto) // obtener indice real del array original
-
+        const indexReal = autos.indexOf(auto)
         const fila = document.createElement('tr')
-
         fila.innerHTML = `
             <td>${indexReal + 1}</td>
             <td>${auto.marca}</td>
@@ -90,10 +65,8 @@ const renderizarAutos = (lista = autos) => {
                 <button onclick="editarAuto(${indexReal})">Editar</button>
                 <button onclick="eliminarAuto(${indexReal})">Eliminar</button>
             </td>
-            `
-
+        `;
         tabla.appendChild(fila)
-
     })
 }
 
@@ -102,17 +75,11 @@ const editarAuto = (index) => {
     document.getElementById('marca').value = auto.marca
     document.getElementById('modelo').value = auto.modelo
     document.getElementById('anio').value = auto.anio
-    // document.getElementById('buttonForm').innerText='Editar auto'
     document.querySelector('button[type="submit"]').innerText = 'Actualizar Auto'
     editando = true
     indiceEditar = index
 }
 
-
-<<<<<<< HEAD
-=======
-
->>>>>>> 242aa66be0fbaf215887cf97f6acb0189cd547be
 const eliminarAuto = (index) => {
 
     // Eliminar el auto del array

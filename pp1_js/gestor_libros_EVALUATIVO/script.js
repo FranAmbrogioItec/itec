@@ -4,7 +4,6 @@ let editando = false;
 let indiceEditar = null;
 let ordenAnioAscendente = false; // Variable para controlar el orden de la tabla
 
-// Referencias a elementos del DOM (usando los IDs del HTML del ejercicio anterior)
 const formLibro = document.getElementById('bookForm');
 const inputTitulo = document.getElementById('title');
 const inputAutor = document.getElementById('author');
@@ -155,11 +154,15 @@ const editarLibro = (index) => {
     inputAnio.value = libro.anio;
     inputGenero.value = libro.genero;
     
-    // Cambiar estado del formulario a modo edición
+    // Cambiar estado del formulario a modo edición 
     botonGuardar.innerText = 'Actualizar Libro';
     botonCancelar.style.display = 'inline-block';
     editando = true;
     indiceEditar = index;
+
+    //focusea y scroll al formulario de edicion
+    inputTitulo.focus();
+    formLibro.scrollIntoView({ behavior: 'smooth', block: 'start' });
 };
 
 
