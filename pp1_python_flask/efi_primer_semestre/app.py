@@ -7,11 +7,11 @@ from datetime import datetime
 from config import Config # Importamos nuestra configuración    
 
 # Inicialización de la aplicación Flask
-app = Flask(__name__)
+app = Flask(__name__) 
 app.config.from_object(Config) # Cargamos la configuración desde config.py
 
 # Inicialización de extensiones
-db = SQLAlchemy(app)
+db = SQLAlchemy(app)    
 migrate = Migrate(app, db)
 login_manager = LoginManager(app)
 login_manager.login_view = 'login' # La vista a la que redirigir si el usuario no está logueado
