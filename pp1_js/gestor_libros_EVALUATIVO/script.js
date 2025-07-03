@@ -92,7 +92,7 @@ const agregarLibro = () => {
 
 
 const renderizarLibros = (lista = libros) => {
-    cuerpoTablaLibros.innerHTML = ''; // Limpiar la tabla
+    cuerpoTablaLibros.innerHTML = ''; 
 
     if (lista.length === 0) {
         cuerpoTablaLibros.innerHTML = `<tr><td colspan="6" class="text-center">No hay libros registrados.</td></tr>`;
@@ -103,7 +103,7 @@ const renderizarLibros = (lista = libros) => {
     mensajeNoLibros.style.display = 'none';
 
     lista.forEach((libro, index) => {
-        // Para obtener el índice real del array 'libros' original (útil para editar/eliminar)
+        //para obtener el indice de [libros]
         const indexReal = libros.indexOf(libro);
 
         const fila = document.createElement('tr');
@@ -240,7 +240,6 @@ const mostrarResumen = () => {
     libroMasAntiguoSpan.innerText = `${libroMasAntiguo.titulo} (${libroMasAntiguo.anio})`;
     libroMasRecienteSpan.innerText = `${libroMasReciente.titulo} (${libroMasReciente.anio})`;
 };
-
 
 
 const actualizarSelectGenero = () => {
