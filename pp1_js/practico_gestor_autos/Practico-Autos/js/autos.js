@@ -1,4 +1,4 @@
-        let autos = JSON.parse(localStorage.getItem('autos')) || [] //busca lo q haya en la localStorage || o en caso de q no haya nada en la localStorage, define el array vacio, son 2 opciones q tiene segun lo q encuentre
+let autos = JSON.parse(localStorage.getItem('autos')) || [] //busca lo q haya en la localStorage || o en caso de q no haya nada en la localStorage, define el array vacio, son 2 opciones q tiene segun lo q encuentre
 
 const agregarAuto = () => {
     const marca = document.getElementById('marca').value.trim()
