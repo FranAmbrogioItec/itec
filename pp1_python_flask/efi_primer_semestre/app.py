@@ -5,7 +5,6 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 from config import Config # Importamos nuestra configuración    
-
 # Inicialización de la aplicación Flask
 app = Flask(__name__) 
 app.config.from_object(Config) # Cargamos la configuración desde config.py
@@ -23,7 +22,7 @@ class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
-    password_hash = db.Column(db.String(128)) # Almacena el hash de la contraseña
+    password_hash = db.Column(db.String(256)) # Almacena el hash de la contraseña
 
     # Relaciones: Un usuario puede tener muchas entradas (posts) y muchos comentarios
     posts = db.relationship('Post', backref='author', lazy='dynamic')

@@ -9,5 +9,5 @@ class Config:
     # 'tu_host_mysql' y 'nombre_de_tu_db' con tus propios datos de MySQL.
     # Si usas Docker para MySQL, 'tu_host_mysql' podría ser el nombre del servicio Docker.
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
-        'mysql+pymysql://root:0044295023@localhost/database_efi'
+        "mysql+pymysql://flaskuser:flaskpass@localhost/database_efi"
     SQLALCHEMY_TRACK_MODIFICATIONS = False # Desactiva el seguimiento de modificaciones de objetos de SQLAlchemy (consume recursos)
