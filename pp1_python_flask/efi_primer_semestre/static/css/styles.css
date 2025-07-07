@@ -1,0 +1,77 @@
+/* Asegúrate de que estos estilos estén en tu static/css/style.css */
+
+html {
+    height: 100%; /* El html también debe ocupar el 100% de la altura */
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: #f8f9fa; /* Un gris muy claro */
+    color: #343a40; /* Texto oscuro pero no negro puro */
+    /* Las siguientes tres líneas son CRUCIALES para el sticky footer con Flexbox */
+    display: flex; /* Habilita Flexbox en el body */
+    flex-direction: column; /* Apila los elementos hijos verticalmente */
+    min-height: 100vh; /* Asegura que el body ocupe al menos el 100% del viewport height */
+}
+
+.navbar {
+    background-color: #ffffff !important; /* Barra de navegación blanca */
+    border-bottom: 1px solid #e0e0e0; /* Borde sutil */
+    box-shadow: 0 2px 4px rgba(0,0,0,.04); /* Sombra ligera */
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+.navbar-brand {
+    font-weight: 600;
+    color: #343a40 !important;
+    font-size: 1.5rem;
+}
+.navbar-nav .nav-link {
+    color: #555 !important;
+    padding: 0.5rem 1rem;
+    transition: color 0.3s ease;
+}
+.navbar-nav .nav-link:hover {
+    color: #007bff !important;
+}
+.navbar-nav .nav-link.disabled {
+    color: #b0b0b0 !important;
+}
+.dropdown-menu {
+    border: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,.1);
+    border-radius: 0.5rem;
+}
+.dropdown-item {
+    color: #343a40;
+    padding: 0.75rem 1.5rem;
+    transition: background-color 0.2s ease;
+}
+.dropdown-item:hover {
+    background-color: #f0f0f0;
+    color: #007bff;
+}
+
+
+
+.alert {
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Estilos para el footer */
+footer {
+    background-color: #343a40; /* Fondo oscuro */
+    color: #f8f9fa; /* Texto claro */
+    padding: 2rem 0; /* Padding vertical */
+    text-align: center;
+    font-size: 0.9rem;
+    /* margin-top ya no es necesario porque flexbox lo maneja */
+}
+footer a {
+    color: #007bff;
+    text-decoration: none;
+}
+footer a:hover {
+    text-decoration: underline;
+}
