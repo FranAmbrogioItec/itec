@@ -140,7 +140,7 @@ def register():
         db.session.commit()
         flash('¡Registro exitoso! Ya puedes iniciar sesión.', 'success')
         return redirect(url_for('login'))
-    return render_template('register.html', title='Registro')
+    return render_template('auth/register.html', title='Registro')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -156,7 +156,7 @@ def login():
         login_user(user)
         flash('¡Sesión iniciada correctamente!', 'success')
         return redirect(url_for('index'))
-    return render_template('login.html', title='Iniciar Sesión')
+    return render_template('auth/login.html', title='Iniciar Sesión')
 
 @app.route('/logout')
 @login_required
