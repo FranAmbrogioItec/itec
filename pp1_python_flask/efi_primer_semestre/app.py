@@ -6,7 +6,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 from config import Config 
 
-# Inicialización de la aplicación Flask
+#inicializo la app flask
 app = Flask(__name__) 
 
 """ app.config.from_object(Config) # Cargamos la configuración desde config.py
@@ -20,7 +20,7 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 login_manager = LoginManager(app)
 login_manager.init_app(app)
-login_manager.login_view = 'login' # La vista a la que redirigir si el usuario no está logueado
+login_manager.login_view = 'login' #vista para redirigir si no esta logueado
 
 from models import User, Category, Post, Comment
 
@@ -35,8 +35,9 @@ def load_user(user_id):
 def inject_categories():
     return dict(all_categories=Category.query.all())
 
-# --- Rutas / Vistas ---
 
+
+# --------------------------------------- Rutas / Vistas ---------------------------------------
 @app.route('/')
 @app.route('/index')
 def index():
@@ -57,26 +58,28 @@ def index():
     
     return render_template('index.html', title='Inicio', posts=posts)
 
+
+# --------------------------------------- Ruta Registro ---------------------------------------
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-    if current_user.is_authenticated:
+    if current_user.is_authenticated: #si el usuario esta logueado
         return redirect(url_for('index'))
     if request.method == 'POST':
         username = request.form.get('username')
         email = request.form.get('email')
         password = request.form.get('password')
 
-        user = User.query.filter_by(username=username).first()
+        user = User.query.filter_by(username=username).first() #busca si el usuario ya existe en la base de datos y valida para que no se repita
         if user:
             flash('El nombre de usuario ya existe. Por favor, elige otro.', 'danger')
             return redirect(url_for('register'))
 
-        user = User.query.filter_by(email=email).first()
+        user = User.query.filter_by(email=email).first() #si el correo ya esta registrado
         if user:
             flash('El correo electrónico ya está registrado.', 'danger')
             return redirect(url_for('register'))
 
-        new_user = User(username=username, email=email)
+        new_user = User(username=username, email=email) #crea el nuevo usuario
         new_user.set_password(password)
         db.session.add(new_user)
         db.session.commit()
@@ -84,10 +87,13 @@ def register():
         return redirect(url_for('login'))
     return render_template('auth/register.html', title='Registro')
 
-@app.route('/login', methods=['GET', 'POST'])
+
+# --------------------------------------- Ruta Login ---------------------------------------
+@app.route('/login', methods=['GET', 'POST']) 
 def login():
     if current_user.is_authenticated:
         return redirect(url_for('index'))
+        
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')
@@ -100,6 +106,8 @@ def login():
         return redirect(url_for('index'))
     return render_template('auth/login.html', title='Iniciar Sesión')
 
+
+# --------------------------------------- Ruta Logout ---------------------------------------
 @app.route('/logout')
 @login_required
 def logout():
@@ -107,8 +115,10 @@ def logout():
     flash('Has cerrado sesión.', 'info')
     return redirect(url_for('index'))
 
+
+# --------------------------------------- Ruta Crear Post ---------------------------------------
 @app.route('/create_post', methods=['GET', 'POST'])
-@login_required # Solo usuarios logueados pueden crear posts
+@login_required #solo usuarios logueados pueden crear posts
 def create_post():
     # Asegurarse de que haya al menos una categoría para poder crear un post
     if not Category.query.first():
@@ -145,6 +155,8 @@ def create_post():
     categories = Category.query.all()
     return render_template('create_post.html', title='Crear Nuevo Post', categories=categories)
 
+
+# --------------------------------------- Ruta Detalle Post ---------------------------------------
 @app.route('/post/<int:post_id>', methods=['GET', 'POST'])
 def post_detail(post_id):
     post = Post.query.get_or_404(post_id)
@@ -168,6 +180,7 @@ def post_detail(post_id):
         
     return render_template('post_detail.html', title=post.title, post=post)
 
+
 # --- Rutas de Edición y Eliminación (PLUS) ---
 @app.route('/edit_post/<int:post_id>', methods=['GET', 'POST'])
 @login_required
@@ -178,7 +191,7 @@ def edit_post(post_id):
         flash('No tienes permiso para editar este post.', 'danger')
         return redirect(url_for('post_detail', post_id=post.id))
 
-    if request.method == 'POST':
+    if request.method == 'POST': 
         post.title = request.form.get('title')
         post.content = request.form.get('content')
         category_name = request.form.get('category')
@@ -198,12 +211,14 @@ def edit_post(post_id):
         post.category = category # Asigna la categoría al post
 
         db.session.commit()
-        flash('¡Post actualizado exitosamente!', 'success')
+        flash('¡Post actualizado exitosamente!', 'success') 
         return redirect(url_for('post_detail', post_id=post.id))
     
     categories = Category.query.all()
     return render_template('create_post.html', title='Editar Post', post=post, categories=categories) # Reusamos el template de creación
 
+
+# --- Rutas de Edición y Eliminación (PLUS) ---
 @app.route('/delete_post/<int:post_id>', methods=['POST'])
 @login_required
 def delete_post(post_id):
@@ -217,7 +232,9 @@ def delete_post(post_id):
     flash('Post eliminado exitosamente.', 'success')
     return redirect(url_for('index'))
 
-@app.route('/delete_comment/<int:comment_id>', methods=['POST'])
+
+# --- Rutas de Edición y Eliminación (PLUS) ---
+@app.route('/delete_comment/<int:comment_id>', methods=['POST']) 
 @login_required
 def delete_comment(comment_id):
     comment = Comment.query.get_or_404(comment_id)
