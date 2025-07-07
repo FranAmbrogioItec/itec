@@ -1,20 +1,16 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
-from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
-from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+from app import db
+from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
-from config import Config # Importamos nuestra configuración    
-from app import db
 
-# a) Modelo Usuario
+#Modelo Usuario
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(64), unique=True, nullable=False)
+    username = db.Column(db.String(100), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
-    password_hash = db.Column(db.String(256)) # Almacena el hash de la contraseña
-
-    # Relaciones: Un usuario puede tener muchas entradas (posts) y muchos comentarios
+    password_hash = db.Column(db.String(256), nullable=False) #almacena el hash de la pw
+    is_active = db.Column(db.Boolean, default=True)
+    #Relaciones: Un usuario puede tener muchas entradas (posts) y muchos comentarios
     posts = db.relationship('Post', backref='author', lazy='dynamic')
     comments = db.relationship('Comment', backref='author', lazy='dynamic')
 
@@ -27,18 +23,18 @@ class User(UserMixin, db.Model):
     def __repr__(self):
         return f'<User {self.username}>'
 
-# b) Modelo Categoría
+#Modelo Categoría
 class Category(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), unique=True, nullable=False)
 
-    # Relación: Una categoría puede tener muchas entradas (posts)
+#Relación: Una categoría puede tener muchas entradas (posts)
     posts = db.relationship('Post', backref='category', lazy='dynamic')
 
     def __repr__(self):
         return f'<Category {self.name}>'
 
-# c) Modelo Entrada o Post
+#Modelo Entrada o Post
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(128), nullable=False)
@@ -57,7 +53,7 @@ class Post(db.Model):
     def __repr__(self):
         return f'<Post {self.title}>'
 
-# d) Modelo Comentario
+#Modelo Comentario
 class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     text = db.Column(db.Text, nullable=False)
