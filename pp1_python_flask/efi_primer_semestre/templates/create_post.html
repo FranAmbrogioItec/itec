@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow-sm mt-5">
+            <div class="card-header bg-dark text-white text-center">
+                <h3>{% if post %}Editar Post{% else %}Crear Nuevo Post{% endif %}</h3>
+            </div>
+            <div class="card-body">
+                <form action="{% if post %}{{ url_for('edit_post', post_id=post.id) }}{% else %}{{ url_for('create_post') }}{% endif %}" method="POST">
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Título:</label>
+                        <input type="text" class="form-control" id="title" name="title" value="{{ post.title if post else '' }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="content" class="form-label">Contenido:</label>
+                        <textarea class="form-control" id="content" name="content" rows="10" required>{{ post.content if post else '' }}</textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="category" class="form-label">Categoría:</label>
+                        <input list="category-options" type="text" class="form-control" id="category" name="category"
+                               placeholder="Ej: Noticias, Tutoriales..."
+                               value="{{ post.category.name if post and post.category else '' }}" required>
+                        <datalist id="category-options">
+                            {% for cat in categories %}
+                                <option value="{{ cat.name }}">
+                            {% endfor %}
+                        </datalist>
+                        <small class="form-text text-muted">Puedes seleccionar una categoría existente o escribir una nueva.</small>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        {% if post %}Actualizar Post{% else %}Crear Post{% endif %}
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

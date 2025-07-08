@@ -33,7 +33,7 @@
                 <div class="card-body">
                     {% if post.comments.count() > 0 %}
                         <ul class="list-group list-group-flush">
-                            {% for comment in post.comments.order_by(Comment.created_at.asc()) %}
+                            {% for comment in comments %}
                                 <li class="list-group-item">
                                     <strong>{{ comment.author.username }}</strong> el {{ comment.created_at.strftime('%d/%m/%Y %H:%M') }}:
                                     <p class="mb-1">{{ comment.text }}</p>

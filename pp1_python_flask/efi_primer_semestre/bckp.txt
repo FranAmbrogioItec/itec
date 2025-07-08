@@ -1,3 +1,5 @@
+Necesito adaptar este codigo, para que en mi aplicacion, el usuario pueda crear un post, aun no tiene las categorias definidas
+
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -117,42 +119,40 @@ def logout():
 @app.route('/create_post', methods=['GET', 'POST'])
 @login_required #solo usuarios logueados pueden crear posts
 def create_post():
+    # Asegurarse de que haya al menos una categoría para poder crear un post
+    if not Category.query.first():
+        flash('No hay categorías disponibles. Por favor, crea una categoría primero (ej. a través de la consola de Flask).', 'warning')
+        # Puedes redirigir a una página de administración o instrucciones si tuvieras una.
+        # Por ahora, redirigimos al inicio.
+        return redirect(url_for('index'))
+
     if request.method == 'POST':
-        title = request.form.get('title').strip()
-        content = request.form.get('content').strip()
-        category_name = request.form.get('category').strip()
+        title = request.form.get('title')
+        content = request.form.get('content')
+        category_name = request.form.get('category')
 
         if not title or not content or not category_name:
             flash('Título, contenido y categoría son obligatorios.', 'danger')
             return redirect(url_for('create_post'))
 
-        # Buscar categoría (ignorando mayúsculas/minúsculas, opcional)
-        category = Category.query.filter(db.func.lower(Category.name) == category_name.lower()).first()
-
+        # Obtener o crear la categoría
+        category = Category.query.filter_by(name=category_name).first()
         if not category:
-            # Crear nueva categoría
+            # Si la categoría no existe, la creamos. Podrías querer un control más estricto.
             category = Category(name=category_name)
             db.session.add(category)
-            db.session.commit()
+            db.session.commit() # Commitear para que la nueva categoría tenga ID
             flash(f'Nueva categoría "{category_name}" creada.', 'info')
 
-        # Crear el post
-        new_post = Post(
-            title=title,
-            content=content,
-            author=current_user,
-            category=category
-        )
+        new_post = Post(title=title, content=content, author=current_user, category=category)
         db.session.add(new_post)
         db.session.commit()
-
         flash('¡Post creado exitosamente!', 'success')
         return redirect(url_for('index'))
-
-    # Obtener categorías existentes para sugerencias
-    categories = Category.query.order_by(Category.name).all()
+    
+    # Pasamos las categorías existentes al template para el select
+    categories = Category.query.all()
     return render_template('create_post.html', title='Crear Nuevo Post', categories=categories)
-
 
 
 # --------------------------------------- Ruta Detalle Post ---------------------------------------
@@ -160,10 +160,11 @@ def create_post():
 def post_detail(post_id):
     post = Post.query.get_or_404(post_id)
     
+    # Lógica para agregar un comentario
     if request.method == 'POST':
         if not current_user.is_authenticated:
             flash('Debes iniciar sesión para comentar.', 'warning')
-            return redirect(url_for('login'))
+            return redirect(url_for('login')) # O redirigir a la misma página y mostrar mensaje
         
         comment_text = request.form.get('comment_text')
         if not comment_text:
@@ -174,11 +175,9 @@ def post_detail(post_id):
         db.session.add(new_comment)
         db.session.commit()
         flash('Comentario agregado exitosamente.', 'success')
-        return redirect(url_for('post_detail', post_id=post.id))
-    
-    comments = post.comments.order_by(Comment.created_at.asc()).all()
-
-    return render_template('post_detail.html', title=post.title, post=post, comments=comments)
+        return redirect(url_for('post_detail', post_id=post.id)) # Redirigir para evitar resubmit
+        
+    return render_template('post_detail.html', title=post.title, post=post)
 
 
 # --- Rutas de Edición y Eliminación (PLUS) ---
