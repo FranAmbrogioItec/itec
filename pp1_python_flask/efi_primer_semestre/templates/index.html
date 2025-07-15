@@ -10,10 +10,13 @@
                         <div class="card-body">
                             <h5 class="card-title"><a href="{{ url_for('post_detail', post_id=post.id) }}">{{ post.title }}</a></h5>
                             <h6 class="card-subtitle mb-2 text-muted">
-                                Publicado por {{ post.author.username }} el {{ post.created_at.strftime('%d/%m/%Y %H:%M') }}
+                                Publicado por {{ post.author.username }} el {{ post.created_at.strftime("%-d de %B de %Y, %H:%M")
+                            }}
                                 {% if post.category %}
-                                    en <span class="badge bg-secondary">{{ post.category.name }}</span>
+                                    en <span class="badge bg-success"><i class="bi bi-dna fs-6"></i> {{ post.category.name }}</span>
                                 {% endif %}
+                                <br>
+                                <span class="ms-2 text-muted">💬 {{ post.comments.count() }} comentarios</span>
                             </h6>
                             <p class="card-text">{{ post.content[:200] }}{% if post.content|length > 200 %}...{% endif %}</p>
                             <a href="{{ url_for('post_detail', post_id=post.id) }}" class="btn btn-primary btn-sm">Leer más</a>
