@@ -1,0 +1,186 @@
+/* === Fondo personalizado === */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    color: #f0f0f0;
+    background: linear-gradient(90deg,rgba(34, 40, 61, 1) 0%, rgba(37, 70, 112, 1) 50%, rgba(30, 38, 64, 1) 100%);    
+    background-size: cover;
+  }
+  
+  /* === Contenedor principal === */
+  .container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 2rem;
+  }
+  
+  /* === Encabezado === */
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  
+  header h1 {
+    font-size: 2rem;
+  }
+  
+  header nav a {
+    color: #aaa;
+    margin-left: 1.2rem;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  
+  header nav a:hover {
+    color: #fff;
+  }
+  
+  /* === Distribución Principal === */
+  .main {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+  
+  /* === Sección Izquierda === */
+  .left {
+    flex: 1;
+    min-width: 250px;
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  .profile-pic {
+    width: 100%;
+    max-width: 3    00px;
+    border-radius: 20px;
+    margin-bottom: 1rem;
+  }
+  
+  .stats h2 {
+    font-size: 2rem;
+    color: #00bfff;
+    margin: 0;
+  }
+  
+  .stats p {
+    font-size: 0.95rem;
+    color: #ccc;
+  }
+  
+  .skills-note {
+    margin-top: 0.8rem;
+    font-size: 0.85rem;
+    color: #aaa;
+  }
+  
+  /* === Sección Derecha === */
+  .right {
+    flex: 2;
+    min-width: 300px;
+  }
+  
+  /* === Glass efecto === */
+  .glass {
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 1rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  }
+  
+  /* === Enfoque personal === */
+  .focus {
+    margin-bottom: 1.5rem;
+  }
+  
+  /* === Proyectos === */
+  .projects .project-card {
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.7rem 1rem;
+  }
+  
+  .project-card p {
+    margin: 0;
+  }
+  
+  .project-card .links a {
+    margin-left: 0.6rem;
+    color: #ffd700;
+    text-decoration: none;
+    font-size: 1.2rem;
+  }
+  
+  /* === Íconos de Skills === */
+  .skills-icons {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: start;
+  }
+  
+  .skills-icons img {
+    width: 35px;
+    height: 35px;
+    transition: transform 0.2s ease;
+  }
+  
+  .skills-icons img:hover {
+    transform: scale(1.2);
+  }
+  
+  /* === Cursos === */
+  .courses {
+    margin-top: 2rem;
+  }
+  
+  .course {
+    margin-bottom: 0.7rem;
+    padding: 0.6rem 1rem;
+    font-size: 0.95rem;
+    color: #ddd;
+    transition: background 0.3s;
+  }
+  
+  .course:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+  
+  /* === Footer === */
+  footer {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    color: #888;
+  }
+  
+  /* === Responsividad básica === */
+  @media (max-width: 768px) {
+    .main {
+      flex-direction: column;
+    }
+  
+    header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+  
+    header nav {
+      display: flex;
+      gap: 1rem;
+    }
+  
+    .skills-icons {
+      justify-content: center;
+    }
+  }
+  
