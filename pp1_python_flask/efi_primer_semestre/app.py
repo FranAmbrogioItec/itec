@@ -250,8 +250,6 @@ def delete_comment(comment_id):
     return redirect(url_for('post_detail', post_id=post_id))
 
 
-# Para ejecutar la aplicación directamente
+# Para ejecutar la aplicación
 if __name__ == '__main__':
-    # Esto es solo para desarrollo. En producción, usar Gunicorn o similar.
-    # Puedes configurar un puerto diferente si el 5000 está ocupado: app.run(port=5001)
     app.run(debug=True)
