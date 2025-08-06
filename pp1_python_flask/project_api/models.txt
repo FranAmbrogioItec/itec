@@ -1,0 +1,20 @@
+tabla USER;
+-id 
+-nombre
+-mail
+-review ---> relationship con table REVIEW
+
+tabla MOVIE;
+-id 
+-titulo
+-anio
+-review ---> relationship con table REVIEW
+-genero ---> relationship con table GENERO
+
+tabla REVIEW;
+-id 
+-rating
+-comentario
+-fecha
+-user_id ---> relationship con table USER
+-movie_id ---> relationship con table MOVIE
