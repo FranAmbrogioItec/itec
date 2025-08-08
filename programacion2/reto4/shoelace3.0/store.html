@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.15.0/cdn/themes/light.css" />
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.15.0/cdn/shoelace.js"></script>
+    <title>Store - Shoelace</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: var(--sl-font-sans);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--sl-spacing-medium);
+        }
+        /* Estilos para las tarjetas especiales con fondo */
+        .hero-card {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                        url('/shoelace3.0/img/almohadas.webp') center/cover;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+        }
+        .hero-card2 {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                        url('/shoelace3.0/img/cuadros.webp') center/cover;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="container">
+        <!-- Top Navigation -->
+        <nav style="
+            background: var(--sl-color-neutral-0);
+            padding: var(--sl-spacing-medium) 0;
+        ">
+            <div style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            ">
+                <a href="#" style="text-decoration: none;">
+                    <img src="/shoelace3.0/img/icono-reto.png" alt="Logo" style="width: 60px;">
+                </a>
+                
+                <div style="
+                    display: flex;
+                    gap: var(--sl-spacing-medium);
+                    align-items: center;
+                ">
+                    <sl-icon-button name="search" style="font-size: var(--sl-font-size-x-large);"></sl-icon-button>
+                    <sl-icon-button name="person" style="font-size: var(--sl-font-size-x-large);"></sl-icon-button>
+                    <div style="position: relative;">
+                        <sl-icon-button name="bag" style="font-size: var(--sl-font-size-x-large);"></sl-icon-button>
+                        <sl-badge variant="warning" style="
+                            position: absolute;
+                            bottom: -2px;
+                            right: -2px;
+                            width: 12px;
+                            height: 12px;
+                            border: 2px solid var(--sl-color-neutral-0);
+                        "></sl-badge>
+                    </div>
+                    <sl-icon-button name="heart" style="font-size: var(--sl-font-size-x-large);"></sl-icon-button>
+                </div>
+            </div>
+        </nav>
+        
+        <!-- Main Navigation -->
+        <nav style="
+            border-top: 2px solid var(--sl-color-neutral-900);
+            border-bottom: 2px solid var(--sl-color-neutral-900);
+            padding: var(--sl-spacing-large) 0;
+        ">
+            <div style="
+                display: flex;
+                justify-content: space-evenly;
+            ">
+                <a href="index.html" style="
+                    color: var(--sl-color-neutral-900);
+                    font-weight: var(--sl-font-weight-bold);
+                    text-decoration: none;
+                    padding: var(--sl-spacing-small) var(--sl-spacing-medium);
+                ">INICIO</a>
+                <a href="store.html" style="
+                    color: var(--sl-color-neutral-900);
+                    font-weight: var(--sl-font-weight-bold);
+                    text-decoration: none;
+                    padding: var(--sl-spacing-small) var(--sl-spacing-medium);
+                ">TIENDA</a>
+                <a href="mentions.html" style="
+                    color: var(--sl-color-neutral-900);
+                    font-weight: var(--sl-font-weight-bold);
+                    text-decoration: none;
+                    padding: var(--sl-spacing-small) var(--sl-spacing-medium);
+                ">CONTACTO</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Store Section -->
+    <section class="container" style="padding: var(--sl-spacing-3x-large) 0;">
+        <h1 style="
+            text-align: center;
+            margin-bottom: var(--sl-spacing-large);
+            font-size: var(--sl-font-size-2x-large);
+            font-weight: var(--sl-font-weight-bold);
+        ">STORE</h1>
+        
+        <sl-divider style="margin-bottom: var(--sl-spacing-large);"></sl-divider>
+
+        <!-- Products Grid -->
+        <div style="
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--sl-spacing-large);
+        ">
+            <!-- DECOR Card (Hero Card) -->
+            <sl-card class="hero-card" style="
+                --sl-panel-background-color: transparent;
+                --sl-panel-border: none;
+                color: var(--sl-color-neutral-0);
+                height: 400px;
+            ">
+                <div style="
+                    padding: var(--sl-spacing-3x-large);
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                ">
+                    <h5 style="
+                        font-size: var(--sl-font-size-x-large);
+                        font-weight: var(--sl-font-weight-bold);
+                        margin-bottom: var(--sl-spacing-medium);
+                    ">DECOR</h5>
+                    <p style="
+                        line-height: var(--sl-line-height-normal);
+                        margin-bottom: var(--sl-spacing-3x-large);
+                    ">
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur dolore vel ullam minima quibusdam laudantium enim deserunt aliquid? Iste veniam minima neque consectetur, veritatis quam! Ipsam nihil optio ratione voluptas.
+                    </p>
+                    <sl-button variant="default" outline style="
+                        --sl-color-primary: var(--sl-color-neutral-0);
+                        --sl-color-neutral-0: transparent;
+                        color: var(--sl-color-neutral-0);
+                        border-color: var(--sl-color-neutral-0);
+                    ">VIEW ALL</sl-button>
+                </div>
+            </sl-card>
+
+            <!-- Sillon Product -->
+            <sl-card style="
+                height: 400px;
+                display: flex;
+                flex-direction: column;
+                --sl-panel-border-radius: var(--sl-border-radius-medium);
+                position: relative;
+                overflow: hidden;
+            ">
+                <div style="
+                    background-color: #eae9e7;
+                    height: 70%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    overflow: hidden;
+                ">
+                    <img src="/shoelace3.0/img/sillon.png" alt="Sillon" style="
+                        max-width: 100%;
+                        max-height: 100%;
+                        object-fit: contain;
+                    ">
+                </div>
+                <div style="
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    background: var(--sl-color-neutral-0);
+                    padding: var(--sl-spacing-medium);
+                    height: 30%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-end;
+                ">
+                    <h5 style="
+                        font-weight: var(--sl-font-weight-bold);
+                        margin-bottom: var(--sl-spacing-small);
+                    ">Sillon</h5>
+                    <div style="
+                        color: var(--sl-color-warning-500);
+                        margin-bottom: var(--sl-spacing-small);
+                    ">
+                        <sl-icon name="star-fill"></sl-icon>
+                        <sl-icon name="star-fill"></sl-icon>
+                        <sl-icon name="star-fill"></sl-icon>
+                        <sl-icon name="star-fill"></sl-icon>
+                        <sl-icon name="star" style="color: var(--sl-color-neutral-900);"></sl-icon>
+                    </div>
+                    <h5 style="
+                        font-weight: var(--sl-font-weight-bold);
+                        margin: 0;
+                    ">30$</h5>
+                </div>
+            </sl-card>
+
+            <!-- Cuadros Product -->
+            <sl-card style="
+                height: 400px;
+                display: flex;
+                flex-direction: column;
+                --sl-panel-border-radius: var(--sl-border-radius-medium);
+                position: relative;
+                overflow: hidden;
+            ">
+                <div style="
+                    background-color: #eae9e7;
+                    height: 70%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    overflow: hidden;
+                ">
+                    <img src="/shoelace3.0/img/cuadros.webp" alt="Cuadros" style="
+                        max-width: 100%;
+                        max-height: 100%;
+                        object-fit: contain;
+                    ">
+                </div>
+                <div style="
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    background: var(--sl-color-neutral-0);
+                    padding: var(--sl-spacing-medium);
+                    height: 30%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-end;
+                ">
+                    <h5 style="
+                        font-weight: var(--sl-font-weight-bold);
+                        margin-bottom: var(--sl-spacing-small);
+                    ">Cuadros</h5>
+                    <div style="
+                        color: var(--sl-color-warning-500);
+                        margin-bottom: var(--sl-spacing-small);
+                    ">
+                        <sl-icon name="star-fill"></sl-icon>
+                        <sl-icon name="star-fill"></sl-icon>
+                        <sl-icon name="star-fill"></sl-icon>
+                        <sl-icon name="star-fill"></sl-icon>
+                        <sl-icon name="star" style="color: var(--sl-color-neutral-900);"></sl-icon>
+                    </div>
+                    <h5 style="
+                        font-weight: var(--sl-font-weight-bold);
+                        margin: 0;
+                    ">30$</h5>
+                </div>
+            </sl-card>
+
+            <!-- Almohadas Product -->
+            <sl-card style="
+                height: 400px;
+                display: flex;
+                flex-direction: column;
+                --sl-panel-border-radius: var(--sl-border-radius-medium);
+                position: relative;
+                overflow: hidden;
+            ">
+                <div style="
+                    background-color: #eae9e7;
+                    height: 70%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    overflow: hidden;
+                ">
+                    <img src="/shoelace3.0/img/almohadas.webp" alt="Almohadas" style="
+                        max-width: 100%;
+                        max-height: 100%;
+                        object-fit: contain;
+                    ">
+                </div>
+                <div style="
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    background: var(--sl-color-neutral-0);
+                    padding: var(--sl-spacing-medium);
+                    height: 30%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-end;
+                ">
+                    <h5 style="
+                        font-weight: var(--sl-font-weight-bold);
+                        margin-bottom: var(--sl-spacing-small);
+                    ">Almohadas</h5>
+                    <div style="
+                        color: var(--sl-color-warning-500);
+                        margin-bottom: var(--sl-spacing-small);
+                    ">
+                        <sl-icon name="star-fill"></sl-icon>
+                        <sl-icon name="star-fill"></sl-icon>
+                        <sl-icon name="star-fill"></sl-icon>
+                        <sl-icon name="star-fill"></sl-icon>
+                        <sl-icon name="star" style="color: var(--sl-color-neutral-900);"></sl-icon>
+                    </div>
+                    <h5 style="
+                        font-weight: var(--sl-font-weight-bold);
+                        margin: 0;
+                    ">30$</h5>
+                </div>
+            </sl-card>
+
+            <!-- Saco Product -->
+            <sl-card style="
+                height: 400px;
+                display: flex;
+                flex-direction: column;
+                --sl-panel-border-radius: var(--sl-border-radius-medium);
+                position: relative;
+                overflow: hidden;
+            ">
+                <div style="
+                    background-color: #eae9e7;
+                    height: 70%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    overflow: hidden;
+                ">
+                    <img src="/shoelace3.0/img/saco.png" alt="Saco" style="
+                        max-width: 100%;
+                        max-height: 100%;
+                        object-fit: contain;
+                    ">
+                </div>
+                <div style="
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    background: var(--sl-color-neutral-0);
+                    padding: var(--sl-spacing-medium);
+                    height: 30%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-end;
+                ">
+                    <h5 style="
+                        font-weight: var(--sl-font-weight-bold);
+                        margin-bottom: var(--sl-spacing-small);
+                    ">Saco</h5>
+                    <div style="
+                        color: var(--sl-color-warning-500);
+                        margin-bottom: var(--sl-spacing-small);
+                    ">
+                        <sl-icon name="star-fill"></sl-icon>
+                        <sl-icon name="star-fill"></sl-icon>
+                        <sl-icon name="star-fill"></sl-icon>
+                        <sl-icon name="star-fill"></sl-icon>
+                        <sl-icon name="star" style="color: var(--sl-color-neutral-900);"></sl-icon>
+                    </div>
+                    <h5 style="
+                        font-weight: var(--sl-font-weight-bold);
+                        margin: 0;
+                    ">30$</h5>
+                </div>
+            </sl-card>
+
+            <!-- Mesita de Luz Product -->
+            <sl-card style="
+                height: 400px;
+                display: flex;
+                flex-direction: column;
+                --sl-panel-border-radius: var(--sl-border-radius-medium);
+                position: relative;
+                overflow: hidden;
+            ">
+                <div style="
+                    background-color: #eae9e7;
+                    height: 70%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    overflow: hidden;
+                ">
+                    <img src="/shoelace3.0/img/mesita-luz.webp" alt="Mesita de Luz" style="
+                        max-width: 100%;
+                        max-height: 100%;
+                        object-fit: contain;
+                    ">
+                </div>
+                <div style="
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    background: var(--sl-color-neutral-0);
+                    padding: var(--sl-spacing-medium);
+                    height: 30%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-end;
+                ">
+                    <h5 style="
+                        font-weight: var(--sl-font-weight-bold);
+                        margin-bottom: var(--sl-spacing-small);
+                    ">Mesita de Luz</h5>
+                    <div style="
+                        color: var(--sl-color-warning-500);
+                        margin-bottom: var(--sl-spacing-small);
+                    ">
+                        <sl-icon name="star-fill"></sl-icon>
+                        <sl-icon name="star-fill"></sl-icon>
+                        <sl-icon name="star-fill"></sl-icon>
+                        <sl-icon name="star-fill"></sl-icon>
+                        <sl-icon name="star" style="color: var(--sl-color-neutral-900);"></sl-icon>
+                    </div>
+                    <h5 style="
+                        font-weight: var(--sl-font-weight-bold);
+                        margin: 0;
+                    ">30$</h5>
+                </div>
+            </sl-card>
+
+            <!-- Mate Product -->
+            <sl-card style="
+                height: 400px;
+                display: flex;
+                flex-direction: column;
+                --sl-panel-border-radius: var(--sl-border-radius-medium);
+                position: relative;
+                overflow: hidden;
+            ">
+                <div style="
+                    background-color: #eae9e7;
+                    height: 70%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    overflow: hidden;
+                ">
+                    <img src="/shoelace3.0/img/mate.webp" alt="Mate" style="
+                        max-width: 100%;
+                        max-height: 100%;
+                        object-fit: contain;
+                    ">
+                </div>
+                <div style="
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    background: var(--sl-color-neutral-0);
+                    padding: var(--sl-spacing-medium);
+                    height: 30%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-end;
+                ">
+                    <h5 style="
+                        font-weight: var(--sl-font-weight-bold);
+                        margin-bottom: var(--sl-spacing-small);
+                    ">Mate</h5>
+                    <div style="
+                        color: var(--sl-color-warning-500);
+                        margin-bottom: var(--sl-spacing-small);
+                    ">
+                        <sl-icon name="star-fill"></sl-icon>
+                        <sl-icon name="star-fill"></sl-icon>
+                        <sl-icon name="star-fill"></sl-icon>
+                        <sl-icon name="star-fill"></sl-icon>
+                        <sl-icon name="star" style="color: var(--sl-color-neutral-900);"></sl-icon>
+                    </div>
+                    <h5 style="
+                        font-weight: var(--sl-font-weight-bold);
+                        margin: 0;
+                    ">30$</h5>
+                </div>
+            </sl-card>
+
+            <!-- OUR CLIENTS Card (Hero Card 2) -->
+            <sl-card class="hero-card2" style="
+                --sl-panel-background-color: transparent;
+                --sl-panel-border: none;
+                color: var(--sl-color-neutral-0);
+                height: 400px;
+            ">
+                <div style="
+                    padding: var(--sl-spacing-3x-large);
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                ">
+                    <h5 style="
+                        font-size: var(--sl-font-size-x-large);
+                        font-weight: var(--sl-font-weight-bold);
+                        margin-bottom: var(--sl-spacing-medium);
+                    ">OUR CLIENTS</h5>
+                    <p style="
+                        line-height: var(--sl-line-height-normal);
+                        margin-bottom: var(--sl-spacing-3x-large);
+                    ">
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur dolore vel ullam minima quibusdam laudantium enim deserunt aliquid? Iste veniam minima neque consectetur, veritatis quam! Ipsam nihil optio ratione voluptas.
+                    </p>
+                    <sl-button variant="default" outline style="
+                        --sl-color-primary: var(--sl-color-neutral-0);
+                        --sl-color-neutral-0: transparent;
+                        color: var(--sl-color-neutral-0);
+                        border-color: var(--sl-color-neutral-0);
+                    ">VIEW ALL</sl-button>
+                </div>
+            </sl-card>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="
+        background: var(--sl-color-neutral-900);
+        color: var(--sl-color-neutral-0);
+        padding: var(--sl-spacing-medium);
+    ">
+        <div style="
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--sl-spacing-large);
+            max-width: 1200px;
+            margin: 0 auto;
+        ">
+            <!-- Primary Links -->
+            <div style="padding: var(--sl-spacing-large);">
+                <h3 style="
+                    margin: var(--sl-spacing-3x-large) 0;
+                    font-size: var(--sl-font-size-x-large);
+                ">URBAN OUTFITTERS</h3>
+                
+                <p style="
+                    color: var(--sl-color-neutral-400);
+                    margin: var(--sl-spacing-large) 0;
+                    line-height: var(--sl-line-height-normal);
+                ">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias voluptatem fugiat sapiente accusantium et reprehenderit placeat ex perspiciatis.
+                </p>
+
+                <address style="
+                    font-style: normal;
+                    margin: var(--sl-spacing-large) 0;
+                    line-height: var(--sl-line-height-normal);
+                ">
+                    <div style="margin-bottom: var(--sl-spacing-small);">Constitución 716, X5800 Río Cuarto, Córdoba, Argentina</div>
+                    <div style="margin-bottom: var(--sl-spacing-small);">+543584643036</div>
+                    <div style="margin-bottom: var(--sl-spacing-large);">itecriocuarto.org.ar</div>
+                </address>
+
+                <div style="
+                    display: flex;
+                    gap: var(--sl-spacing-large);
+                    margin-top: var(--sl-spacing-3x-large);
+                ">
+                    <sl-icon-button name="facebook" style="color: var(--sl-color-neutral-0); font-size: var(--sl-font-size-large);"></sl-icon-button>
+                    <sl-icon-button name="twitter" style="color: var(--sl-color-neutral-0); font-size: var(--sl-font-size-large);"></sl-icon-button>
+                    <sl-icon-button name="instagram" style="color: var(--sl-color-neutral-0); font-size: var(--sl-font-size-large);"></sl-icon-button>
+                    <sl-icon-button name="youtube" style="color: var(--sl-color-neutral-0); font-size: var(--sl-font-size-large);"></sl-icon-button>
+                </div>
+            </div>
+
+            <!-- Shopping Links -->
+            <div style="padding: var(--sl-spacing-large);">
+                <h5 style="
+                    margin: var(--sl-spacing-3x-large) 0;
+                    font-size: var(--sl-font-size-large);
+                ">SHOPPING</h5>
+                <ul style="
+                    list-style: none;
+                    padding: 0;
+                    margin: 0;
+                ">
+                    <li style="color: var(--sl-color-neutral-400); margin-bottom: var(--sl-spacing-small);">Your cart</li>
+                    <li style="color: var(--sl-color-neutral-400); margin-bottom: var(--sl-spacing-small);">Your orders</li>
+                    <li style="color: var(--sl-color-neutral-400); margin-bottom: var(--sl-spacing-small);">Compared items</li>
+                    <li style="color: var(--sl-color-neutral-400); margin-bottom: var(--sl-spacing-small);">Wishlist items</li>
+                    <li style="color: var(--sl-color-neutral-400); margin-bottom: var(--sl-spacing-small);">Shipping details</li>
+                </ul>
+            </div>
+
+            <!-- More Links -->
+            <div style="padding: var(--sl-spacing-large);">
+                <h5 style="
+                    margin: var(--sl-spacing-3x-large) 0;
+                    font-size: var(--sl-font-size-large);
+                ">MORE LINK</h5>
+                <ul style="
+                    list-style: none;
+                    padding: 0;
+                    margin: 0;
+                ">
+                    <li style="color: var(--sl-color-neutral-400); margin-bottom: var(--sl-spacing-small);">Blog</li>
+                    <li style="color: var(--sl-color-neutral-400); margin-bottom: var(--sl-spacing-small);">Gift Center</li>
+                    <li style="color: var(--sl-color-neutral-400); margin-bottom: var(--sl-spacing-small);">Buying Guides</li>
+                    <li style="color: var(--sl-color-neutral-400); margin-bottom: var(--sl-spacing-small);">New Arrivals</li>
+                    <li style="color: var(--sl-color-neutral-400); margin-bottom: var(--sl-spacing-small);">Clearance</li>
+                </ul>
+            </div>
+
+            <!-- Blog -->
+            <div style="padding: var(--sl-spacing-large);">
+                <h5 style="
+                    margin: var(--sl-spacing-3x-large) 0;
+                    font-size: var(--sl-font-size-large);
+                ">FROM THE BLOG</h5>
+                
+                <article style="margin-bottom: var(--sl-spacing-large);">
+                    <div style="margin-bottom: var(--sl-spacing-small);">
+                        <span style="
+                            font-size: var(--sl-font-size-2x-large);
+                            color: var(--sl-color-neutral-400);
+                        ">26</span>
+                        <span style="color: var(--sl-color-neutral-400);"> May</span>
+                    </div>
+                    <p style="
+                        color: var(--sl-color-neutral-400);
+                        margin: var(--sl-spacing-large) 0;
+                        line-height: var(--sl-line-height-normal);
+                    ">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias voluptatem fugiat sapiente accusantium et reprehenderit placeat ex perspiciatis.
+                    </p>
+                    <span style="color: var(--sl-color-neutral-400); font-size: var(--sl-font-size-small);">3 comments</span>
+                </article>
+
+                <sl-divider style="margin: var(--sl-spacing-large) 0;"></sl-divider>
+
+                <article>
+                    <div style="margin-bottom: var(--sl-spacing-small);">
+                        <span style="
+                            font-size: var(--sl-font-size-2x-large);
+                            color: var(--sl-color-neutral-400);
+                        ">27</span>
+                        <span style="color: var(--sl-color-neutral-400);"> May</span>
+                    </div>
+                    <p style="
+                        color: var(--sl-color-neutral-400);
+                        margin: var(--sl-spacing-large) 0;
+                        line-height: var(--sl-line-height-normal);
+                    ">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias voluptatem fugiat sapiente accusantium et reprehenderit placeat ex perspiciatis.
+                    </p>
+                    <span style="color: var(--sl-color-neutral-400); font-size: var(--sl-font-size-small);">3 comments</span>
+                </article>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

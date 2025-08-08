@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venta de Muebles</title>
+    
+    <!-- Shoelace CSS and JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.15.1/cdn/themes/light.css" />
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.15.1/cdn/shoelace.js"></script>
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body style="font-family: var(--sl-font-sans); margin: 0;">
+    <!-- Header -->
+    <header class="container">
+        <!-- Top Navigation -->
+        <nav style="
+            background: var(--sl-color-neutral-0);
+            padding: var(--sl-spacing-medium) 0;
+            border-bottom: var(--sl-panel-border-width) solid var(--sl-color-neutral-200);
+        ">
+            <div style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            ">
+                <a href="#" style="text-decoration: none;">
+                    <img src="/shoelace3.0/img/icono-reto.png" 
+                    style="width: 60px;" alt="Logo">
+                </a>
+                <div style="
+                    display: flex;
+                    gap: var(--sl-spacing-medium);
+                    align-items: center;
+                ">
+                    <sl-icon name="search" style="font-size: var(--sl-font-size-x-large); cursor: pointer; color: var(--sl-color-neutral-700);"></sl-icon>
+                    <sl-icon name="person" style="font-size: var(--sl-font-size-x-large); cursor: pointer; color: var(--sl-color-neutral-700);"></sl-icon>
+                    <div style="position: relative;">
+                        <sl-icon name="bag" style="font-size: var(--sl-font-size-x-large); cursor: pointer; color: var(--sl-color-neutral-700);"></sl-icon>
+                        <span style="
+                            position: absolute;
+                            top: -5px;
+                            right: -5px;
+                            width: var(--sl-spacing-small);
+                            height: var(--sl-spacing-small);
+                            background: var(--sl-color-warning-600);
+                            border: 2px solid var(--sl-color-neutral-0);
+                            border-radius: var(--sl-border-radius-circle);
+                        "></span>
+                    </div>
+                    <sl-icon name="heart" style="font-size: var(--sl-font-size-x-large); cursor: pointer; color: var(--sl-color-neutral-700);"></sl-icon>
+                </div>
+            </div>
+        </nav>
+
+        <nav style="
+        border-top: 2px solid var(--sl-color-neutral-900);
+        border-bottom: 2px solid var(--sl-color-neutral-900);
+        padding: var(--sl-spacing-large) 0;
+    ">
+        <sl-tab-group style="--track-width: 0;">
+            <a href="/shoelace3.0/index.html" slot="nav" style="
+                font-weight: var(--sl-font-weight-bold);
+                color: var(--sl-color-neutral-900);
+                text-decoration: none; /* Elimina el subrayado por defecto */
+                display: flex; /* Asegura que el enlace se comporte como un tab */
+                align-items: center;
+                justify-content: center;
+                padding: var(--sl-spacing-small) var(--sl-spacing-medium);
+                border-bottom: 2px solid transparent; /* Para simular el borde de la sl-tab */
+                /* Añadir hover y active si es necesario */
+            ">
+                INICIO
+            </a>
+            <a href="/shoelace3.0/store.html" slot="nav" style="
+                font-weight: var(--sl-font-weight-bold);
+                color: var(--sl-color-neutral-900);
+                text-decoration: none;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: var(--sl-spacing-small) var(--sl-spacing-medium);
+                border-bottom: 2px solid transparent;
+            ">
+                TIENDA
+            </a>
+            <a href="/shoelace3.0/mentions.html" slot="nav" style="
+                font-weight: var(--sl-font-weight-bold);
+                color: var(--sl-color-neutral-900);
+                text-decoration: none;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: var(--sl-spacing-small) var(--sl-spacing-medium);
+                border-bottom: 2px solid transparent;
+            ">
+                CONTACTO
+            </a>
+        </sl-tab-group>
+    </nav>
+
+        <!-- Services Section -->
+        <div style="padding: var(--sl-spacing-3x-large) 0;">
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: var(--sl-spacing-large);
+                text-align: center;
+            ">
+                <a href="#" style="
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    text-decoration: none;
+                    color: var(--sl-color-neutral-500);
+                ">
+                    <sl-icon name="truck" style="
+                        font-size: var(--sl-font-size-4x-large);
+                        color: var(--sl-color-warning-600);
+                        margin-bottom: var(--sl-spacing-medium);
+                    "></sl-icon>
+                    <span style="
+                        font-weight: var(--sl-font-weight-bold);
+                        margin-bottom: var(--sl-spacing-small);
+                    ">ENVIO GRATIS</span>
+                    <small style="color: var(--sl-color-neutral-500);">En compras superiores a $50.000</small>
+                </a>
+                <a href="#" style="
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    text-decoration: none;
+                    color: var(--sl-color-neutral-500);
+                ">
+                    <sl-icon name="credit-card-2-front" style="
+                        font-size: var(--sl-font-size-4x-large);
+                        color: var(--sl-color-warning-600);
+                        margin-bottom: var(--sl-spacing-medium);
+                    "></sl-icon>
+                    <span style="
+                        font-weight: var(--sl-font-weight-bold);
+                        margin-bottom: var(--sl-spacing-small);
+                    ">100% SIN INTERES</span>
+                    <small style="color: var(--sl-color-neutral-500);">Garantía de devolución de 30 días</small>
+                </a>
+                <a href="#" style="
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    text-decoration: none;
+                    color: var(--sl-color-neutral-500);
+                ">
+                    <sl-icon name="headset" style="
+                        font-size: var(--sl-font-size-4x-large);
+                        color: var(--sl-color-warning-600);
+                        margin-bottom: var(--sl-spacing-medium);
+                    "></sl-icon>
+                    <span style="
+                        font-weight: var(--sl-font-weight-bold);
+                        margin-bottom: var(--sl-spacing-small);
+                    ">SOPORTE 24/7</span>
+                    <small style="color: var(--sl-color-neutral-500);">Atención al cliente siempre disponible</small>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section style="
+            background-color: #DBD0CC;
+            border: 2px solid var(--sl-color-neutral-900);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            min-height: 400px;
+        " class="hero-grid">
+            <div style="
+                text-align: center;
+                padding: var(--sl-spacing-large);
+            ">
+                <img src="/shoelace3.0/img/SILLON-DECO4.png" 
+                alt="Oferta especial en muebles modernos" style="max-width: 100%; width: 75%;">
+            </div>
+            <div style="padding: var(--sl-spacing-3x-large);">
+                <span style="
+                    font-weight: var(--sl-font-weight-bold);
+                    font-size: var(--sl-font-size-large);
+                    display: block;
+                    margin-bottom: var(--sl-spacing-medium);
+                ">OFERTA DE LA SEMANA</span>
+                <h1 style="
+                    color: #A86A3D;
+                    font-weight: var(--sl-font-weight-bold);
+                    font-size: var(--sl-font-size-4x-large);
+                    line-height: var(--sl-line-height-dense);
+                    margin: var(--sl-spacing-large) 0;
+                ">EN VENTA 50%<br>MUEBLES MODERNOS</h1>
+                <sl-button variant="default" size="large" outline>Ver Ofertas</sl-button>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section class="container" style="padding: var(--sl-spacing-3x-large) 0">
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: var(--sl-spacing-large);
+            ">
+                <!-- Product 1 -->
+                <sl-card style="
+                    --sl-panel-background-color: #eae9e7;
+                    --sl-panel-border-radius: var(--sl-border-radius-large);
+                    --sl-shadow: var(--sl-shadow-medium);
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                ">
+                    <div style="
+                        flex: 1;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        padding: var(--sl-spacing-large);
+                    ">
+                        <img src="/shoelace3.0/img/MESA-SILVIA-CUADRADA.png" 
+                        alt="Mesa de algarrobo" style="max-width: 100%; max-height: 250px; object-fit: contain;">
+                    </div>
+                    <div style="
+                        padding: var(--sl-spacing-large);
+                        text-align: center;
+                        background: var(--sl-color-neutral-0);
+                    ">
+                        <h6 style="
+                            font-weight: var(--sl-font-weight-bold);
+                            font-size: var(--sl-font-size-large);
+                            margin-bottom: var(--sl-spacing-medium);
+                        ">MESA ALGARROBO</h6>
+                        <sl-button variant="default" outline style="width: 100%;">Ver Detalles</sl-button>
+                    </div>
+                </sl-card>
+
+                <!-- Product 2 -->
+                <sl-card style="
+                    --sl-panel-background-color: #DBD0dd;
+                    --sl-panel-border-radius: var(--sl-border-radius-large);
+                    --sl-shadow: var(--sl-shadow-medium);
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                ">
+                    <div style="
+                        flex: 1;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        padding: var(--sl-spacing-large);
+                    ">
+                        <img src="/shoelace3.0/img/pampa-tiza-natural-1.png" 
+                        alt="Silla Pampa" style="max-width: 100%; max-height: 250px; object-fit: contain;">
+                    </div>
+                    <div style="
+                        padding: var(--sl-spacing-large);
+                        text-align: center;
+                        background: var(--sl-color-neutral-0);
+                    ">
+                        <h6 style="
+                            font-weight: var(--sl-font-weight-bold);
+                            font-size: var(--sl-font-size-large);
+                            margin-bottom: var(--sl-spacing-medium);
+                        ">SILLA PAMPA</h6>
+                        <sl-button variant="default" outline style="width: 100%;">Ver Detalles</sl-button>
+                    </div>
+                </sl-card>
+
+                <!-- Product 3 -->
+                <sl-card style="
+                    --sl-panel-background-color: #eaeaea;
+                    --sl-panel-border-radius: var(--sl-border-radius-large);
+                    --sl-shadow: var(--sl-shadow-medium);
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                ">
+                    <div style="
+                        flex: 1;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        padding: var(--sl-spacing-large);
+                    ">
+                        <img src="/shoelace3.0/img/modular.png" 
+                        alt="Mueble modular" style="max-width: 100%; max-height: 250px; object-fit: contain;">
+                    </div>
+                    <div style="
+                        padding: var(--sl-spacing-large);
+                        text-align: center;
+                        background: var(--sl-color-neutral-0);
+                    ">
+                        <h6 style="
+                            font-weight: var(--sl-font-weight-bold);
+                            font-size: var(--sl-font-size-large);
+                            margin-bottom: var(--sl-spacing-medium);
+                        ">MODULAR DE LIVING</h6>
+                        <sl-button variant="default" outline style="width: 100%;">Ver Detalles</sl-button>
+                    </div>
+                </sl-card>
+            </div>
+        </section>
+
+        <!-- Promotional Section -->
+        <section style="
+            position: relative;
+            margin: var(--sl-spacing-large) 0;
+        ">
+            <img src="/shoelace3.0/img/dormitorio1.png" 
+            alt="Dormitorio" style="width: 100%; height: auto; display: block;">
+            <div class="promo-content" style="
+                position: absolute;
+                bottom: 20px;
+                left: 40px;
+                background: rgba(255,255,255,0.9);
+                padding: var(--sl-spacing-large);
+                border-radius: var(--sl-border-radius-large);
+                max-width: 35%;
+            ">
+                <span style="
+                    font-weight: var(--sl-font-weight-bold);
+                    font-size: var(--sl-font-size-large);
+                ">JUEGOS DE SÁBANAS</span>
+                <h4 style="
+                    color: #A86A3D;
+                    font-weight: var(--sl-font-weight-bold);
+                    margin: var(--sl-spacing-medium) 0;
+                ">$50.00 <span style="
+                    text-decoration: line-through;
+                    font-size: var(--sl-font-size-medium);
+                ">$220.00</span></h4>
+                <p style="margin-bottom: var(--sl-spacing-medium);">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel mollitia error laudantium at consectetur iure ea dolorem? Quidem.</p>
+                <sl-button variant="default" outline>Ver Ahora</sl-button>
+            </div>
+        </section>
+
+        <sl-divider></sl-divider>
+    </main>
+
+    <!-- Footer -->
+    <footer style="
+        background: var(--sl-color-neutral-900);
+        color: var(--sl-color-neutral-0);
+        padding: var(--sl-spacing-3x-large) 0;
+        margin-top: var(--sl-spacing-large);
+    ">
+        <div class="container">
+            <div class="footer-grid" style="
+                display: grid;
+                grid-template-columns: 2fr 1fr 1fr 2fr;
+                gap: var(--sl-spacing-large);
+            ">
+                <div>
+                    <h3 style="margin-bottom: var(--sl-spacing-large);">URBAN OUTFITTERS</h3>
+                    <p style="
+                        color: var(--sl-color-neutral-500);
+                        margin-bottom: var(--sl-spacing-small);
+                    ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias voluptatem fugiat sapiente accusantium et reprehenderit placeat ex perspiciatis.</p>
+                    <h6 style="
+                        color: var(--sl-color-neutral-500);
+                        margin-bottom: var(--sl-spacing-small);
+                    ">Constitución 716, X5800 Río Cuarto, Córdoba, Argentina</h6>
+                    <h6 style="
+                        color: var(--sl-color-neutral-500);
+                        margin-bottom: var(--sl-spacing-small);
+                    ">+543584643036</h6>
+                    <h6 style="
+                        color: var(--sl-color-neutral-500);
+                        margin-bottom: var(--sl-spacing-large);
+                    ">itecriocuarto.org.ar</h6>
+                    <div style="
+                        display: flex;
+                        gap: var(--sl-spacing-medium);
+                        margin-top: var(--sl-spacing-large);
+                    ">
+                        <sl-icon name="facebook" style="
+                            font-size: var(--sl-font-size-x-large);
+                            color: var(--sl-color-neutral-0);
+                            cursor: pointer;
+                        "></sl-icon>
+                        <sl-icon name="twitter" style="
+                            font-size: var(--sl-font-size-x-large);
+                            color: var(--sl-color-neutral-0);
+                            cursor: pointer;
+                        "></sl-icon>
+                        <sl-icon name="instagram" style="
+                            font-size: var(--sl-font-size-x-large);
+                            color: var(--sl-color-neutral-0);
+                            cursor: pointer;
+                        "></sl-icon>
+                        <sl-icon name="youtube" style="
+                            font-size: var(--sl-font-size-x-large);
+                            color: var(--sl-color-neutral-0);
+                            cursor: pointer;
+                        "></sl-icon>
+                    </div>
+                </div>
+
+                <div>
+                    <h5 style="margin-bottom: var(--sl-spacing-large);">SHOPPING</h5>
+                    <p style="color: var(--sl-color-neutral-500); margin-bottom: var(--sl-spacing-small);">Your cart</p>
+                    <p style="color: var(--sl-color-neutral-500); margin-bottom: var(--sl-spacing-small);">Your orders</p>
+                    <p style="color: var(--sl-color-neutral-500); margin-bottom: var(--sl-spacing-small);">Compared items</p>
+                    <p style="color: var(--sl-color-neutral-500); margin-bottom: var(--sl-spacing-small);">Wishlist items</p>
+                    <p style="color: var(--sl-color-neutral-500); margin-bottom: var(--sl-spacing-small);">Shipping details</p>
+                </div>
+
+                <div>
+                    <h5 style="margin-bottom: var(--sl-spacing-large);">MORE LINK</h5>
+                    <p style="color: var(--sl-color-neutral-500); margin-bottom: var(--sl-spacing-small);">Blog</p>
+                    <p style="color: var(--sl-color-neutral-500); margin-bottom: var(--sl-spacing-small);">Gift Center</p>
+                    <p style="color: var(--sl-color-neutral-500); margin-bottom: var(--sl-spacing-small);">Buying Guides</p>
+                    <p style="color: var(--sl-color-neutral-500); margin-bottom: var(--sl-spacing-small);">New Arrivals</p>
+                    <p style="color: var(--sl-color-neutral-500); margin-bottom: var(--sl-spacing-small);">Clearance</p>
+                </div>
+
+                <div>
+                    <h5 style="margin-bottom: var(--sl-spacing-large);">FROM THE BLOG</h5>
+                    <div style="margin-bottom: var(--sl-spacing-large);">
+                        <span style="
+                            font-size: var(--sl-font-size-2x-large);
+                            color: var(--sl-color-neutral-500);
+                        ">26</span><span style="color: var(--sl-color-neutral-500);"> May</span>
+                        <p style="
+                            color: var(--sl-color-neutral-500);
+                            margin: var(--sl-spacing-small) 0;
+                        ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias voluptatem fugiat sapiente accusantium et reprehenderit placeat ex perspiciatis.</p>
+                        <span style="color: var(--sl-color-neutral-500);">3 comments</span>
+                    </div>
+                    <sl-divider></sl-divider>
+                    <div style="margin-top: var(--sl-spacing-medium);">
+                        <span style="
+                            font-size: var(--sl-font-size-2x-large);
+                            color: var(--sl-color-neutral-500);
+                        ">27</span><span style="color: var(--sl-color-neutral-500);"> May</span>
+                        <p style="
+                            color: var(--sl-color-neutral-500);
+                            margin: var(--sl-spacing-small) 0;
+                        ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias voluptatem fugiat sapiente accusantium et reprehenderit placeat ex perspiciatis.</p>
+                        <span style="color: var(--sl-color-neutral-500);">3 comments</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

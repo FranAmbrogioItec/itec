@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.15.0/cdn/themes/light.css" />
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.15.0/cdn/shoelace.js"></script>
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: var(--sl-font-sans);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--sl-spacing-medium);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="container">
+        <!-- Top Navigation -->
+        <nav style="
+            background: var(--sl-color-neutral-0);
+            padding: var(--sl-spacing-medium) 0;
+        ">
+            <div style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            ">
+                <a href="#" style="text-decoration: none;">
+                    <img src="/shoelace3.0/img/icono-reto.png" alt="Logo" style="width: 60px;">
+                </a>
+                
+                <div style="
+                    display: flex;
+                    gap: var(--sl-spacing-medium);
+                    align-items: center;
+                ">
+                    <sl-icon-button name="search" style="font-size: var(--sl-font-size-x-large);"></sl-icon-button>
+                    <sl-icon-button name="person" style="font-size: var(--sl-font-size-x-large);"></sl-icon-button>
+                    <div style="position: relative;">
+                        <sl-icon-button name="bag" style="font-size: var(--sl-font-size-x-large);"></sl-icon-button>
+                        <sl-badge variant="warning" style="
+                            position: absolute;
+                            bottom: -2px;
+                            right: -2px;
+                            width: 12px;
+                            height: 12px;
+                            border: 2px solid var(--sl-color-neutral-0);
+                        "></sl-badge>
+                    </div>
+                    <sl-icon-button name="heart" style="font-size: var(--sl-font-size-x-large);"></sl-icon-button>
+                </div>
+            </div>
+        </nav>
+        
+        <!-- Main Navigation -->
+        <nav style="
+            border-top: 2px solid var(--sl-color-neutral-900);
+            border-bottom: 2px solid var(--sl-color-neutral-900);
+            padding: var(--sl-spacing-large) 0;
+        ">
+            <div style="
+                display: flex;
+                justify-content: space-evenly;
+            ">
+                <a href="index.html" style="
+                    color: var(--sl-color-neutral-900);
+                    font-weight: var(--sl-font-weight-bold);
+                    text-decoration: none;
+                    padding: var(--sl-spacing-small) var(--sl-spacing-medium);
+                ">INICIO</a>
+                <a href="store.html" style="
+                    color: var(--sl-color-neutral-900);
+                    font-weight: var(--sl-font-weight-bold);
+                    text-decoration: none;
+                    padding: var(--sl-spacing-small) var(--sl-spacing-medium);
+                ">TIENDA</a>
+                <a href="mentions.html" style="
+                    color: var(--sl-color-neutral-900);
+                    font-weight: var(--sl-font-weight-bold);
+                    text-decoration: none;
+                    padding: var(--sl-spacing-small) var(--sl-spacing-medium);
+                ">CONTACTO</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Menciones Section -->
+    <section class="container" style="padding: var(--sl-spacing-3x-large) 0;">
+        <div style="padding: var(--sl-spacing-large) var(--sl-spacing-3x-large);">
+            <h1 style="
+                text-align: center;
+                margin-bottom: var(--sl-spacing-large);
+                font-size: var(--sl-font-size-2x-large);
+                font-weight: var(--sl-font-weight-bold);
+            ">MENCIONES</h1>
+            
+            <sl-divider style="margin-bottom: var(--sl-spacing-large);"></sl-divider>
+            
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: var(--sl-spacing-large);
+                margin-bottom: var(--sl-spacing-2x-large);
+            ">
+            </div>
+        </div>
+
+        <!-- Team Cards -->
+        <div style="
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--sl-spacing-large) var(--sl-spacing-x-large);
+            padding: 0 var(--sl-spacing-large);
+        ">
+            <!-- Francisco Ambrogio -->
+            <sl-card style="
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                text-align: center;
+                --sl-panel-border-radius: var(--sl-border-radius-medium);
+            ">
+                <img src="/shoelace3.0/img/fran.jpg" alt="Francisco Ambrogio" style="
+                    width: 50%;
+                    aspect-ratio: 1;
+                    object-fit: cover;
+                    border-radius: 50%;
+                    margin: var(--sl-spacing-large) auto;
+                ">
+                
+                <div style="flex: 1; padding: 0 var(--sl-spacing-medium);">
+                    <h5 style="
+                        font-size: var(--sl-font-size-large);
+                        font-weight: var(--sl-font-weight-semibold);
+                        margin-bottom: var(--sl-spacing-medium);
+                    ">Francisco<br>Ambrogio</h5>
+                    
+                    <sl-details summary="Ver Mas" style="margin-bottom: var(--sl-spacing-medium);">
+                        <p style="margin-bottom: var(--sl-spacing-medium);">
+                            Placeholder content for this accordion, which is intended to demonstrate the accordion functionality. This is Francisco's information.
+                        </p>
+                        <sl-button variant="text" href="https://workspace.google.com/intl/es-419_ar/gmail/" target="_blank">
+                            Francisco@gmail.com
+                        </sl-button>
+                    </sl-details>
+                </div>
+                
+                <div slot="footer" style="
+                    padding: var(--sl-spacing-small);
+                    background: var(--sl-color-neutral-50);
+                    border-top: 1px solid var(--sl-color-neutral-200);
+                ">
+                    <small style="color: var(--sl-color-neutral-600);">UX/UI</small>
+                </div>
+            </sl-card>
+
+            <!-- Federico Arballo -->
+            <sl-card style="
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                text-align: center;
+                --sl-panel-border-radius: var(--sl-border-radius-medium);
+            ">
+                <img src="/shoelace3.0/img/fede.jpg" alt="Federico Arballo" style="
+                    width: 50%;
+                    aspect-ratio: 1;
+                    object-fit: cover;
+                    border-radius: 50%;
+                    margin: var(--sl-spacing-large) auto;
+                ">
+                
+                <div style="flex: 1; padding: 0 var(--sl-spacing-medium);">
+                    <h5 style="
+                        font-size: var(--sl-font-size-large);
+                        font-weight: var(--sl-font-weight-semibold);
+                        margin-bottom: var(--sl-spacing-medium);
+                    ">Federico<br>Arballo</h5>
+                    
+                    <sl-details summary="Ver Mas" style="margin-bottom: var(--sl-spacing-medium);">
+                        <p style="margin-bottom: var(--sl-spacing-medium);">
+                            Placeholder content for this accordion, which is intended to demonstrate the accordion functionality. This is Federico's information.
+                        </p>
+                        <sl-button variant="text" href="https://workspace.google.com/intl/es-419_ar/gmail/" target="_blank">
+                            Federico@gmail.com
+                        </sl-button>
+                    </sl-details>
+                </div>
+                
+                <div slot="footer" style="
+                    padding: var(--sl-spacing-small);
+                    background: var(--sl-color-neutral-50);
+                    border-top: 1px solid var(--sl-color-neutral-200);
+                ">
+                    <small style="color: var(--sl-color-neutral-600);">Backend</small>
+                </div>
+            </sl-card>
+
+            <!-- Emanuel Cepeda Caceres -->
+            <sl-card style="
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                text-align: center;
+                --sl-panel-border-radius: var(--sl-border-radius-medium);
+            ">
+                <img src="/shoelace3.0/img/eman.jpg" alt="Emanuel Cepeda Caceres" style="
+                    width: 50%;
+                    aspect-ratio: 1;
+                    object-fit: cover;
+                    border-radius: 50%;
+                    margin: var(--sl-spacing-large) auto;
+                ">
+                
+                <div style="flex: 1; padding: 0 var(--sl-spacing-medium);">
+                    <h5 style="
+                        font-size: var(--sl-font-size-large);
+                        font-weight: var(--sl-font-weight-semibold);
+                        margin-bottom: var(--sl-spacing-medium);
+                    ">Emanuel<br>Cepeda Caceres</h5>
+                    
+                    <sl-details summary="Ver Mas" style="margin-bottom: var(--sl-spacing-medium);">
+                        <p style="margin-bottom: var(--sl-spacing-medium);">
+                            Placeholder content for this accordion, which is intended to demonstrate the accordion functionality. This is Emanuel's information.
+                        </p>
+                        <sl-button variant="text" href="https://workspace.google.com/intl/es-419_ar/gmail/" target="_blank">
+                            Emanuel@gmail.com
+                        </sl-button>
+                    </sl-details>
+                </div>
+                
+                <div slot="footer" style="
+                    padding: var(--sl-spacing-small);
+                    background: var(--sl-color-neutral-50);
+                    border-top: 1px solid var(--sl-color-neutral-200);
+                ">
+                    <small style="color: var(--sl-color-neutral-600);">FrontEnd</small>
+                </div>
+            </sl-card>
+
+            <!-- Joaquin Rodriguez -->
+            <sl-card style="
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                text-align: center;
+                --sl-panel-border-radius: var(--sl-border-radius-medium);
+            ">
+                <img src="/shoelace3.0/img/rafa.jpg" alt="Joaquin Rodriguez" style="
+                    width: 50%;
+                    aspect-ratio: 1;
+                    object-fit: cover;
+                    border-radius: 50%;
+                    margin: var(--sl-spacing-large) auto;
+                ">
+                
+                <div style="flex: 1; padding: 0 var(--sl-spacing-medium);">
+                    <h5 style="
+                        font-size: var(--sl-font-size-large);
+                        font-weight: var(--sl-font-weight-semibold);
+                        margin-bottom: var(--sl-spacing-medium);
+                    ">Joaquin<br>Rodriguez</h5>
+                    
+                    <sl-details summary="Ver Mas" style="margin-bottom: var(--sl-spacing-medium);">
+                        <p style="margin-bottom: var(--sl-spacing-medium);">
+                            Placeholder content for this accordion, which is intended to demonstrate the accordion functionality. This is Joaquin's information.
+                        </p>
+                        <sl-button variant="text" href="https://workspace.google.com/intl/es-419_ar/gmail/" target="_blank">
+                            Joaquin@gmail.com
+                        </sl-button>
+                    </sl-details>
+                </div>
+                
+                <div slot="footer" style="
+                    padding: var(--sl-spacing-small);
+                    background: var(--sl-color-neutral-50);
+                    border-top: 1px solid var(--sl-color-neutral-200);
+                ">
+                    <small style="color: var(--sl-color-neutral-600);">DataBase</small>
+                </div>
+            </sl-card>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="
+        background: var(--sl-color-neutral-900);
+        color: var(--sl-color-neutral-0);
+        padding: var(--sl-spacing-medium);
+    ">
+        <div style="
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--sl-spacing-large);
+            max-width: 1200px;
+            margin: 0 auto;
+        ">
+            <!-- Primary Links -->
+            <div style="padding: var(--sl-spacing-large);">
+                <h3 style="
+                    margin: var(--sl-spacing-3x-large) 0;
+                    font-size: var(--sl-font-size-x-large);
+                ">URBAN OUTFITTERS</h3>
+                
+                <p style="
+                    color: var(--sl-color-neutral-400);
+                    margin: var(--sl-spacing-large) 0;
+                    line-height: var(--sl-line-height-normal);
+                ">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias voluptatem fugiat sapiente accusantium et reprehenderit placeat ex perspiciatis.
+                </p>
+
+                <address style="
+                    font-style: normal;
+                    margin: var(--sl-spacing-large) 0;
+                    line-height: var(--sl-line-height-normal);
+                ">
+                    <div style="margin-bottom: var(--sl-spacing-small);">Constitución 716, X5800 Río Cuarto, Córdoba, Argentina</div>
+                    <div style="margin-bottom: var(--sl-spacing-small);">+543584643036</div>
+                    <div style="margin-bottom: var(--sl-spacing-large);">itecriocuarto.org.ar</div>
+                </address>
+
+                <div style="
+                    display: flex;
+                    gap: var(--sl-spacing-large);
+                    margin-top: var(--sl-spacing-3x-large);
+                ">
+                    <sl-icon-button name="facebook" style="color: var(--sl-color-neutral-0); font-size: var(--sl-font-size-large);"></sl-icon-button>
+                    <sl-icon-button name="twitter" style="color: var(--sl-color-neutral-0); font-size: var(--sl-font-size-large);"></sl-icon-button>
+                    <sl-icon-button name="instagram" style="color: var(--sl-color-neutral-0); font-size: var(--sl-font-size-large);"></sl-icon-button>
+                    <sl-icon-button name="youtube" style="color: var(--sl-color-neutral-0); font-size: var(--sl-font-size-large);"></sl-icon-button>
+                </div>
+            </div>
+
+            <!-- Shopping Links -->
+            <div style="padding: var(--sl-spacing-large);">
+                <h5 style="
+                    margin: var(--sl-spacing-3x-large) 0;
+                    font-size: var(--sl-font-size-large);
+                ">SHOPPING</h5>
+                <ul style="
+                    list-style: none;
+                    padding: 0;
+                    margin: 0;
+                ">
+                    <li style="color: var(--sl-color-neutral-400); margin-bottom: var(--sl-spacing-small);">Your cart</li>
+                    <li style="color: var(--sl-color-neutral-400); margin-bottom: var(--sl-spacing-small);">Your orders</li>
+                    <li style="color: var(--sl-color-neutral-400); margin-bottom: var(--sl-spacing-small);">Compared items</li>
+                    <li style="color: var(--sl-color-neutral-400); margin-bottom: var(--sl-spacing-small);">Wishlist items</li>
+                    <li style="color: var(--sl-color-neutral-400); margin-bottom: var(--sl-spacing-small);">Shipping details</li>
+                </ul>
+            </div>
+
+            <!-- More Links -->
+            <div style="padding: var(--sl-spacing-large);">
+                <h5 style="
+                    margin: var(--sl-spacing-3x-large) 0;
+                    font-size: var(--sl-font-size-large);
+                ">MORE LINK</h5>
+                <ul style="
+                    list-style: none;
+                    padding: 0;
+                    margin: 0;
+                ">
+                    <li style="color: var(--sl-color-neutral-400); margin-bottom: var(--sl-spacing-small);">Blog</li>
+                    <li style="color: var(--sl-color-neutral-400); margin-bottom: var(--sl-spacing-small);">Gift Center</li>
+                    <li style="color: var(--sl-color-neutral-400); margin-bottom: var(--sl-spacing-small);">Buying Guides</li>
+                    <li style="color: var(--sl-color-neutral-400); margin-bottom: var(--sl-spacing-small);">New Arrivals</li>
+                    <li style="color: var(--sl-color-neutral-400); margin-bottom: var(--sl-spacing-small);">Clearance</li>
+                </ul>
+            </div>
+
+            <!-- Blog -->
+            <div style="padding: var(--sl-spacing-large);">
+                <h5 style="
+                    margin: var(--sl-spacing-3x-large) 0;
+                    font-size: var(--sl-font-size-large);
+                ">FROM THE BLOG</h5>
+                
+                <article style="margin-bottom: var(--sl-spacing-large);">
+                    <div style="margin-bottom: var(--sl-spacing-small);">
+                        <span style="
+                            font-size: var(--sl-font-size-2x-large);
+                            color: var(--sl-color-neutral-400);
+                        ">26</span>
+                        <span style="color: var(--sl-color-neutral-400);"> May</span>
+                    </div>
+                    <p style="
+                        color: var(--sl-color-neutral-400);
+                        margin: var(--sl-spacing-large) 0;
+                        line-height: var(--sl-line-height-normal);
+                    ">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias voluptatem fugiat sapiente accusantium et reprehenderit placeat ex perspiciatis.
+                    </p>
+                    <span style="color: var(--sl-color-neutral-400); font-size: var(--sl-font-size-small);">3 comments</span>
+                </article>
+
+                <sl-divider style="margin: var(--sl-spacing-large) 0;"></sl-divider>
+
+                <article>
+                    <div style="margin-bottom: var(--sl-spacing-small);">
+                        <span style="
+                            font-size: var(--sl-font-size-2x-large);
+                            color: var(--sl-color-neutral-400);
+                        ">27</span>
+                        <span style="color: var(--sl-color-neutral-400);"> May</span>
+                    </div>
+                    <p style="
+                        color: var(--sl-color-neutral-400);
+                        margin: var(--sl-spacing-large) 0;
+                        line-height: var(--sl-line-height-normal);
+                    ">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias voluptatem fugiat sapiente accusantium et reprehenderit placeat ex perspiciatis.
+                    </p>
+                    <span style="color: var(--sl-color-neutral-400); font-size: var(--sl-font-size-small);">3 comments</span>
+                </article>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
