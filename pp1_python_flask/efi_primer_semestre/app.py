@@ -213,7 +213,7 @@ def edit_post(post_id):
         return redirect(url_for('post_detail', post_id=post.id))
     
     categories = Category.query.all()
-    return render_template('create_post.html', title='Editar Post', post=post, categories=categories) # Reusamos el template de creación
+    return render_template('create_post.html', title='Editar Post', post=post, categories=categories) 
 
 
 # --- Rutas de Edición y Eliminación (PLUS) ---
@@ -232,12 +232,12 @@ def delete_post(post_id):
     return redirect(url_for('index'))
 
 
-# --- Rutas de Edición y Eliminación (PLUS) ---
+# --- Rutas de Edición y Eliminación  ---
 @app.route('/delete_comment/<int:comment_id>', methods=['POST']) 
 @login_required
 def delete_comment(comment_id):
     comment = Comment.query.get_or_404(comment_id)
-    post_id = comment.post.id # Guardamos el ID del post para redirigir
+    post_id = comment.post.id # guardamos el ID del post para redirigir
     
     if comment.author != current_user and comment.post.author != current_user:
         flash('No tienes permiso para eliminar este comentario.', 'danger')
@@ -249,6 +249,6 @@ def delete_comment(comment_id):
     return redirect(url_for('post_detail', post_id=post_id))
 
 
-# Para ejecutar la aplicación
+
 if __name__ == '__main__':
     app.run(debug=True)
