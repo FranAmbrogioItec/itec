@@ -1,0 +1,18 @@
+/* Pequeño CSS para personalizar componentes de Shoelace */
+.sl-tab-group-custom {
+    --track-width: 0;
+}
+.sl-tab-custom {
+    font-weight: var(--sl-font-weight-bold);
+    color: var(--sl-color-neutral-900);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--sl-spacing-small) var(--sl-spacing-medium);
+    border-bottom: 2px solid transparent;
+}
+.sl-panel-custom {
+    --sl-panel-border-radius: var(--sl-border-radius-large);
+    --sl-shadow: var(--sl-shadow-medium);
+}

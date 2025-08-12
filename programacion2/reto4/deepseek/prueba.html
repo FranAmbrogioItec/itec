@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venta de Muebles - Shoelace</title>
+    <!-- Shoelace CSS and JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.15.1/cdn/themes/light.css" />
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.15.1/cdn/shoelace.js"></script>
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body class="sl-font-sans sl-m-0">
+    <!-- Header -->
+    <header class="sl-container">
+        <!-- Top Navigation -->
+        <nav class="sl-bg-neutral-0 sl-py-medium sl-border-b sl-border-solid sl-border-neutral-200">
+            <div class="sl-flex sl-justify-between sl-items-center">
+                <a href="#" class="sl-no-underline">
+                    <img src="/shoelace3.0/img/icono-reto.png" class="sl-w-[60px]" alt="Logo">
+                </a>
+                <div class="sl-flex sl-gap-medium sl-items-center">
+                    <sl-icon name="search" class="sl-text-[--sl-font-size-x-large] sl-cursor-pointer sl-text-neutral-700"></sl-icon>
+                    <sl-icon name="person" class="sl-text-[--sl-font-size-x-large] sl-cursor-pointer sl-text-neutral-700"></sl-icon>
+                    <div class="sl-relative">
+                        <sl-icon name="bag" class="sl-text-[--sl-font-size-x-large] sl-cursor-pointer sl-text-neutral-700"></sl-icon>
+                        <span class="sl-absolute sl-top-[-5px] sl-right-[-5px] sl-w-[--sl-spacing-small] sl-h-[--sl-spacing-small] sl-bg-warning-600 sl-border-2 sl-border-solid sl-border-neutral-0 sl-rounded-circle"></span>
+                    </div>
+                    <sl-icon name="heart" class="sl-text-[--sl-font-size-x-large] sl-cursor-pointer sl-text-neutral-700"></sl-icon>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Navigation -->
+        <nav class="sl-border-t-2 sl-border-solid sl-border-neutral-900 sl-border-b-2 sl-py-large">
+            <sl-tab-group class="sl-tab-group-custom">
+                <a href="/shoelace3.0/index.html" slot="nav" class="sl-tab-custom">
+                    INICIO
+                </a>
+                <a href="/shoelace3.0/store.html" slot="nav" class="sl-tab-custom">
+                    TIENDA
+                </a>
+                <a href="/shoelace3.0/mentions.html" slot="nav" class="sl-tab-custom">
+                    CONTACTO
+                </a>
+            </sl-tab-group>
+        </nav>
+
+        <!-- Services Section -->
+        <div class="sl-py-3x-large">
+            <div class="sl-grid sl-grid-cols-1 md:sl-grid-cols-3 sl-gap-large sl-text-center">
+                <a href="#" class="sl-flex sl-flex-col sl-items-center sl-no-underline sl-text-neutral-500">
+                    <sl-icon name="truck" class="sl-text-[--sl-font-size-4x-large] sl-text-warning-600 sl-mb-medium"></sl-icon>
+                    <span class="sl-font-bold sl-mb-small">ENVIO GRATIS</span>
+                    <small class="sl-text-neutral-500">En compras superiores a $50.000</small>
+                </a>
+                <a href="#" class="sl-flex sl-flex-col sl-items-center sl-no-underline sl-text-neutral-500">
+                    <sl-icon name="credit-card-2-front" class="sl-text-[--sl-font-size-4x-large] sl-text-warning-600 sl-mb-medium"></sl-icon>
+                    <span class="sl-font-bold sl-mb-small">100% SIN INTERES</span>
+                    <small class="sl-text-neutral-500">Garantía de devolución de 30 días</small>
+                </a>
+                <a href="#" class="sl-flex sl-flex-col sl-items-center sl-no-underline sl-text-neutral-500">
+                    <sl-icon name="headset" class="sl-text-[--sl-font-size-4x-large] sl-text-warning-600 sl-mb-medium"></sl-icon>
+                    <span class="sl-font-bold sl-mb-small">SOPORTE 24/7</span>
+                    <small class="sl-text-neutral-500">Atención al cliente siempre disponible</small>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="sl-bg-[#DBD0CC] sl-border-2 sl-border-solid sl-border-neutral-900 sl-grid sl-grid-cols-1 md:sl-grid-cols-2 sl-items-center sl-min-h-[400px]">
+            <div class="sl-text-center sl-p-large">
+                <img src="/shoelace3.0/img/SILLON-DECO4.png" alt="Oferta especial en muebles modernos" class="sl-max-w-full sl-w-3/4">
+            </div>
+            <div class="sl-p-3x-large">
+                <span class="sl-block sl-font-bold sl-text-large sl-mb-medium">OFERTA DE LA SEMANA</span>
+                <h1 class="sl-text-[#A86A3D] sl-font-bold sl-text-4x-large sl-leading-dense sl-my-large">
+                    EN VENTA 50%<br>MUEBLES MODERNOS
+                </h1>
+                <sl-button variant="default" size="large" outline>Ver Ofertas</sl-button>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section class="sl-container sl-py-3x-large">
+            <div class="sl-grid sl-grid-cols-1 md:sl-grid-cols-3 sl-gap-large">
+                <!-- Product 1 -->
+                <sl-card class="sl-h-full sl-flex sl-flex-col sl-panel-custom sl-bg-[#eae9e7]">
+                    <div class="sl-flex-1 sl-flex sl-items-center sl-justify-center sl-p-large">
+                        <img src="/shoelace3.0/img/MESA-SILVIA-CUADRADA.png" alt="Mesa de algarrobo" class="sl-max-w-full sl-max-h-[250px] sl-object-contain">
+                    </div>
+                    <div class="sl-p-large sl-text-center sl-bg-neutral-0">
+                        <h6 class="sl-font-bold sl-text-large sl-mb-medium">MESA ALGARROBO</h6>
+                        <sl-button variant="default" outline class="sl-w-full">Ver Detalles</sl-button>
+                    </div>
+                </sl-card>
+
+                <!-- Product 2 -->
+                <sl-card class="sl-h-full sl-flex sl-flex-col sl-panel-custom sl-bg-[#DBD0dd]">
+                    <div class="sl-flex-1 sl-flex sl-items-center sl-justify-center sl-p-large">
+                        <img src="/shoelace3.0/img/pampa-tiza-natural-1.png" alt="Silla Pampa" class="sl-max-w-full sl-max-h-[250px] sl-object-contain">
+                    </div>
+                    <div class="sl-p-large sl-text-center sl-bg-neutral-0">
+                        <h6 class="sl-font-bold sl-text-large sl-mb-medium">SILLA PAMPA</h6>
+                        <sl-button variant="default" outline class="sl-w-full">Ver Detalles</sl-button>
+                    </div>
+                </sl-card>
+
+                <!-- Product 3 -->
+                <sl-card class="sl-h-full sl-flex sl-flex-col sl-panel-custom sl-bg-[#eaeaea]">
+                    <div class="sl-flex-1 sl-flex sl-items-center sl-justify-center sl-p-large">
+                        <img src="/shoelace3.0/img/modular.png" alt="Mueble modular" class="sl-max-w-full sl-max-h-[250px] sl-object-contain">
+                    </div>
+                    <div class="sl-p-large sl-text-center sl-bg-neutral-0">
+                        <h6 class="sl-font-bold sl-text-large sl-mb-medium">MODULAR DE LIVING</h6>
+                        <sl-button variant="default" outline class="sl-w-full">Ver Detalles</sl-button>
+                    </div>
+                </sl-card>
+            </div>
+        </section>
+
+        <!-- Promotional Section -->
+        <section class="sl-relative sl-my-large">
+            <img src="/shoelace3.0/img/dormitorio1.png" alt="Dormitorio" class="sl-w-full sl-h-auto sl-block">
+            <div class="sl-absolute sl-bottom-5 sl-left-10 sl-bg-white/90 sl-p-large sl-rounded-large sl-max-w-[35%]">
+                <span class="sl-font-bold sl-text-large">JUEGOS DE SÁBANAS</span>
+                <h4 class="sl-text-[#A86A3D] sl-font-bold sl-my-medium">
+                    $50.00 <span class="sl-line-through sl-text-medium">$220.00</span>
+                </h4>
+                <p class="sl-mb-medium">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel mollitia error laudantium at consectetur iure ea dolorem? Quidem.</p>
+                <sl-button variant="default" outline>Ver Ahora</sl-button>
+            </div>
+        </section>
+
+        <sl-divider></sl-divider>
+    </main>
+
+    <!-- Footer -->
+    <footer class="sl-bg-neutral-900 sl-text-neutral-0 sl-py-3x-large sl-mt-large">
+        <div class="sl-container">
+            <div class="sl-grid sl-grid-cols-1 md:sl-grid-cols-4 sl-gap-large">
+                <div>
+                    <h3 class="sl-mb-large">URBAN OUTFITTERS</h3>
+                    <p class="sl-text-neutral-500 sl-mb-small">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias voluptatem fugiat sapiente accusantium et reprehenderit placeat ex perspiciatis.
+                    </p>
+                    <h6 class="sl-text-neutral-500 sl-mb-small">
+                        Constitución 716, X5800 Río Cuarto, Córdoba, Argentina
+                    </h6>
+                    <h6 class="sl-text-neutral-500 sl-mb-small">
+                        +543584643036
+                    </h6>
+                    <h6 class="sl-text-neutral-500 sl-mb-large">
+                        itecriocuarto.org.ar
+                    </h6>
+                    <div class="sl-flex sl-gap-medium sl-mt-large">
+                        <sl-icon name="facebook" class="sl-text-[--sl-font-size-x-large] sl-text-neutral-0 sl-cursor-pointer"></sl-icon>
+                        <sl-icon name="twitter" class="sl-text-[--sl-font-size-x-large] sl-text-neutral-0 sl-cursor-pointer"></sl-icon>
+                        <sl-icon name="instagram" class="sl-text-[--sl-font-size-x-large] sl-text-neutral-0 sl-cursor-pointer"></sl-icon>
+                        <sl-icon name="youtube" class="sl-text-[--sl-font-size-x-large] sl-text-neutral-0 sl-cursor-pointer"></sl-icon>
+                    </div>
+                </div>
+
+                <div>
+                    <h5 class="sl-mb-large">SHOPPING</h5>
+                    <p class="sl-text-neutral-500 sl-mb-small">Your cart</p>
+                    <p class="sl-text-neutral-500 sl-mb-small">Your orders</p>
+                    <p class="sl-text-neutral-500 sl-mb-small">Compared items</p>
+                    <p class="sl-text-neutral-500 sl-mb-small">Wishlist items</p>
+                    <p class="sl-text-neutral-500 sl-mb-small">Shipping details</p>
+                </div>
+
+                <div>
+                    <h5 class="sl-mb-large">MORE LINK</h5>
+                    <p class="sl-text-neutral-500 sl-mb-small">Blog</p>
+                    <p class="sl-text-neutral-500 sl-mb-small">Gift Center</p>
+                    <p class="sl-text-neutral-500 sl-mb-small">Buying Guides</p>
+                    <p class="sl-text-neutral-500 sl-mb-small">New Arrivals</p>
+                    <p class="sl-text-neutral-500 sl-mb-small">Clearance</p>
+                </div>
+
+                <div>
+                    <h5 class="sl-mb-large">FROM THE BLOG</h5>
+                    <div class="sl-mb-large">
+                        <span class="sl-text-[--sl-font-size-2x-large] sl-text-neutral-500">26</span>
+                        <span class="sl-text-neutral-500"> May</span>
+                        <p class="sl-text-neutral-500 sl-my-small">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias voluptatem fugiat sapiente accusantium et reprehenderit placeat ex perspiciatis.
+                        </p>
+                        <span class="sl-text-neutral-500">3 comments</span>
+                    </div>
+                    <sl-divider></sl-divider>
+                    <div class="sl-mt-medium">
+                        <span class="sl-text-[--sl-font-size-2x-large] sl-text-neutral-500">27</span>
+                        <span class="sl-text-neutral-500"> May</span>
+                        <p class="sl-text-neutral-500 sl-my-small">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias voluptatem fugiat sapiente accusantium et reprehenderit placeat ex perspiciatis.
+                        </p>
+                        <span class="sl-text-neutral-500">3 comments</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
