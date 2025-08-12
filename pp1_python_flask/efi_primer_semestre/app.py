@@ -2,8 +2,6 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
-from werkzeug.security import generate_password_hash, check_password_hash
-from datetime import datetime
 
 #inicializo la app flask
 app = Flask(__name__) 
@@ -126,7 +124,7 @@ def create_post():
             flash('Título, contenido y categoría son obligatorios.', 'danger')
             return redirect(url_for('create_post'))
 
-        # Buscar categoría (ignorando mayúsculas/minúsculas, opcional)
+        # Buscar categoría (consunlta a la db y la pasa a lower para filtrar)
         category = Category.query.filter(db.func.lower(Category.name) == category_name.lower()).first()
 
         if not category:
@@ -225,6 +223,7 @@ def delete_post(post_id):
     post = Post.query.get_or_404(post_id)
     if post.author != current_user:
         flash('No tienes permiso para eliminar este post.', 'danger')
+        
         return redirect(url_for('post_detail', post_id=post.id))
     
     db.session.delete(post)
