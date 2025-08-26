@@ -22,7 +22,7 @@ const Semaforo = () => {
         } else {
           setColorActivo('rojo');
         }
-      }, 2000); // Cambia cada 2 segundos
+      }, 2000); // cambia cada 2 segundos
     }
 
     return () => {
