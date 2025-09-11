@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mariana & Carlos - Invitación de Boda</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="/styles.css"> 
+</head>
+<body>
+    <section class="hero-section" id="home">
+        <div class="hero-content" data-aos="fade-up">
+            <h1>Mariana & Carlos</h1>
+            <h2>¡NOS CASAMOS!</h2>
+            <p>17 de Enero, 2026</p>
+        </div>
+        <div class="scroll-indicator" onclick="scrollToSection('countdown')">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <section class="countdown-section" id="countdown">
+        <div class="container">
+            <div class="text-center" data-aos="fade-up">
+                <h2>¡Estás invitado!</h2>
+                <h3>Nos encantaría que seas parte de este momento tan especial para nosotros. ¡Falta poco!</h3>
+            </div>
+            <div class="countdown-timer" data-aos="fade-up" data-aos-delay="200">
+                <div class="countdown-item">
+                    <div class="number" id="days">000</div>
+                    <div class="label">días</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="number" id="hours">00</div>
+                    <div class="label">horas</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="number" id="minutes">00</div>
+                    <div class="label">min</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="number" id="seconds">00</div>
+                    <div class="label">seg</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="event-section" id="events">
+        <div class="container">
+            <div class="row g-4 justify-content-center"> 
+                
+                <!-------------------Card Civil------------------->
+                <div class="col-lg-4 col-md-6 col-sm-12" data-aos="fade-left" data-aos-delay="400"> 
+                    <div class="event-card">
+                        <div class="event-icon">
+                            <i class="fas fa-handshake"></i> </div>
+                        <h3>CIVIL</h3>
+                        <p>
+                            17 de enero<br>
+                            19:00 hs.<br>
+                            Registro Civil de Río Cuarto<br>
+                            ¡No te lo pierdas!
+                        </p>
+                        <a href="https://www.google.com/maps/place/Sociedad+Rural+de+R%C3%ADo+Cuarto/@-33.1560224,-64.3609955,15.51z/data=!4m6!3m5!1s0x95d1ffeb98b275c9:0xc715cdfb0125a8c9!8m2!3d-33.1594619!4d-64.3572082!16s%2Fg%2F11bwflvnx7?authuser=0&entry=ttu&g_ep=EgoyMDI1MDUxMy4xIKXMDSoJLDEwMjExNDU1SAFQAw%3D%3D" target="_blank" class="btn-custom">
+                            <i class="fas fa-map-marker-alt me-2"></i>LLEGAR AL CIVIL
+                        </a>
+                    </div>
+                </div>
+
+                <!-------------------Card Ceremonia------------------->
+                <div class="col-lg-4 col-md-6 col-sm-12" data-aos="fade-right"> 
+                    <div class="event-card">
+                        <div class="event-icon">
+                            <i class="fas fa-church"></i> </div>
+                        <h3>CEREMONIA RELIGIOSA</h3>
+                        <p>
+                            17 de enero<br>
+                            19:00 hs.<br>
+                            Parroquia Nuestra Señora de las Victorias<br>
+                            Recibí debajo las indicaciones para llegar.
+                        </p>
+                        <a href="https://www.google.com/maps/place/Sociedad+Rural+de+R%C3%ADo+Cuarto/@-33.1560224,-64.3609955,15.51z/data=!4m6!3m5!1s0x95d1ffeb98b275c9:0xc715cdfb0125a8c9!8m2!3d-33.1594619!4d-64.3572082!16s%2Fg%2F11bwflvnx7?authuser=0&entry=ttu&g_ep=EgoyMDI1MDUxMy4xIKXMDSoJLDEwMjExNDU1SAFQAw%3D%3D" target="_blank" class="btn-custom">
+                            <i class="fas fa-map-marker-alt me-2"></i>LLEGAR A LA CEREMONIA
+                        </a>
+                    </div>
+                </div>
+
+                <!-------------------Card Fiesta------------------->                
+                <div class="col-lg-4 col-md-6 col-sm-12" data-aos="fade-up" data-aos-delay="200"> 
+                    <div class="event-card">
+                        <div class="event-icon">
+                            <i class="fas fa-glass-cheers"></i> </div>
+                        <h3>FIESTA</h3>
+                        <p>
+                            Luego de la ceremonia<br>
+                            Palacio Sans Souci<br>
+                            Río Cuarto, Córdoba.<br>
+                            ¡Te esperamos!
+                        </p>
+                        <a href="https://www.google.com/maps/place/Sociedad+Rural+de+R%C3%ADo+Cuarto/@-33.1560224,-64.3609955,15.51z/data=!4m6!3m5!1s0x95d1ffeb98b275c9:0xc715cdfb0125a8c9!8m2!3d-33.1594619!4d-64.3572082!16s%2Fg%2F11bwflvnx7?authuser=0&entry=ttu&g_ep=EgoyMDI1MDUxMy4xIKXMDSoJLDEwMjExNDU1SAFQAw%3D%3D" target="_blank" class="btn-custom">
+                            <i class="fas fa-map-marker-alt me-2"></i>LLEGAR A LA FIESTA
+                        </a>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <section class="dress-code text-center" id="dresscode">
+        <div class="container" data-aos="fade-up">
+            <div class="dress-code-icon">
+                <img src="/assets/icono-dresscode2.svg" alt="Icono de vestimenta formal" class="dress-icon">
+            </div>
+            <h2>DRESS CODE</h2>
+            <h3>Vestimenta formal, elegante</h3>
+        </div>
+    </section>
+
+    <section class="gallery-section" id="gallery">
+        <div class="container">
+            <h3 data-aos="fade-up">Nosotros...</h3>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="gallery-item">
+                        <img src="/assets/pareja1.jpeg" alt="Foto de la pareja 1"> 
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="gallery-item">
+                        <img src="/assets/pareja2.jpeg" alt="Foto de la pareja 2">
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="gallery-item">
+                        <img src="/assets/pareja3.jpeg" alt="Foto de la pareja 3" style="object-fit: cover; object-position: top;">
+                    </div>  
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="gifts-section text-center" id="gifts">
+        <div class="container" data-aos="fade-up">
+            <div class="gift-icon">
+                <i class="fas fa-gift"></i>
+            </div>
+            <h3>¡El mejor regalo es tu presencia!</h3>
+            <p>Si deseás realizarnos otro regalo, podés colaborar con nuestra Luna de Miel...</p>
+            <button class="btn btn-gift" onclick="toggleBankDetails()">
+                <i class="fas fa-university me-2"></i>Ver Datos Bancarios
+            </button>
+            <div id="bank-details" class="bank-details" style="display: none;">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><strong>Nombre del Titular:</strong> Nombre Apellido</p>
+                        <p><strong>CBU:</strong> 0000003100027477531761</p>
+                        <p><strong>Alias:</strong> ambrogio.nx </p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>DNI:</strong> 32200552</p>
+                        <p><strong>Banco:</strong> Galicia</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="rsvp-section text-center" id="rsvp">
+        <div class="container" data-aos="fade-up">
+            <h2>CONFIRMACIÓN DE ASISTENCIA</h2>
+            <p class="subtitle">Esperamos que seas parte de esta gran celebración. ¡Confirmanos tu asistencia!</p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdp30Zp16fS_gqMJRC1-1q7vTa8YT59bBJQhNT4yaym1Bo5NA/viewform?usp=header" target="_blank" class="btn-rsvp">
+                <i class="fas fa-check me-2"></i>CONFIRMAR ASISTENCIA
+            </a>
+        </div>
+    </section>
+
+    <section class="gran-dia-section text-center">
+        <div class="container" data-aos="fade-up">
+            <div class="gran-dia-icon">
+                <i class="fas fa-heart"></i> </div>
+            <h2>LLEGÓ EL GRAN DÍA</h2>
+            <p class="cita">"Andábamos sin buscarnos, pero sabiendo que andábamos para encontrarnos."</p>
+            <p class="autor">Julio Cortázar</p>
+        </div>
+    </section>
+    
+
+    <section class="final-message text-center">
+        <div class="container" data-aos="fade-up">
+            <h1>Te esperamos!</h1>
+            <p>Mariana & Carlos</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>Invitaciones Digitales <a href="https://github.com/FranAmbrogio7/FranciscoAmbrogio" target="_blank">FranciscoAmbrogio</a> 2025. Todos los derechos reservados.</p>
+            <i class="fab fa-github"> <a href="https://github.com/FranAmbrogio7/FranciscoAmbrogio">franambrogio7</a> </i>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>  
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="/script.js"></script> 
+</body>
+</html>
+
+
+<!-- final: MODIFICO LA RAMA DEVELOP  -->

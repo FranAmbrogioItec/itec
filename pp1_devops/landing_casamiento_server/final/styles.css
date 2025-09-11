@@ -1,0 +1,750 @@
+:root {
+    --primary-color: #D4B4A9;        /* Rosa viejo suave / Durazno empolvado: Cálido, romántico y sofisticado. Base principal. */
+    --secondary-color: #A7C5AF;      /* Verde menta suave / Verde eucalipto claro: Aporta frescura, serenidad y naturalidad. Complemento. */
+    --tertiary-color: #6C7A89;       /* Gris azulado oscuro / Azul pizarra: Para contrastes elegantes y elementos importantes. Aporta seriedad y distinción. */
+    --accent-color: #6C7A89;         /* Se mantiene igual que tertiary para consistencia en botones y acentos */
+    --text-dark: #3A4750;            /* Azul marino muy oscuro / Gris carbón: Para texto principal, legible y elegante. */
+    --text-light: #3A4750;           /* Gris medio suave: Para subtítulos o texto secundario, mantiene la suavidad. */
+    --bg-light: #F7F5EB;             /* Crema suave / Blanco roto: Fondo claro y cálido que resalta los demás colores. */
+    --white: #FFFFFF;                /* Blanco puro: Para elementos que necesitan máxima claridad. */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+    color: var(--text-dark);
+    overflow-x: hidden;
+}
+
+/* Hero Section */
+.hero-section {
+    height: 100vh;
+    background: linear-gradient(135deg, rgba(64, 64, 64, 0.4), rgba(66, 66, 66, 0.4)), 
+                url('https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--white);
+    position: relative;
+}
+
+.hero-content h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 6rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.hero-content h2 {
+    font-size: 1.9rem;
+    letter-spacing: 3px;
+    font-weight: 300;
+    margin-bottom: 2rem;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+.hero-content p {
+    font-size: 1.4rem;
+    margin-bottom: 2rem;
+    font-weight: 300;
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--white);
+    font-size: 2rem;    
+    animation: bounce 2s infinite;
+    cursor: pointer;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateX(-50%) translateY(0) scaleY(1); /* Posición inicial y final, altura normal */
+    }
+    20% {
+        transform: translateX(-50%) translateY(-10px) scaleY(1.1); /* Subida inicial, estiramiento sutil */
+    }
+    40% {
+        transform: translateX(-50%) translateY(0) scaleY(0.9); /* Regreso, "aplastamiento" al tocar el "suelo" */
+    }
+    60% {
+        transform: translateX(-50%) translateY(-7px) scaleY(1.05); /* Rebote secundario, subida más pequeña, estiramiento leve */
+    }
+    80% {
+        transform: translateX(-50%) translateY(0) scaleY(0.95); /* Regreso final, "aplastamiento" sutil */
+    }
+}
+
+/* Countdown Section */
+.countdown-section {
+    background: var(--primary-color);
+    color: var(--white);
+    padding: 4rem 0;
+}
+
+.countdown-section h2 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3.5rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+}
+
+.countdown-section h3 {
+    font-size: 1.3rem;
+    font-weight: 300;
+    margin-bottom: 3rem;
+}
+
+.countdown-timer {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.countdown-item {
+    background: var(--white);
+    color: rgba(22, 22, 22, 0.8);
+    padding: 1.5rem;
+    border-radius: 50%;
+    min-width: 100px;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.countdown-item:hover {
+    transform: translateY(-5px);
+}
+    
+.countdown-item .number {
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.countdown-item .label {
+    font-size: 0.9rem;
+    font-weight: 400;
+    margin-top: 0.5rem;
+}
+
+/* Event Section */
+.event-section {
+    background: var(--bg-light);
+    padding: 5rem 0;
+}
+
+.event-card {
+    background: var(--white);
+    border-radius: 15px;
+    padding: 2.5rem;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+}
+
+.event-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.event-icon {
+    font-size: 4rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+.event-card h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin-bottom: 1.5rem;
+    color: var(--text-dark);
+}
+
+.event-card p {
+    color: var(--text-light);
+    margin-bottom: 2rem;
+    line-height: 1.8;
+}
+
+.btn-custom {
+    background: var(--secondary-color);
+    color: var(--white);
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.btn-custom:hover {
+    background: var(--accent-color);
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Dress Code Section */
+.dress-code {
+    background: var(--primary-color);
+    color: var(--white);
+    padding: 3rem 0;
+}
+
+.dress-code-icon {
+    font-size: 5rem;
+    margin-bottom: 1rem;
+}
+
+.dress-code h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    letter-spacing: 1px;
+}
+
+.dress-code-icon {
+    width: 15rem;
+    height: 15rem;
+    margin: auto;
+}
+
+.dress-code h3 {
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+
+/* Gallery Section */
+.gallery-section {
+    padding: 5rem 0;
+}
+
+.gallery-section h3 {
+    text-transform: uppercase;
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover {
+    transform: scale(1.05);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+.image-3 {
+    object-fit: cover; 
+    object-position: top;
+}
+
+/* Gifts Section */
+.gifts-section {
+    background: var(--primary-color);
+    color: var(--white);
+    padding: 4rem 0;
+}
+
+.gift-icon {
+    font-size: 5rem;
+    margin-bottom: 1rem;
+}
+
+.gifts-section h3 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.gifts-section p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+.btn-gift {
+    background: var(--white);
+    color: var(--primary-color);
+    border: 2px solid var(--white);
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-gift:hover {
+    background: transparent;
+    color: var(--white);
+    border-color: var(--white);
+}
+
+.bank-details {
+    background: rgba(255,255,255,0.1);
+    padding: 2rem;
+    border-radius: 15px;
+    margin-top: 2rem;
+    backdrop-filter: blur(10px);
+}
+
+.bank-details p {
+    margin-bottom: 0.5rem;
+}
+
+/* RSVP Section */
+.rsvp-section {
+    background: var(--bg-light);
+    padding: 5rem 0;
+}
+
+.rsvp-section h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+}
+
+.rsvp-section .subtitle {
+    color: var(--text-light);
+    margin-bottom: 2rem;
+}
+
+.btn-rsvp {
+    background: var(--accent-color);
+    color: var(--white);
+    border: none;
+    padding: 1rem 3rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-rsvp:hover {
+    background: #c9906d;
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Final Message */
+.final-message {
+    background: var(--white);
+    padding: 4rem 0;
+}
+
+.final-message h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3.5rem;
+    color: var(--text-light);
+    margin-bottom: 1rem;
+}
+
+.final-message p {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2rem;
+    color: var(--text-light);
+}
+
+/* ==================================================================== */
+/* SECCIÓN: Llegó el Gran Día */
+/* ==================================================================== */
+.gran-dia-section {
+    background: var(--primary-color); /* Puedes usar un color de tu paleta, por ejemplo, el crema suave */
+    padding: 6rem 0; /* Padding superior e inferior para espacio */
+    color: var(--text-dark); /* Color de texto para esta sección */
+}
+
+.gran-dia-icon {
+    font-size: 4rem; /* Tamaño del icono del corazón */
+    color: rgb(223, 118, 118); /* Color del icono, usando tu variable */
+    margin-bottom: 2rem; /* Espacio debajo del icono */
+    line-height: 1; /* Asegura que no haya espacio extra sobre el icono */
+}
+
+/* Si el icono es una imagen SVG, usa esto en su lugar: */
+/* .gran-dia-icon img {
+    width: 80px;
+    height: auto;
+    margin-bottom: 2rem;
+} */
+
+.gran-dia-section h2 {
+    font-size: 2.5rem; /* Tamaño del título "LLEGÓ EL GRAN DÍA" */
+    font-weight: 600; /* Peso de la fuente para que destaque */
+    letter-spacing: 3px; /* Espaciado entre letras para un efecto elegante */
+    margin-bottom: 1.5rem; /* Espacio debajo del título */
+    text-transform: uppercase; /* Mayúsculas para el título */
+}
+
+.gran-dia-section .cita {
+    font-family: 'Montserrat', sans-serif; /* Puedes usar tu fuente principal o una cursiva si lo prefieres */
+    font-size: 1.2rem; /* Tamaño de la cita */
+    font-style: italic; /* Cursiva para la cita */
+    color: var(--text-light); /* Color más suave para la cita */
+    margin-bottom: 0.8rem; /* Espacio debajo de la cita */
+    max-width: 700px; /* Ancho máximo para que la cita no sea demasiado larga en pantallas grandes */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.gran-dia-section .autor {
+    font-family: 'Montserrat', sans-serif; /* O la misma que la cita */
+    font-size: 1rem; /* Tamaño del nombre del autor */
+    color: var(--text-light); /* Color más suave para el autor */
+    font-weight: 500; /* Peso de la fuente para el autor */
+    margin-top: 0; /* Asegura que no haya margen superior extra */
+}
+
+
+/* --- Ajustes Responsivos para la Nueva Sección --- */
+@media (max-width: 768px) {
+    .gran-dia-section {
+        padding: 4rem 0; /* Reducir padding en tablets */
+    }
+    .gran-dia-icon {
+        font-size: 3rem; /* Icono más pequeño en tablets */
+        margin-bottom: 1.5rem;
+    }
+    .gran-dia-section h2 {
+        font-size: 2rem; /* Título más pequeño en tablets */
+        letter-spacing: 2px;
+    }
+    .gran-dia-section .cita {
+        font-size: 1.1rem; /* Cita más pequeña en tablets */
+    }
+    .gran-dia-section .autor {
+        font-size: 0.9rem; /* Autor más pequeño en tablets */
+    }
+}
+
+@media (max-width: 576px) {
+    .gran-dia-section {
+        padding: 3rem 0; /* Más reducción de padding en móviles */
+    }
+    .gran-dia-icon {
+        font-size: 2.5rem; /* Icono más pequeño en móviles */
+        margin-bottom: 1rem;
+    }
+    .gran-dia-section h2 {
+        font-size: 1.8rem; /* Título más pequeño en móviles */
+        letter-spacing: 1px;
+    }
+    .gran-dia-section .cita {
+        font-size: 1rem; /* Cita más pequeña en móviles */
+    }
+    .gran-dia-section .autor {
+        font-size: 0.85rem; /* Autor más pequeño en móviles */
+    }
+}
+
+/* Footer */
+footer {
+    background: var(--text-dark);
+    color: var(--white);
+    padding: 2rem 0;
+    text-align: center;
+}
+
+footer a {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+.fab {
+    font-size: 0.9rem;
+}
+/* Tus estilos CSS existentes... */
+
+/* ==================================================================== */
+/* AJUSTES RESPONSIVOS */
+/* ==================================================================== */
+
+/* Ajustes para tabletas y dispositivos móviles más grandes (hasta 768px de ancho) */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 4rem; /* Reducido para que quepa mejor en pantallas medianas */
+    }
+    
+    .hero-content h2 {
+        font-size: 1.8rem; /* Ajustado */
+    }
+    
+    .countdown-section h2 {
+        font-size: 3rem; /* Reducido para mejor ajuste */
+    }
+    
+    .countdown-timer {
+        gap: 1.5rem; /* Espacio entre los ítems del contador */
+    }
+    
+    .countdown-item {
+        min-width: 90px;
+        min-height: 90px;
+        padding: 1.2rem;
+    }
+    
+    .countdown-item .number {
+        font-size: 1.6rem;
+    }
+
+    .countdown-item .label {
+        font-size: 0.8rem;
+    }
+    
+    .event-card {
+        /* Bootstrap ya maneja bien las columnas con col-md-6, no es estrictamente necesario margin-bottom */
+        margin-bottom: 1.5rem; /* Añade espacio entre las tarjetas en pantallas medianas */
+    }
+    /* El último event-card dentro de su fila no necesita margin-bottom si son 2x2.
+       Considera usar 'gap' en el row de Bootstrap si no lo estás haciendo ya para espaciado consistente. */
+    
+    .gallery-section h3, .rsvp-section h2, .gifts-section h3 {
+        font-size: 1.8rem; /* Ajustar tamaños de títulos de sección */
+    }
+
+    .gallery-item img {
+        height: 250px; /* Altura de las imágenes de galería */
+    }
+
+    .dress-code-icon {
+        width: 12rem; /* Ajustar tamaño del icono de vestimenta */
+        height: 12rem;
+    }
+
+    .btn-custom, .btn-gift, .btn-rsvp {
+        transition: all 0.4s ease-in-out; /* más suave */
+    }
+    
+    .btn-custom:hover, .btn-gift:hover, .btn-rsvp:hover {
+        transform: translateY(-3px) scale(1.03);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+}
+
+/* -------------------------------------------------------------------- */
+/* Ajustes ESPECÍFICOS para celulares (hasta 576px de ancho, extra-small en Bootstrap) */
+@media (max-width: 576px) {
+    /* Ajustes generales de padding para secciones */
+    section {
+        padding: 3rem 0; /* Menos padding vertical en móviles para un flujo más compacto */
+    }
+
+    /* Hero Section */
+    .hero-content h1 {
+        font-size: 3rem; /* Tamaño de fuente más pequeño para los nombres */
+        margin-bottom: 0.5rem;
+    }
+    
+    .hero-content h2 {
+        font-size: 1.2rem; /* Tamaño de fuente para "NOS CASAMOS" */
+        margin-bottom: 1rem;
+    }
+    
+    .hero-content p {
+        font-size: 1rem; /* Tamaño de fuente para la fecha */
+        margin-bottom: 1rem;
+    }
+
+    /* Scroll Indicator */
+    .scroll-indicator {
+        bottom: 20px; /* Acercar el indicador de scroll al borde inferior */
+        font-size: 1.8rem;
+    }
+
+    /* Countdown Section */
+    .countdown-section h2 {
+        font-size: 2.5rem; /* Ajuste para el título "¡Estás invitado!" */
+        margin-bottom: 0.8rem;
+    }
+    
+    .countdown-section h3 {
+        font-size: 1.1rem; /* Ajuste para el subtítulo del contador */
+        margin-bottom: 2rem;
+    }
+
+    .countdown-timer {
+        gap: 0.8rem; /* Reducir el espacio entre los ítems del contador */
+    }
+
+    .countdown-item {
+        min-width: 70px; /* Hacer los círculos del contador más pequeños */
+        min-height: 70px;
+        padding: 0.8rem;
+    }
+    
+    .countdown-item .number {
+        font-size: 1.4rem; /* Reducir tamaño de los números del contador */
+    }
+
+    .countdown-item .label {
+        font-size: 0.7rem; /* Reducir tamaño de las etiquetas del contador */
+    }
+
+    /* Event Section */
+    .event-card {
+        padding: 1.5rem; /* Menos padding dentro de las tarjetas de evento */
+        margin-bottom: 1.5rem; /* Espacio entre tarjetas apiladas */
+    }
+
+    .event-icon {
+        font-size: 3rem; /* Iconos de evento más pequeños */
+        margin-bottom: 1rem;
+    }
+
+    .event-card h3 {
+        font-size: 1.3rem; /* Títulos de tarjeta de evento más pequeños */
+        margin-bottom: 1rem;
+        letter-spacing: 1px;
+    }
+
+    .event-card p {
+        font-size: 0.95rem; /* Texto de descripción más pequeño */
+        margin-bottom: 1.5rem;
+    }
+
+    /* Dress Code Section */
+    .dress-code-icon {
+        width: 10rem; /* Icono de vestimenta más pequeño */
+        height: 10rem;
+    }
+
+    .dress-code h2 {
+        font-size: 1.7rem; /* Título de dress code más pequeño */
+    }
+
+    .dress-code h3 {
+        font-size: 1rem; /* Subtítulo de dress code más pequeño */
+    }
+
+    /* Gallery Section */
+    .gallery-section h3 {
+        font-size: 1.7rem; /* Título de galería más pequeño */
+        margin-bottom: 2rem;
+    }
+
+    .gallery-item img {
+        height: 250px; /* Reducir altura de las imágenes de galería */
+    }
+    
+    /* Gifts Section */
+    .gift-icon {
+        font-size: 4rem; /* Icono de regalo más pequeño */
+    }
+
+    .gifts-section h3 {
+        font-size: 1.7rem; /* Título de regalos más pequeño */
+    }
+
+    .gifts-section p {
+        font-size: 1rem; /* Texto de regalos más pequeño */
+    }
+
+    .btn-gift {
+        padding: 0.8rem 1.5rem; /* Padding de botón de regalo ajustado */
+        font-size: 0.9rem;
+    }
+
+    .bank-details {
+        padding: 1.5rem; /* Padding de detalles bancarios ajustado */
+    }
+
+    .bank-details p {
+        font-size: 0.9rem; /* Texto de detalles bancarios más pequeño */
+    }
+
+    /* RSVP Section */
+    .rsvp-section h2 {
+        font-size: 1.7rem; /* Título de RSVP más pequeño */
+    }
+
+    .rsvp-section .subtitle {
+        font-size: 0.95rem; /* Subtítulo de RSVP más pequeño */
+    }
+
+    .btn-rsvp {
+        padding: 0.8rem 2.5rem; /* Padding de botón RSVP ajustado */
+        font-size: 1rem;
+    }
+
+    /* Final Message */
+    .final-message h1 {
+        font-size: 3rem; /* Título final más pequeño */
+    }
+
+    .final-message p {
+        font-size: 1.5rem; /* Texto de nombres final más pequeño */
+    }
+
+    /* Footer */
+    footer p {
+        font-size: 0.85rem; /* Texto del footer más pequeño */
+    }
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+    /* Ajusta este valor si tienes una barra de navegación fija en el móvil que cubra el contenido.
+       Por ejemplo, si tu navbar móvil tiene 60px de alto, pon 60px. */
+    scroll-padding-top: 100px; /* Puede que necesites ajustar esto en móvil */
+}
+
+/* Las animaciones de carga (fade-in) no necesitan ajustes específicos de media query,
+   ya que su comportamiento está ligado al scroll y al estado de 'visible'. */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
