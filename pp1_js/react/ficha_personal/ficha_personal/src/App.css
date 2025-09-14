@@ -1,0 +1,65 @@
+/* src/styles/App.css */
+
+/* Estilos para el body */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Contenedor para la Home y la Tarjeta */
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Estilos para la Card de PrimeReact */
+.p-card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  border: none;
+  background-color: white;
+}
+
+.p-card .p-card-header {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background-color: #5d6d84;
+  color: white;
+}
+
+.p-card .p-card-title {
+  font-weight: bold;
+}
+
+/* Estilos para los campos del formulario */
+.p-float-label input:focus {
+  border-color: #5d6d84 !important;
+  box-shadow: 0 0 0 0.2rem rgba(93, 109, 132, 0.25) !important;
+}
+
+/* Estilos para los botones */
+.p-button {
+  transition: all 0.3s ease;
+  font-weight: bold;
+}
+
+.p-button.p-button-success:hover {
+  background-color: #486a9a !important;
+}
+
+.p-button.p-button-secondary:hover {
+  background-color: #b5c1d6 !important;
+}
+
+/* Ajustes para el SelectButton */
+.p-selectbutton .p-button.p-highlight {
+  background-color: #486a9a;
+  border-color: #486a9a;
+}
