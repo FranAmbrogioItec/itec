@@ -1,0 +1,414 @@
+-- Script TP --
+
+-- 1
+INSERT INTO factura (id_cliente, fecha, estado) 
+VALUES (1, CURDATE(), 'Activa');
+
+-- 2
+SET @id_nueva_factura = LAST_INSERT_ID();
+SELECT @id_nueva_factura AS ultima_factura;
+
+-- 3
+INSERT INTO detalle_factura (id_factura, id_articulo, cantidad, precio)
+VALUES 
+(@id_nueva_factura, 1, 2, 1500.00),
+(@id_nueva_factura, 2, 1, 3000.00);
+
+-- 4
+SET @total_detalle = (
+    SELECT SUM(cantidad * precio) 
+    FROM detalle_factura 
+    WHERE id_factura = @id_nueva_factura
+);
+SELECT @total_detalle AS total_calculado;
+
+-- 5
+UPDATE factura 
+SET total = @total_detalle 
+WHERE id_factura = @id_nueva_factura;
+SELECT id_factura, total, estado 
+FROM factura 
+WHERE id_factura = @id_nueva_factura;
+
+-- 6
+SELECT a.nombre, SUM(df.cantidad) as total_vendido, SUM(df.cantidad * df.precio) as monto_total
+FROM detalle_factura df
+JOIN articulo a ON df.id_articulo = a.id_articulo
+JOIN factura f ON df.id_factura = f.id_factura
+WHERE f.estado != 'Anulada'
+GROUP BY a.id_articulo, a.nombre;
+
+-- 7
+CREATE VIEW vista_clientes_activos AS
+SELECT 
+    c.id as id_cliente,
+    c.cuit_dni as dni_cliente,
+    p.nombre,
+    p.dni as dni_persona,
+    p.direccion,
+    p.telefono,
+    p.email,
+    c.fecha_alta,
+    'Activo' as estado
+FROM cliente c
+JOIN persona p ON c.id_persona = p.persona_id
+WHERE c.activo = 1;
+
+-- 8
+CREATE VIEW vista_ventas_mensuales AS
+SELECT 
+    YEAR(f.fecha) as año,
+    MONTH(f.fecha) as mes,
+    COUNT(f.id_factura) as cantidad_facturas,
+    SUM(f.total) as total_ventas
+FROM factura f
+WHERE f.estado != 'Anulada'
+GROUP BY YEAR(f.fecha), MONTH(f.fecha);
+
+-- 9
+CREATE VIEW vista_localidades_argentina AS
+SELECT l.*, p.nombre as provincia
+FROM localidad l
+JOIN provincia p ON l.id_provincia = p.id
+JOIN pais pa ON p.id_pais = pa.id
+WHERE pa.nombre = 'Argentina';
+
+-- 10
+CREATE VIEW vista_articulos_vendidos AS
+SELECT 
+    a.nombre,
+    SUM(df.cantidad) as cantidad_vendida,
+    MONTH(f.fecha) as mes,
+    YEAR(f.fecha) as año,
+    CASE 
+        WHEN SUM(df.cantidad) > 50 THEN 'Producto Top' 
+        ELSE 'Producto Standard' 
+    END as categoria
+FROM detalle_factura df
+JOIN articulo a ON df.id_articulo = a.id_articulo
+JOIN factura f ON df.id_factura = f.id_factura
+WHERE f.estado != 'Anulada'
+GROUP BY a.id_articulo, a.nombre, MONTH(f.fecha), YEAR(f.fecha);
+
+-- 11
+-- Primero insertar el país si no existe
+INSERT INTO pais (nombre, codigo) 
+VALUES ('Nuevo PAIS', '12345') 
+ON DUPLICATE KEY UPDATE nombre = nombre;
+
+-- Insertar la provincia
+INSERT INTO provincia (nombre, id_pais) 
+VALUES ('Nueva Provincia', (SELECT id FROM pais WHERE nombre = 'Nuevo País'));
+
+-- Insertar la localidad
+INSERT INTO localidad (nombre, id_provincia, codigo_postal) 
+VALUES ('Nueva Localidad', LAST_INSERT_ID(), '0000');
+
+-- 12
+CREATE VIEW vista_mayor_venta_mes AS
+SELECT 
+    MAX(f.total) as mayor_venta,
+    MONTH(f.fecha) as mes,
+    YEAR(f.fecha) as año
+FROM factura f
+WHERE f.estado != 'Anulada'
+GROUP BY MONTH(f.fecha), YEAR(f.fecha);
+
+-- 13 
+CREATE VIEW vista_menor_venta_mes AS
+SELECT 
+    MIN(f.total) as menor_venta,
+    MONTH(f.fecha) as mes,
+    YEAR(f.fecha) as año
+FROM factura f
+WHERE f.estado != 'Anulada' AND f.total > 0
+GROUP BY MONTH(f.fecha), YEAR(f.fecha);
+
+-- 14
+SELECT 
+    c.id,
+    p.nombre,
+    p.apellido,
+    COUNT(f.id_factura) as cantidad_compras,
+    SUM(f.total) as total_gastado
+FROM cliente c
+JOIN persona p ON c.id_persona = p.id
+JOIN factura f ON c.id = f.id_cliente
+WHERE YEAR(f.fecha) = YEAR(CURDATE()) AND f.estado != 'Anulada'
+GROUP BY c.id, p.nombre, p.apellido
+ORDER BY total_gastado DESC
+LIMIT 1;
+
+
+-- 15
+SELECT 
+    prov.nombre as provincia,
+    COUNT(f.id_factura) as cantidad_ventas,
+    SUM(f.total) as total_ventas
+FROM factura f
+JOIN cliente c ON f.id_cliente = c.id
+JOIN persona p ON c.id_persona = p.id
+JOIN localidades l ON p.id_localidad = l.id
+JOIN provincias prov ON l.id_provincia = prov.id
+WHERE f.estado != 'Anulada'
+GROUP BY prov.id, prov.nombre;
+
+-- 16
+SELECT 
+    p.genero,
+    COUNT(DISTINCT c.id) as cantidad_clientes
+FROM cliente c
+JOIN persona p ON c.id_persona = p.id
+JOIN factura f ON c.id = f.id_cliente
+WHERE f.fecha >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH)
+AND f.estado != 'Anulada'
+GROUP BY p.genero;
+
+-- 17
+SELECT 
+    e.id,
+    p.nombre,
+    p.apellido,
+    p.genero,
+    s.nombre as sucursal,
+    l.nombre as localidad_origen,
+    COUNT(f.id_factura) as ventas_realizadas
+FROM empleados e
+JOIN persona p ON e.id_persona = p.id
+JOIN factura f ON e.id = f.id_empleado
+JOIN sucursales s ON e.id_sucursal = s.id
+JOIN localidades l ON p.id_localidad = l.id
+WHERE f.fecha >= DATE_SUB(CURDATE(), INTERVAL 3 MONTH)
+AND f.estado != 'Anulada'
+GROUP BY e.id, p.nombre, p.apellido, p.genero, s.nombre, l.nombre
+ORDER BY ventas_realizadas DESC
+LIMIT 1;
+
+-- 18
+CREATE VIEW vista_empleados_usuarios AS
+SELECT 
+    e.id,
+    p.nombre,
+    p.apellido,
+    u.usuario,
+    u.email
+FROM empleados e
+JOIN persona p ON e.id_persona = p.id
+LEFT JOIN usuarios u ON e.id = u.id_empleado;
+
+-- 19
+CREATE VIEW vista_clientes_con_usuario AS
+SELECT 
+    c.id,
+    p.nombre,
+    p.apellido,
+    CASE 
+        WHEN u.id IS NOT NULL THEN 'Con usuario web' 
+        ELSE 'Solo compras presenciales' 
+    END as tipo_acceso
+FROM cliente c
+JOIN persona p ON c.id_persona = p.id
+LEFT JOIN usuarios u ON c.id = u.id_cliente;
+
+-- 20
+-- Primero insertar la persona si no existe
+INSERT INTO persona (nombre, apellido, dni, fecha_nacimiento, genero, id_localidad)
+VALUES ('Nombre', 'Apellido', '12345678', '1990-01-01', 'M', 1);
+
+-- Insertar el empleado
+INSERT INTO empleados (id_persona, fecha_ingreso, id_sucursal, id_cargo, salario)
+VALUES (LAST_INSERT_ID(), CURDATE(), 1, 1, 50000);
+
+-- Crear usuario de login
+INSERT INTO usuarios (usuario, password, email, id_empleado, activo)
+VALUES (
+    LOWER(CONCAT(SUBSTRING('Nombre', 1, 1), 'Apellido')),
+    MD5('password123'),
+    LOWER(CONCAT('nombre.apellido', '@empresa.com')),
+    LAST_INSERT_ID(),
+    1
+);
+
+-- 21
+-- Primero crear la nueva categoría
+INSERT INTO categorias (nombre, descripcion) 
+VALUES ('Nueva Categoría', 'Descripción de la nueva categoría');
+
+-- Insertar el producto
+INSERT INTO articulo (nombre, descripcion, precio, stock, id_categoria)
+VALUES ('Nuevo Producto', 'Descripción del nuevo producto', 99.99, 100, LAST_INSERT_ID());
+
+-- 22
+CREATE VIEW vista_ganancia_mensual AS
+SELECT 
+    a.nombre as producto,
+    c.nombre as categoria,
+    YEAR(f.fecha) as año,
+    MONTH(f.fecha) as mes,
+    SUM(df.cantidad) as cantidad_vendida,
+    SUM(df.cantidad * df.precio) as ingresos_brutos,
+    SUM(df.cantidad * (df.precio - a.costo_compra)) as ganancia_neta
+FROM detalle_factura df
+JOIN articulo a ON df.id_articulo = a.articulo_id
+JOIN factura f ON df.id_factura = f.id_factura
+JOIN categorias c ON a.id_categoria = c.id
+WHERE f.estado != 'Anulada'
+GROUP BY a.articulo_id, a.nombre, c.nombre, YEAR(f.fecha), MONTH(f.fecha);
+
+-- 23
+CREATE VIEW vista_clientes_condicion_fiscal AS
+SELECT 
+    cf.nombre as condicion_fiscal,
+    COUNT(c.id) as cantidad_clientes
+FROM cliente c
+JOIN condiciones_fiscales cf ON c.id_condicion_fiscal = cf.id
+WHERE c.activo = 1
+GROUP BY cf.id, cf.nombre;
+
+-- 24
+-- Iniciar transacción
+START TRANSACTION;
+
+-- 1. Insertar factura
+INSERT INTO factura (id_cliente, id_empleado, id_sucursal, fecha, estado)
+VALUES (1, 1, 1, CURDATE(), 'Activa');
+
+SET @id_factura = LAST_INSERT_ID();
+
+-- 2. Insertar detalles de factura
+INSERT INTO detalle_factura (id_factura, id_articulo, cantidad, precio)
+VALUES 
+(@id_factura, 1, 2, (SELECT precio FROM articulo WHERE articulo_id = 1)),
+(@id_factura, 2, 1, (SELECT precio FROM articulo WHERE articulo_id = 2));
+
+-- 3. Calcular total
+SET @total_factura = (SELECT SUM(cantidad * precio) FROM detalle_factura WHERE id_factura = @id_factura);
+
+-- 4. Actualizar total en factura
+UPDATE factura SET total = @total_factura WHERE id_factura = @id_factura;
+
+-- 5. Actualizar stock
+UPDATE articulo a
+JOIN detalle_factura df ON a.articulo_id = df.id_articulo
+SET a.stock = a.stock - df.cantidad
+WHERE df.id_factura = @id_factura;
+
+-- Confirmar transacción
+COMMIT;
+
+-- 25
+CREATE VIEW vista_sucursal_top_ventas AS
+SELECT 
+    s.nombre as sucursal,
+    l.nombre as localidad,
+    COUNT(f.id_factura) as cantidad_ventas,
+    SUM(f.total) as total_ventas
+FROM sucursales s
+JOIN factura f ON s.id = f.id_sucursal
+JOIN localidades l ON s.id_localidad = l.id
+WHERE f.estado != 'Anulada'
+GROUP BY s.id, s.nombre, l.nombre
+ORDER BY total_ventas DESC
+LIMIT 1;
+
+-- 26
+CREATE VIEW vista_articulos_no_vendidos_mes AS
+SELECT 
+    a.articulo_id,
+    a.nombre,
+    a.stock
+FROM articulo a
+WHERE a.articulo_id NOT IN (
+    SELECT DISTINCT df.id_articulo
+    FROM detalle_factura df
+    JOIN factura f ON df.id_factura = f.id_factura
+    WHERE MONTH(f.fecha) = MONTH(CURDATE()) 
+    AND YEAR(f.fecha) = YEAR(CURDATE())
+    AND f.estado != 'Anulada'
+);
+
+-- 27
+SELECT 
+    'Cliente' as tipo,
+    p.nombre,
+    p.apellido,
+    p.direccion,
+    p.genero,
+    p.email,
+    p.telefono
+FROM persona p
+JOIN cliente c ON p.id = c.id_persona
+WHERE c.activo = 1
+
+UNION ALL
+
+SELECT 
+    'Proveedor' as tipo,
+    pr.nombre_empresa as nombre,
+    '' as apellido,
+    pr.direccion,
+    '' as genero,
+    pr.email,
+    pr.telefono
+FROM proveedores pr
+WHERE pr.activo = 1
+ORDER BY tipo, nombre;
+
+-- 28
+SELECT 
+    s.nombre as sucursal,
+    COUNT(f.id_factura) as cantidad_ventas,
+    SUM(f.total) as total_ventas,
+    ROUND((SUM(f.total) / (SELECT SUM(total) FROM factura WHERE estado != 'Anulada')) * 100, 2) as porcentaje_total
+FROM sucursales s
+JOIN factura f ON s.id = f.id_sucursal
+WHERE f.estado != 'Anulada'
+GROUP BY s.id, s.nombre
+ORDER BY porcentaje_total DESC;
+
+-- 29
+CREATE VIEW vista_productos_por_unidad AS
+SELECT 
+    'Por Unidad' as tipo_medida,
+    COUNT(*) as cantidad
+FROM articulo 
+WHERE unidad_medida = 'Unidad'
+
+UNION ALL
+
+SELECT 
+    'Por Peso' as tipo_medida,
+    COUNT(*) as cantidad
+FROM articulo 
+WHERE unidad_medida = 'Kilo' OR unidad_medida = 'Gramo';
+
+-- 30	
+CREATE VIEW vista_bonos_empleados AS
+SELECT 
+    e.id,
+    p.nombre,
+    p.apellido,
+    c.nombre as cargo,
+    CASE 
+        WHEN c.nombre = 'Vendedor' AND SUM(f.total) > 10000 THEN 'Bono $2000 por ventas superiores a $10000'
+        WHEN c.nombre != 'Vendedor' THEN 'Bono fijo $1000'
+        ELSE 'No aplica para bono'
+    END as bono,
+    CASE 
+        WHEN c.nombre = 'Vendedor' AND SUM(f.total) > 10000 THEN 2000
+        WHEN c.nombre != 'Vendedor' THEN 1000
+        ELSE 0
+    END as monto_bono
+FROM empleados e
+JOIN persona p ON e.id_persona = p.id
+JOIN cargos c ON e.id_cargo = c.id
+LEFT JOIN factura f ON e.id = f.id_empleado
+WHERE f.estado != 'Anulada' OR f.id_empleado IS NULL
+GROUP BY e.id, p.nombre, p.apellido, c.nombre
+HAVING monto_bono > 0;
+
+
+	
+
+
+
