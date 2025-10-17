@@ -28,10 +28,18 @@ migrate = Migrate(app, db)
 # NUEVA EXTENSIÓN: JWTManager
 jwt = JWTManager(app)
 
-# Importar modelos, repositorios, servicios, etc.
-from models.models import User, Category, Post, Comment
+# Importar modelos (Asegúrate de que la ruta sea correcta)
+from models.models import User, Category, Post, Comment 
+
+# Importar Servicios y Vistas
 from services.auth_service import AuthService
 from views.auth_views import AuthRegisterAPI, AuthLoginAPI
+from views.post_views import PostListAPI, PostDetailAPI
+
+from views.comment_views import CommentListAPI, CommentDetailAPI
+from views.category_views import CategoryListAPI, CategoryDetailAPI
+from views.user_views import UserListAPI, UserDetailAPI
+from views.stats_views import StatsAPI
 
 # --- Configuración de Claims JWT ---
 # Esta función se llama al crear el token y añade los datos de rol y user_id
@@ -69,17 +77,78 @@ def expired_token_callback(_jwt_header, _jwt_data):
 #     ...
 
 # --- Registro de Vistas Basadas en Clases (API) ---
-# Endpoint: POST /api/register
+
+# Autenticación
 app.add_url_rule(
     '/api/register', 
     view_func=AuthRegisterAPI.as_view('auth_register_api'), 
     methods=['POST']
 )
-# Endpoint: POST /api/login
 app.add_url_rule(
     '/api/login', 
     view_func=AuthLoginAPI.as_view('auth_login_api'), 
     methods=['POST']
+) 
+
+# Posts
+app.add_url_rule(
+    '/api/posts', 
+    view_func=PostListAPI.as_view('post_list_api'), 
+    methods=['GET', 'POST']
+)
+app.add_url_rule(
+    '/api/posts/<int:post_id>', 
+    view_func=PostDetailAPI.as_view('post_detail_api'), 
+    methods=['GET', 'PUT', 'DELETE']
+)
+
+# Endpoints de Comentarios
+app.add_url_rule(
+    '/api/posts/<int:post_id>/comments', 
+    view_func=CommentListAPI.as_view('comment_list_api'), 
+    methods=['GET', 'POST']
+)
+app.add_url_rule(
+    '/api/comments/<int:comment_id>', 
+    view_func=CommentDetailAPI.as_view('comment_detail_api'), 
+    methods=['DELETE'] # Solo la acción de eliminar es independiente del post
+)
+
+
+# Endpoints de Categorías
+app.add_url_rule(
+    '/api/categories', 
+    view_func=CategoryListAPI.as_view('category_list_api'), 
+    methods=['GET', 'POST']
+)
+app.add_url_rule(
+    '/api/categories/<int:category_id>', 
+    view_func=CategoryDetailAPI.as_view('category_detail_api'), 
+    methods=['PUT', 'DELETE']
+)
+
+# Endpoints de Usuarios (Admin)
+app.add_url_rule(
+    '/api/users', 
+    view_func=UserListAPI.as_view('user_list_api'), 
+    methods=['GET']
+)
+app.add_url_rule(
+    '/api/users/<int:user_id>', 
+    view_func=UserDetailAPI.as_view('user_detail_api'), 
+    methods=['GET', 'DELETE']
+)
+app.add_url_rule(
+    '/api/users/<int:user_id>/role', # PATCH para cambiar el rol
+    view_func=UserDetailAPI.as_view('user_role_api'), 
+    methods=['PATCH']
+)
+
+# Endpoint de Estadísticas
+app.add_url_rule(
+    '/api/stats', 
+    view_func=StatsAPI.as_view('stats_api'), 
+    methods=['GET']
 )
 
 if __name__ == '__main__':

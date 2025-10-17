@@ -33,5 +33,30 @@ class UserRepository:
         
         db.session.add(new_credentials)
         db.session.commit()
-        
+
         return new_user
+
+    @staticmethod
+    def get_all_users():
+        """Devuelve todos los usuarios del sistema."""
+        return User.query.all()
+    
+    @staticmethod
+    def get_by_id(user_id):
+        """Busca un usuario por su ID."""
+        return User.query.get(user_id)
+
+    @staticmethod
+    def update_user_role(user, new_role):
+        """Cambia el rol de un usuario."""
+        user.role = new_role
+        db.session.commit()
+        return user
+        
+    @staticmethod
+    def deactivate_user(user):
+        """Desactiva un usuario (soft-delete)."""
+        user.is_active = False
+        # Nota: La consigna es 'eliminar', pero generalmente en sistemas con roles se hace una desactivación.
+        db.session.commit()
+        return user

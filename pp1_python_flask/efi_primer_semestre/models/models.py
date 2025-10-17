@@ -3,42 +3,41 @@ from app import db
 # from flask_login import UserMixin # <--- ELIMINAMOS ESTO
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
+from sqlalchemy.orm import relationship
 
 
-class User(db.Model):
-    # Ya no hereda de UserMixin
+class User(db.Model): # Eliminamos UserMixin
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(100), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     
-    # NUEVOS CAMPOS REQUERIDOS
-    role = db.Column(db.String(20), default='user', nullable=False) # 'user', 'moderator', 'admin'
-    is_active = db.Column(db.Boolean, default=True, nullable=False)
-    created_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
-    
-    # ELIMINAMOS password_hash de aquí
+    # Nuevos campos para la gestión de roles y estado
+    role = db.Column(db.String(50), default='user') # Rol por defecto 'user'
+    is_active = db.Column(db.Boolean, default=True) # Mantener el estado
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
-    # Relaciones
-    credentials = db.relationship('UserCredentials', backref='user', uselist=False, cascade="all, delete-orphan")
-    posts = db.relationship('Post', backref='author', lazy='dynamic')
-    comments = db.relationship('Comment', backref='author', lazy='dynamic')
-
-    # ELIMINAMOS set_password y check_password de aquí
+    # Relaciones existentes
+    posts = relationship('Post', backref='author', lazy='dynamic')
+    comments = relationship('Comment', backref='author', lazy='dynamic')
+    credentials = relationship('UserCredentials', backref='user', uselist=False, cascade="all, delete-orphan") # Nueva relación
 
     def __repr__(self):
-        return f'<User {self.email} ({self.role})>'
+        return f'<User {self.username}>'
 
 # NUEVO MODELO: UserCredentials
 class UserCredentials(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), unique=True, nullable=False)
-    password_hash = db.Column(db.String(256), nullable=False) 
-
-    # Mantenemos los métodos de seguridad aquí, relacionados con el hash
+    password_hash = db.Column(db.String(256), nullable=False)
+    
+    # Clave foránea al usuario
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'), unique=True, nullable=False)
+    
     def set_password(self, password):
+        """Cifra la contraseña usando Werkzeug."""
         self.password_hash = generate_password_hash(password)
 
     def check_password(self, password):
+        """Verifica la contraseña contra el hash almacenado."""
         return check_password_hash(self.password_hash, password)
 
 

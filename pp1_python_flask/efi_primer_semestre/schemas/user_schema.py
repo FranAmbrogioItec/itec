@@ -21,6 +21,14 @@ class UserOutputSchema(Schema):
     is_active = fields.Bool(dump_only=True)
     created_at = fields.DateTime(dump_only=True)
 
+class UserRoleUpdateSchema(Schema):
+    """Schema para validar el cambio de rol."""
+    # Lista de valores permitidos
+    role = fields.Str(required=True, validate=validate.OneOf(["user", "moderator", "admin"]))
+
+# Instancia
+user_role_update_schema = UserRoleUpdateSchema()
+
 # Creamos instancias de los schemas
 register_schema = UserRegisterSchema()
 login_schema = UserLoginSchema()
