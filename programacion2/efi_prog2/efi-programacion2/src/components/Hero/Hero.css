@@ -1,0 +1,534 @@
+/* Hero.css */
+/* Variables de colores y fuentes */
+:root {
+  /* Colores principales basados en #06565F (verde azulado oscuro) */
+  --primary-dark: #05444C;
+  --primary: #06565F;
+  --primary-light: #0A7C8A;
+  --primary-lighter: #0EA3B5;
+  --primary-lightest: #E8F4F6;
+  --primary-dark: #05444C;
+  --primary-dark-rgb: 5, 68, 76;
+  --primary: #06565F;
+  --primary-rgb: 6, 86, 95;
+  
+  
+  /* Colores acento (complementarios) */
+  --accent: #ff7b00;        /* Naranja vibrante */
+  --accent-light: #fb983c;  /* Naranja claro */
+  --accent-dark: #EA580C;   /* Naranja oscuro */
+  
+  /* Colores neutrales */
+  --neutral-900: #0F172A;
+  --neutral-800: #1E293B;
+  --neutral-700: #334155;
+  --neutral-600: #475569;
+  --neutral-500: #64748B;
+  --neutral-400: #94A3B8;
+  --neutral-300: #CBD5E1;
+  --neutral-200: #E2E8F0;
+  --neutral-100: #F1F5F9;
+  --neutral-50: #F8FAFC;
+  
+  /* Colores semánticos */
+  --success: #10B981;
+  --warning: #F59E0B;
+  --error: #EF4444;
+  --info: #3B82F6;
+  
+  /* Texto */
+  --text-dark: var(--neutral-900);
+  --text-medium: var(--neutral-700);
+  --text-light: var(--neutral-500);
+  --text-on-primary: #FFFFFF;
+  
+  /* Fondos */
+  --background: #FFFFFF;
+  --background-light: var(--neutral-50);
+  --background-dark: var(--neutral-100);
+  
+  /* Bordes */
+  --border-light: var(--neutral-200);
+  --border-medium: var(--neutral-300);
+  --border-dark: var(--neutral-400);
+  
+  /* Sombras */
+  --shadow-sm: 0 1px 3px 0 rgba(6, 86, 95, 0.1), 0 1px 2px 0 rgba(6, 86, 95, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(6, 86, 95, 0.1), 0 2px 4px -1px rgba(6, 86, 95, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(6, 86, 95, 0.1), 0 4px 6px -2px rgba(6, 86, 95, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(6, 86, 95, 0.1), 0 10px 10px -5px rgba(6, 86, 95, 0.04);
+  
+  /* Gradientes */
+  --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+  --gradient-accent: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+  --gradient-subtle: linear-gradient(135deg, var(--primary-lightest) 0%, #FFFFFF 100%);
+  
+  /* Bordes redondeados */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 20px;
+  --radius-full: 9999px;
+}
+
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 700px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding-top: 80px;
+}
+
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* CAMBIO AQUI: Usando variables y ajustando la opacidad */
+  background: linear-gradient(135deg, rgba(var(--primary-dark-rgb), 0.8) 0%, rgba(var(--primary-rgb), 0.6) 100%);
+  z-index: 1;
+}
+
+.hero-bg-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: transform 1.2s ease-out, opacity 1.2s ease-out;
+  transform: scale(1.1);
+  opacity: 0;
+}
+
+.hero-bg-image.loaded {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.image-preloader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+}
+
+.hero-content {
+  text-align: center;
+  color: white;
+  max-width: 800px;
+  padding: 0 20px;
+  position: relative;
+  z-index: 3;
+}
+
+.hero-badge {
+  margin-bottom: 20px;
+  animation: fadeInDown 0.8s ease-out;
+}
+
+.hero-badge span {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  letter-spacing: 0.5px;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  line-height: 1.2;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+.text-accent {
+  background: linear-gradient(135deg, #F97316, var(--accent-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  margin-bottom: 30px;
+  line-height: 1.6;
+  opacity: 0.9;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  animation: fadeInUp 0.8s ease-out 0.4s both;
+}
+
+/* Search Filters en Hero */
+.search-filters {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 2rem;
+  margin: 2rem 0;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  animation: fadeInUp 0.8s ease-out 0.6s both;
+}
+
+.search-form {
+  width: 100%;
+}
+
+.select-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.select-wrapper::after {
+  content: "▼";
+  font-size: 0.8rem;
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-dark);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.filter-group select {
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  border-radius: 8px;
+  background: white;
+  color: var(--text-dark);
+  font-family: inherit;
+  font-size: 1rem;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+}
+
+.filter-group select:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3), var(--shadow-md);
+}
+
+/* Botones */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: var(--transition);
+  border: 2px solid transparent;
+  gap: 8px;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: white;
+  box-shadow: var(--shadow-md);
+}
+
+.btn-primary:hover {
+  background: var(--accent-light);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn-outline {
+  background: transparent;
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.btn-outline:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+.btn-large {
+  padding: 14px 28px;
+  font-size: 1.1rem;
+}
+
+.btn-icon {
+  font-size: 1.2rem;
+}
+
+.search-btn {
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-top: 30px;
+  flex-wrap: wrap;
+  animation: fadeInUp 0.8s ease-out 0.8s both;
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0.7;
+  animation: bounce 2s infinite;
+  font-size: 0.85rem;
+}
+
+.scroll-line {
+  width: 2px;
+  height: 40px;
+  background: linear-gradient(to bottom, transparent, white, transparent);
+  border-radius: 1px;
+}
+
+/* Animaciones */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  40% {
+    transform: translateX(-50%) translateY(-10px);
+  }
+  60% {
+    transform: translateX(-50%) translateY(-5px);
+  }
+}
+
+/* Ajustes para el grid en diferentes tamaños de pantalla */
+@media (min-width: 768px) {
+  .filter-group {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    align-items: center;
+  }
+  
+  .search-btn {
+    grid-column: span 3;
+    margin-top: 1rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .select-wrapper, .search-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 1024px) {
+  .hero-title {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    min-height: 600px;
+    padding-top: 70px;
+  }
+  
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+  
+  .search-filters {
+    padding: 1.5rem;
+  }
+  
+  .hero-buttons {
+    gap: 22px;
+  }
+
+}
+/* Añade estos estilos al final del archivo Hero.css */
+
+/* Ajustes específicos para móviles muy pequeños (hasta 360px) */
+@media (max-width: 360px) {
+  .hero {
+    min-height: 500px;
+    padding-top: 60px;
+  }
+  
+  .hero-title {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+  
+  .hero-subtitle {
+    font-size: 0.85rem;
+    margin-bottom: 20px;
+  }
+  
+  .hero-badge span {
+    font-size: 0.75rem;
+    padding: 6px 12px;
+  }
+  
+  .search-filters {
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 12px;
+  }
+  
+  .filter-group select {
+    padding: 0.8rem;
+    font-size: 0.9rem;
+  }
+  
+  .hero-buttons {
+    margin-top: 20px;
+    gap: 12px;
+  }
+  
+  .btn {
+    padding: 10px 16px;
+    font-size: 0.9rem;
+    min-height: 44px; /* Tamaño mínimo táctil */
+  }
+  
+  .btn-large {
+    padding: 11px 18px;
+    font-size: 0.95rem;
+  }
+  
+  .btn-icon {
+    font-size: 1rem;
+  }
+  
+  .scroll-indicator {
+    bottom: 20px;
+    font-size: 0.75rem;
+  }
+  
+  .scroll-line {
+    height: 30px;
+  }
+}
+
+/* Ajustes adicionales para pantallas entre 361px y 400px */
+@media (max-width: 400px) and (min-width: 361px) {
+  .hero-title {
+    font-size: 1.7rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .btn {
+    padding: 11px 18px;
+    font-size: 0.95rem;
+  }
+}
+
+/* Asegurar que los botones sean siempre visibles */
+.hero-buttons {
+  position: relative;
+  z-index: 10;
+}
+
+/* Prevenir desbordamiento en móviles muy pequeños */
+.hero-content {
+  overflow: hidden;
+}
+
+/* Mejorar la legibilidad en móviles pequeños */
+@media (max-width: 400px) {
+  .hero-content {
+    padding: 0 15px;
+  }
+  
+  .container {
+    padding: 0 10px;
+  }
+}

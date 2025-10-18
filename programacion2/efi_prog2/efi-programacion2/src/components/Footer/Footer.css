@@ -1,0 +1,182 @@
+/* --- FOOTER STYLES --- */
+:root {
+  /* CAMBIO: Definimos un color de acento para un toque de elegancia */
+  --accent: #C5A47E; 
+}
+
+.footer {
+  background-color: #033a41; /* Un tono un poco más oscuro y profundo */
+  color: rgba(255, 255, 255, 0.8);
+  padding: 60px 0 30px;
+  font-size: 0.95rem;
+}
+
+.footer-content {
+  display: grid;
+  /* CAMBIO: Columnas más equilibradas */
+  grid-template-columns: 1.5fr 1fr 1.5fr 1.5fr; 
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+/* --- Secciones Generales del Footer --- */
+.footer-section h4 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 24px;
+  position: relative;
+  padding-bottom: 12px;
+}
+
+.footer-section h4::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 30px;
+  height: 2px;
+  background-color: var(--accent);
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section li {
+  margin-bottom: 14px;
+}
+
+.footer-section a {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  transition: color 0.3s ease, padding-left 0.3s ease;
+}
+
+/* CAMBIO: Efecto hover más sutil y elegante para los enlaces */
+.footer-section ul:not(.contact-list) a:hover {
+  color: var(--accent);
+  padding-left: 5px;
+}
+
+/* --- Sección Logo y Sobre Nosotros --- */
+.footer-section.about-us p {
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.footer-logo h3 {
+  font-size: 1.8rem;
+  margin: 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  color: white;
+  letter-spacing: 1px;
+}
+
+.footer-logo span {
+  display: block;
+  color: rgba(255, 255, 255, 0.548);
+  font-size: 0.9rem;
+  margin-bottom: 16px;
+}
+
+/* --- Iconos de Redes Sociales --- */
+.footer-social {
+  display: flex;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.footer-social a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  color: white;
+  font-size: 1.1rem;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* CAMBIO: Efecto hover mejorado */
+.footer-social a:hover {
+  background-color: var(--accent);
+  color: #033a41;
+  transform: translateY(-4px) scale(1.05);
+}
+
+/* --- CAMBIO: Nuevos estilos para la lista de contacto con íconos --- */
+.contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.contact-item .contact-icon {
+  font-size: 1rem;
+  color: var(--accent);
+  margin-top: 4px; /* Alinear con la primera línea de texto */
+}
+
+.contact-item span {
+  display: block;
+}
+
+/* --- Mapa y Copyright --- */
+.footer-map {
+  margin-top: 20px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-bottom {
+  padding-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+}
+
+.footer-bottom p {
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+}
+
+/* --- Responsive --- */
+@media (max-width: 992px) {
+  .footer-content {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 40px;
+  }
+  
+  .footer-section h4::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .contact-item {
+    justify-content: center;
+    text-align: left; /* Mantiene el texto alineado a la izquierda dentro del item */
+  }
+
+  .footer-social {
+    justify-content: center;
+  }
+}

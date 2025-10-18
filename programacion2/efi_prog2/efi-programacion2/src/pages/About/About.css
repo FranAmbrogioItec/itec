@@ -1,0 +1,390 @@
+/* About.css - Versión de bloque compacto */
+:root {
+  --primary: #06565F;
+  --primary-dark: #033a41;
+  --primary-light: #4c8a92;
+  --primary-lightest: #e9f2f3;
+  --text-dark: #333;
+  --text-medium: #555;
+  --text-light: #777;
+  --background: #f8f9fa;
+  --background-light: #ffffff;
+  --gradient-primary: linear-gradient(45deg, var(--primary), var(--primary-light));
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+  --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+  --radius-md: 12px;
+  --radius-xl: 24px;
+}
+
+.about-page {
+  /* CAMBIO 1: Fondo con degradado sutil */
+  background: linear-gradient(to bottom right, #f8fcfd, #becbce98); /* Un degradado muy suave */
+  padding: 4rem 0;
+  overflow: hidden;
+  position: relative; /* Necesario para posicionar los pseudo-elementos */
+  z-index: 1; /* Asegura que el contenido esté por encima */
+}
+
+.about-page::before,
+.about-page::after {
+  content: '';
+  position: absolute;
+  background-color: rgba(6, 86, 95, 0.09); /* Un toque del color primario, muy transparente */
+  border-radius: 50%; /* Para que sean circulares o con curvas */
+  z-index: -1; /* Detrás del contenido */
+  animation: floatEffect 15s ease-in-out infinite alternate; /* Animación de "flotación" */
+}
+
+.about-page::before {
+  width: 350px;
+  height: 350px;
+  top: -50px;
+  left: -80px;
+  border-radius: 40% 60% 70% 30% / 30% 30% 70% 70%; /* Forma orgánica */
+  animation-duration: 18s;
+  animation-delay: 0s;
+}
+
+.about-page::after {
+  width: 400px;
+  height: 400px;
+  bottom: -70px;
+  right: -100px;
+  border-radius: 60% 40% 30% 70% / 60% 70% 30% 40%; /* Otra forma orgánica */
+  animation-duration: 16s;
+  animation-delay: 2s;
+}
+
+
+
+.about-page .container {
+  max-width: 1200px; /* Ancho máximo para mejorar legibilidad */
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* --- Cabecera de Sección --- */
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.section-header.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary-dark);
+  margin-bottom: 0.8rem;
+}
+
+.section-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-light);
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* --- Contenido Principal (Bloque Unificado) --- */
+.about-content {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s;
+}
+
+.about-content.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.about-section {
+  margin-bottom: 2.5rem;
+}
+
+.about-section h3 {
+  font-size: 1.8rem;
+  margin-bottom: 1.2rem;
+  color: var(--primary-dark);
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--primary-lightest);
+}
+
+.about-section p {
+  color: var(--text-medium);
+  line-height: 1.8;
+  font-size: 1rem;
+}
+
+/* --- Estadísticas --- */
+.stats-grid {
+  display: grid;
+  /* 4 columnas en desktop, 2 en tablet */
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin: 2.5rem 0;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 1.5rem 0.5rem;
+  background: var(--primary-lightest);
+  border-radius: var(--radius-md);
+  transition: all 0.3s ease;
+}
+
+.stat-item:hover {
+  background: var(--primary-light);
+  color: white;
+}
+
+.stat-item:hover .stat-number,
+.stat-item:hover .stat-label {
+  color: white;
+}
+
+.stat-number {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary);
+  transition: color 0.3s ease;
+}
+
+.stat-label {
+  color: var(--text-medium);
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+/* --- Imagen Integrada --- */
+.about-image {
+  position: relative;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  margin: 2.5rem 0;
+  max-height: 450px; /* Evita que la imagen sea demasiado alta */
+  background: #eee; /* Fondo mientras carga la imagen */
+}
+
+.about-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s ease;
+}
+
+.about-image:hover .about-img {
+  transform: scale(1.05);
+}
+
+.image-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  padding: 2rem 1.5rem 1.5rem;
+  color: white;
+}
+
+.overlay-content h4 {
+  font-size: 1.3rem;
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+}
+
+.overlay-content p {
+  margin: 0;
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
+/* --- Misión y Valores --- */
+.mission-card {
+  background: var(--gradient-primary);
+  color: white;
+  padding: 2rem;
+  border-radius: var(--radius-xl);
+  position: relative;
+  margin: 1.5rem 0;
+  box-shadow: var(--shadow-lg);
+}
+
+.quote-icon {
+  position: absolute;
+  top: 1.2rem;
+  left: 1.2rem;
+  font-size: 1.5rem;
+  opacity: 0.3;
+}
+
+.mission-card p {
+  color: white;
+  font-size: 1.1rem;
+  font-style: italic;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.value-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: white;
+  border-radius: var(--radius-md);
+  transition: all 0.3s ease;
+  border: 1px solid var(--primary-lightest);
+  box-shadow: var(--shadow-sm);
+}
+
+.value-item:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary);
+}
+
+.value-icon {
+  color: var(--primary);
+  font-size: 1.8rem;
+}
+
+.value-content h4 {
+  font-size: 1.1rem;
+  margin-bottom: 0.2rem;
+  color: var(--primary-dark);
+}
+
+.value-content p {
+  margin-bottom: 0;
+  font-size: 0.9rem;
+  color: var(--text-light);
+  line-height: 1.5;
+}
+
+
+/* --- Equipo --- */
+.team-section {
+  margin-top: 4rem;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.4s;
+}
+
+.team-section.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.team-title {
+  font-size: 2.2rem;
+  color: var(--primary-dark);
+}
+
+.team-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-light);
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.team-member {
+  text-align: center;
+  background: white;
+  padding: 1.5rem;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+.team-member:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary-lightest);
+}
+
+.member-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto 1rem;
+  border: 3px solid var(--primary-lightest);
+  position: relative;
+}
+.member-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.member-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(6, 86, 95, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.team-member:hover .member-overlay { opacity: 1; }
+.social-links { display: flex; gap: 0.8rem; }
+.social-links span { color: white; font-size: 1.1rem; }
+.member-name { font-size: 1.2rem; margin-bottom: 0.2rem; color: var(--primary-dark); }
+.member-role { color: var(--primary); font-weight: 500; font-size: 0.9rem; }
+
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .about-page { padding: 3rem 0; }
+  .section-title { font-size: 2rem; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .values-grid { grid-template-columns: 1fr; }
+  .about-image { max-height: 350px; }
+}
+
+@media (max-width: 480px) {
+  .stats-grid { gap: 0.5rem; }
+  .stat-number { font-size: 1.5rem; }
+  .stat-label { font-size: 0.8rem; }
+  .team-grid { grid-template-columns: 1fr; }
+}
+
+/* Animación de flotación */
+@keyframes floatEffect {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    transform: translate(20px, 20px) scale(1.05);
+  }
+}
+
+.about-page .container {
+  max-width: 1100px; /* Aumentamos el ancho máximo para que la sección respire más */
+  margin: 0 auto;
+  padding: 0 1.5rem; /* Un poco más de padding lateral para que no se pegue a los bordes */
+}
+

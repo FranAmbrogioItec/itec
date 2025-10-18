@@ -1,0 +1,113 @@
+/* AboutPreview.css - Versión mejorada */
+
+/* Sección principal con un padding más equilibrado */
+.about-preview {
+  background-color: white;
+  padding: 80px 0; /* Mantenemos este valor, pero ajustaremos los márgenes internos */
+}
+
+/* Contenedor del contenido principal */
+.about-preview-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+/* Títulos y subtítulos con mejor espaciado */
+.section-title {
+  margin-bottom: 0; /* Elimina el margen por defecto para un control más granular */
+}
+
+.section-subtitle {
+  margin-top: 10px; /* Separación sutil del título principal */
+  margin-bottom: 50px; /* Aumenta el espacio con el contenido principal */
+  color: var(--text-light);
+  line-height: 1.5;
+}
+
+/* Contenido de texto */
+.about-preview-text h3 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem; /* Reducido a 1rem para acercarlo al texto */
+  color: var(--primary-dark);
+  font-weight: 600;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.about-preview-text p {
+  margin-bottom: 1.25rem; /* Ajuste para una mejor separación entre párrafos */
+  color: var(--text-light);
+  line-height: 1.8;
+}
+
+/* Sección de estadísticas */
+.about-preview-stats {
+  display: flex;
+  gap: 40px;
+  margin-top: 2.5rem; /* Separación del texto principal */
+  margin-bottom: 2.5rem; /* Nuevo margen para separar el botón */
+}
+
+.about-preview-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Alineado a la izquierda para mejor legibilidad */
+}
+
+.about-preview-stat-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 8px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.about-preview-stat-label {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* El resto del código CSS se mantiene igual... */
+.about-preview-image {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.about-preview-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .about-preview-content {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .about-preview-image {
+    order: -1;
+  }
+}
+
+@media (max-width: 576px) {
+  .about-preview {
+    padding: 60px 0;
+  }
+  
+  .about-preview-stats {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .about-preview-stat {
+    align-items: center;
+  }
+}

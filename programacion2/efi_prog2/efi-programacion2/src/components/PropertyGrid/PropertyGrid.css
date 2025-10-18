@@ -1,0 +1,33 @@
+.property-grid-container {
+  width: 100%;
+}
+
+.properties-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 30px;
+}
+
+/* No results message */
+.no-results {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 3rem;
+  color: var(--text-light);
+}
+
+.no-results h3 {
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+  color: var(--text-dark);
+}
+
+.no-results p {
+  font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+  .properties-container {
+    grid-template-columns: 1fr;
+  }
+}

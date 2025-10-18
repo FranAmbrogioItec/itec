@@ -1,0 +1,164 @@
+.featured-properties {
+  padding: 0px 0px;
+  background: linear-gradient(135deg, #f8fafb 0%, #edf2f7 100%);
+  position: relative;
+}
+
+.featured-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #06565F;
+  margin-bottom: 16px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.section-subtitle {
+  font-size: 1.1rem;
+  color: #666;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.featured-carousel {
+  /*
+    Se eliminó el padding horizontal aquí para que los botones puedan
+    posicionarse más hacia los bordes. El padding general de la sección
+    ahora se encarga de la alineación.
+  */
+  padding: 20px 0 60px;
+  position: relative;
+}
+
+
+.featured-swiper {
+  padding: 10px 10px 50px;
+}
+
+/* Estilos de navegación de Swiper */
+.featured-swiper .swiper-button-next,
+.featured-swiper .swiper-button-prev {
+  color: #06565F;
+  background: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  box-shadow: 0 4px 15px rgba(6, 86, 95, 0.2);
+  transition: all 0.3s ease;
+  z-index: 10;
+  
+  /* --- CAMBIOS CLAVE PARA POSICIONAR --- */
+  top: 50%;
+  transform: translateY(-50%);
+  /* ------------------------------------- */
+}
+
+
+.featured-swiper .swiper-button-next:after,
+.featured-swiper .swiper-button-prev:after {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.featured-swiper .swiper-button-next:hover,
+.featured-swiper .swiper-button-prev:hover {
+  background: #06565F;
+  color: white;
+  transform: scale(1.2);
+}
+
+/* Estilos de paginación de Swiper */
+.featured-swiper .swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background: #ccc;
+  opacity: 0.6;
+  transition: all 0.3s ease;
+}
+
+.featured-swiper .swiper-pagination-bullet-active {
+  background: #06565F;
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+/* Ajustar posición de los botones de navegación */
+.featured-swiper .swiper-button-next {
+  right: 1.5rem;
+}
+
+.featured-swiper .swiper-button-prev {
+  left: 1.5rem;
+}
+
+.view-all-btn {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.btn-outline {
+  background: transparent;
+  color: #06565F;
+  border: 2px solid #06565F;
+  padding: 14px 32px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.btn-outline:hover {
+  background: #06565F;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(6, 86, 95, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .featured-properties {
+    padding: 60px 0;
+  }
+  
+  .featured-header {
+    margin-bottom: 40px;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .featured-carousel {
+    padding: 10px 0 50px;
+  }
+  
+  .featured-swiper {
+    padding: 5px 5px 40px;
+  }
+  
+  /* Ocultar flechas de navegación en móvil */
+  .featured-swiper .swiper-button-next,
+  .featured-swiper .swiper-button-prev {
+    display: none;
+  }
+  
+  .view-all-btn {
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .featured-swiper {
+    padding: 0 0 40px;
+  }
+  
+  .featured-swiper .swiper-slide {
+    padding: 0 10px;
+  }
+}

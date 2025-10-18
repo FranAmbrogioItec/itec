@@ -1,0 +1,106 @@
+/* Importar fuentes de Google */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+@import "tailwindcss";
+/* Puedes eliminar o conservar el CSS que tenías previamente */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Estilos base personalizados */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    line-height: 1.6;
+    color: theme('colors.neutral.900');
+    overflow-x: hidden;
+    font-weight: 400;
+    background-color: #FFFFFF;
+  }
+
+  /* Scrollbar personalizado */
+  body::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  body::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  body::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+  }
+
+  body::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+}
+
+/* Componentes personalizados que puedes migrar gradualmente */
+@layer components {
+  .container {
+    @apply max-w-[1200px] mx-auto px-5;
+  }
+  
+  /* Puedes mantener estas clases si las usas mucho, pero considera usar las de Tailwind */
+  .hover-primary:hover {
+    @apply bg-primary-dark text-white;
+  }
+  
+  .hover-accent:hover {
+    @apply bg-accent-dark text-white;
+  }
+}
+
+/* Utilidades personalizadas - MANTÉN SOLO LO QUE NO PUEDAS HACER CON TAILWIND */
+@layer utilities {
+  /* Animaciones que no están en la config de Tailwind */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .slide-in-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+
+  .slide-in-left.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .slide-in-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+
+  .slide-in-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .stagger-item {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .stagger-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
