@@ -6,40 +6,40 @@ from datetime import datetime
 from sqlalchemy.orm import relationship
 
 
-class User(db.Model): # Eliminamos UserMixin
+# 1. Modelo User (Entidad principal sin contraseña)
+class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(100), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     
-    # Nuevos campos para la gestión de roles y estado
-    role = db.Column(db.String(50), default='user') # Rol por defecto 'user'
-    is_active = db.Column(db.Boolean, default=True) # Mantener el estado
+    # Nuevos campos CRÍTICOS para JWT/Roles
+    role = db.Column(db.String(50), default='user') 
+    is_active = db.Column(db.Boolean, default=True)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
+    # Relación a las credenciales (hash de contraseña)
+    credentials = relationship('UserCredentials', backref='user', uselist=False, cascade="all, delete-orphan") 
+    
     # Relaciones existentes
-    posts = relationship('Post', backref='author', lazy='dynamic')
-    comments = relationship('Comment', backref='author', lazy='dynamic')
-    credentials = relationship('UserCredentials', backref='user', uselist=False, cascade="all, delete-orphan") # Nueva relación
+    posts = db.relationship('Post', backref='author', lazy='dynamic')
+    comments = db.relationship('Comment', backref='author', lazy='dynamic')
 
     def __repr__(self):
         return f'<User {self.username}>'
 
-# NUEVO MODELO: UserCredentials
+# 2. Nuevo Modelo para el Hash de la Contraseña
 class UserCredentials(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     password_hash = db.Column(db.String(256), nullable=False)
     
-    # Clave foránea al usuario
+    # Clave foránea al usuario (uno a uno)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'), unique=True, nullable=False)
     
     def set_password(self, password):
-        """Cifra la contraseña usando Werkzeug."""
         self.password_hash = generate_password_hash(password)
 
     def check_password(self, password):
-        """Verifica la contraseña contra el hash almacenado."""
         return check_password_hash(self.password_hash, password)
-
 
 # MODELO Category
 class Category(db.Model):
