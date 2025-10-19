@@ -5,7 +5,7 @@ from flask_jwt_extended import jwt_required, get_jwt
 from marshmallow import ValidationError
 from decorators.auth_decorators import roles_required
 from services.comment_service import CommentService
-from schemas.comment_schema import comment_input_schema, comments_output_schema
+from schemas.comment_schema import comment_input_schema, comments_output_schema, comment_output_schema
 
 class CommentListAPI(MethodView):
     """
@@ -34,14 +34,23 @@ class CommentListAPI(MethodView):
         except ValidationError as err:
             return jsonify({"errors": err.messages}), 400
 
+
         try:
             new_comment = self.comment_service.create_new_comment(post_id, current_user_id, data)
             return jsonify({
                 "message": "Comentario creado exitosamente.",
-                "comment": comments_output_schema.dump(new_comment)
+                "comment": comment_output_schema.dump(new_comment)
             }), 201
+        
+        # 🛑 SOLUCIÓN 1: Capturamos el ValueError del servicio y devolvemos 404
+        except ValueError as e: 
+            return jsonify({"message": str(e)}), 404 
+            
+        # 🛑 SOLUCIÓN 2: Dejamos el catch genérico, pero ahora solo atrapará errores reales de lógica/DB
         except Exception as e:
-            return jsonify({"message": f"Error al crear el comentario: {str(e)}"}), 500
+            # Consejo: revisa la consola del servidor para ver el error real si llega aquí.
+            return jsonify({"message": f"Error interno del servidor al crear comentario: {str(e)}"}), 500
+
 
 
 class CommentDetailAPI(MethodView):

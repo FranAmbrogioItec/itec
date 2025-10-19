@@ -1,6 +1,7 @@
 # services/comment_service.py
 from repositories.comment_repository import CommentRepository
 from flask_jwt_extended import get_jwt
+from models.models import Post
 
 class CommentService:
     
@@ -13,6 +14,14 @@ class CommentService:
 
     def create_new_comment(self, post_id, user_id, data):
         """Crea un nuevo comentario para un post."""
+        
+        # 🛑 PASO 1: Verificar si el Post existe (usando el modelo)
+        post_exists = Post.query.get(post_id) 
+        if post_exists is None:
+            # Si no existe, lanza un error específico.
+            raise ValueError(f"Post con ID {post_id} no encontrado.") 
+
+        # 🛑 PASO 2: Si el post existe, llama al repositorio para crearlo
         return self.repo.create_comment(
             post_id,
             user_id,
