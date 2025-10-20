@@ -14,7 +14,7 @@ export const AuthProvider = ({ children }) => {
     // user: { id, name, email, role, exp } o null
     const [user, setUser] = useState(null); 
     const [loading, setLoading] = useState(true);
-    const { enqueueSnackbar } = useSnackbar();
+    const { enqueueSnackbar } = useSnackbar();  
 
     // Cargar la sesión desde localStorage al montar la aplicación
     useEffect(() => {
