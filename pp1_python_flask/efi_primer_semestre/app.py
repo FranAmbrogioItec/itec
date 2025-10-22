@@ -4,10 +4,13 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager, create_access_token, get_jwt_identity, set_access_cookies
 from datetime import timedelta
+from flask_cors import CORS
 import os # Para las variables de entorno o configuración
 
 # Inicializar la app Flask
 app = Flask(__name__) 
+
+CORS(app)  # Habilitar CORS para todas las rutas, permite q el frontend acceda a la API
 
 # --- Configuración de la Aplicación ---
 # Usar una clave más segura para producción, idealmente desde variables de entorno
