@@ -1,4 +1,3 @@
-# views/user_views.py (Nuevo Archivo)
 from flask import request, jsonify
 from flask.views import MethodView
 from flask_jwt_extended import jwt_required, get_jwt
@@ -83,7 +82,7 @@ class UserDetailAPI(MethodView):
             return jsonify({
                 "message": f"Usuario {deactivated_user.email} desactivado exitosamente.",
                 "is_active": deactivated_user.is_active
-            }), 200 # Usamos 200 en lugar de 204 para devolver el estado
+            }), 200 
 
         except ValueError as e:
             return jsonify({"message": str(e)}), 404

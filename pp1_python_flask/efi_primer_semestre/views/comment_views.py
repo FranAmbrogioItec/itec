@@ -1,4 +1,3 @@
-# views/comment_views.py
 from flask import request, jsonify
 from flask.views import MethodView
 from flask_jwt_extended import jwt_required, get_jwt
@@ -42,13 +41,10 @@ class CommentListAPI(MethodView):
                 "comment": comment_output_schema.dump(new_comment)
             }), 201
         
-        # 🛑 SOLUCIÓN 1: Capturamos el ValueError del servicio y devolvemos 404
         except ValueError as e: 
             return jsonify({"message": str(e)}), 404 
             
-        # 🛑 SOLUCIÓN 2: Dejamos el catch genérico, pero ahora solo atrapará errores reales de lógica/DB
         except Exception as e:
-            # Consejo: revisa la consola del servidor para ver el error real si llega aquí.
             return jsonify({"message": f"Error interno del servidor al crear comentario: {str(e)}"}), 500
 
 

@@ -1,4 +1,3 @@
-# views/stats_views.py (Nuevo Archivo)
 from flask import jsonify
 from flask.views import MethodView
 from flask_jwt_extended import get_jwt

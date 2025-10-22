@@ -1,10 +1,9 @@
-# views/post_views.py
 from flask import request, jsonify
 from flask.views import MethodView
 from flask_jwt_extended import jwt_required, get_jwt
 from marshmallow import ValidationError
 
-# Importamos decoradores y claims
+# Import decoradores y claims
 from decorators.auth_decorators import roles_required, check_ownership_or_admin
 from services.post_service import PostService
 from schemas.post_schema import post_input_schema, post_output_schema, posts_output_schema
@@ -116,7 +115,7 @@ class PostDetailAPI(MethodView):
             self.post_service.delete_post_by_id(post_id, check_auth_ownership)
             
             # 2. Respuesta
-            return jsonify({"message": "Post eliminado exitosamente."}), 204 # 204 No Content
+            return jsonify({"message": "Post eliminado exitosamente."}), 204 # no content
             
         except ValueError as e:
             return jsonify({"message": str(e)}), 404

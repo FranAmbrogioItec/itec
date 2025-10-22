@@ -1,11 +1,10 @@
-# app.py (MODIFICADO)
 from flask import Flask, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager, create_access_token, get_jwt_identity, set_access_cookies
 from datetime import timedelta
 from flask_cors import CORS
-import os # Para las variables de entorno o configuración
+import os # para las variables de entorno o configuracion
 
 # Inicializar la app Flask
 app = Flask(__name__) 
@@ -13,25 +12,22 @@ app = Flask(__name__)
 CORS(app)  # Habilitar CORS para todas las rutas, permite q el frontend acceda a la API
 
 # --- Configuración de la Aplicación ---
-# Usar una clave más segura para producción, idealmente desde variables de entorno
 app.config['SECRET_KEY'] = "CLAVE_UNICA_PARA_TEST_12345"
 app.config['SQLALCHEMY_DATABASE_URI'] = (
     "mysql+pymysql://flaskuser:0044295023@localhost/database_efi"
     )
 # Configuración de JWT
-app.config["JWT_SECRET_KEY"] = "CLAVE_UNICA_PARA_TEST_12345" # <--- ¡Deben coincidir!
-app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=24) # Expiración de 24 horas
+app.config["JWT_SECRET_KEY"] = "CLAVE_UNICA_PARA_TEST_12345" 
+app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=24) #expira en 24 horas
 
 # Inicialización de Extensiones
 db = SQLAlchemy(app)    
 migrate = Migrate(app, db)
-# NUEVA EXTENSIÓN: JWTManager
 jwt = JWTManager(app)
 
-# Importar modelos (Asegúrate de que la ruta sea correcta+)
+# Importaciones de Modelos, Servicios y Vistas
 from models.models import User, Category, Post, Comment 
 
-# Importar Servicios y Vistas
 from services.auth_service import AuthService
 from views.auth_views import AuthRegisterAPI, AuthLoginAPI
 from views.post_views import PostListAPI, PostDetailAPI
@@ -41,15 +37,7 @@ from views.category_views import CategoryListAPI, CategoryDetailAPI
 from views.user_views import UserListAPI, UserDetailAPI
 from views.stats_views import StatsAPI
 
-# --- Configuración de Claims JWT (CORREGIDA) ---
-
-# ELIMINAR esta función. Solo necesitamos el additional_claims_loader para añadir los datos al token.
-# @jwt.user_lookup_loader
-# def user_lookup_callback(_jwt_header, jwt_data):
-#     identity = jwt_data["sub"] 
-#     return User.query.get(identity)
-
-
+# --- Configuración de Claims JWT  ---
 @jwt.additional_claims_loader
 def add_claims_to_access_token(identity):
     """
@@ -67,7 +55,7 @@ def add_claims_to_access_token(identity):
             "email": user.email,
             "role": user.role
         }
-    # Si la búsqueda falla (user es None), devolvemos claims vacíos.
+    # Si la búsqueda falla (user es None), devuelve claims vacíos.
     return {}
 
 # --- Manejo de Errores JWT ---
@@ -91,7 +79,7 @@ app.add_url_rule(
 
 app.add_url_rule(
     '/api/login', 
-    view_func=AuthLoginAPI.as_view('auth_login_api'), # <--- CORREGIDO
+    view_func=AuthLoginAPI.as_view('auth_login_api'), 
     methods=['POST']
 )
 
@@ -116,7 +104,7 @@ app.add_url_rule(
 app.add_url_rule(
     '/api/comments/<int:comment_id>', 
     view_func=CommentDetailAPI.as_view('comment_detail_api'), 
-    methods=['DELETE'] # Solo la acción de eliminar es independiente del post
+    methods=['DELETE'] 
 )
 
 
@@ -144,7 +132,7 @@ app.add_url_rule(
     methods=['GET', 'DELETE']
 )
 app.add_url_rule(
-    '/api/users/<int:user_id>/role', # PATCH para cambiar el rol
+    '/api/users/<int:user_id>/role', # patch para cambiar el rol
     view_func=UserDetailAPI.as_view('user_role_api'), 
     methods=['PATCH']
 )
@@ -157,7 +145,4 @@ app.add_url_rule(
 )
 
 if __name__ == '__main__':
-    # La migración de la base de datos debe ejecutarse primero
-    # flask db migrate -m "Migracion a API JWT y roles"
-    # flask db upgrade
     app.run(debug=True)

@@ -1,4 +1,3 @@
-# views/category_views.py
 from flask import request, jsonify
 from flask.views import MethodView
 from marshmallow import ValidationError

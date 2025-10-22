@@ -1,4 +1,3 @@
-# views/auth_views.py
 from flask import request, jsonify
 from flask.views import MethodView
 from flask_jwt_extended import create_access_token
@@ -13,7 +12,6 @@ class AuthRegisterAPI(MethodView):
     Maneja el registro de nuevos usuarios.
     """
     def __init__(self):
-        # Inyectamos el servicio para la lógica de negocio
         self.auth_service = AuthService()
 
     def post(self):
