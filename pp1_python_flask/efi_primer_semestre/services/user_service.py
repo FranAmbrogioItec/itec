@@ -1,4 +1,3 @@
-# services/user_service.py (Nuevo Archivo)
 from repositories.user_repository import UserRepository
 
 class UserService:
@@ -33,8 +32,6 @@ class UserService:
         if not user:
             raise ValueError("Usuario no encontrado.")
             
-        # Opcional: Impedir que un admin cambie su propio rol si es el único admin.
-
         return self.repo.update_user_role(user, new_role)
         
     def deactivate_user(self, target_user_id):

@@ -1,4 +1,3 @@
-# repositories/stats_repository.py (Nuevo Archivo)
 from app import db
 from models.models import Post, Comment, User
 from datetime import datetime, timedelta

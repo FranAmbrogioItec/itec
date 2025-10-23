@@ -1,4 +1,3 @@
-# repositories/category_repository.py
 from app import db
 from models.models import Category
 
@@ -39,6 +38,5 @@ class CategoryRepository:
     @staticmethod
     def delete_category(category):
         """Elimina una categoría."""
-        # Nota: Los posts asociados a esta categoría tendrán category_id=NULL (depende del ondelete/set null de la migración)
         db.session.delete(category)
         db.session.commit()

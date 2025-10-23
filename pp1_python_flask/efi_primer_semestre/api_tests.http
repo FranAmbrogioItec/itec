@@ -1,0 +1,82 @@
+### URL Base de la API
+@API_HOST = http://127.0.0.1:5000/api
+@JWT_TOKEN = [COPIA ACA EL TOKEN DE ACCESO TRAS EL LOGIN]
+
+
+# --------------------------------------------------------------------------
+# 1. AUTENTICACIÓN
+# --------------------------------------------------------------------------
+
+# @name RegisterUser
+POST http://127.0.0.1:5000/api/register
+Content-Type: application/json
+
+{
+  "username": "franambrogio2",
+  "email": "user@example2.com",
+  "password": "password123"
+}
+
+# @name LoginUser
+POST http://127.0.0.1:5000/api/login
+Content-Type: application/json
+
+{
+  "email": "user@example2.com",
+  "password": "password123"
+}
+# NOTA: Después de ejecutar, COPIA el 'access_token' devuelto y pégalo en @JWT_TOKEN arriba.
+
+
+# --------------------------------------------------------------------------
+# 2. CRUD: POSTS
+# --------------------------------------------------------------------------
+
+# @name CreatePost (Requires Auth)
+POST http://127.0.0.1:5000/api/posts
+Content-Type: application/json
+Authorization: Bearer {{JWT_TOKEN}}
+
+{
+  "title": "POST DE PRUEBA",
+  "content": "post de testing con interfaz de react conectada con api en funcionamiento",
+  "category": "Testing"
+}
+
+# @name ListAllPosts (Public)
+GET http://127.0.0.1:5000/api/posts
+
+# @name GetPostDetail (Public)
+GET http://127.0.0.1:5000/api/posts/1 ---> En este caso va el ID del post en especifico
+
+
+# --------------------------------------------------------------------------
+# 3. CRUD: COMMENTS
+# --------------------------------------------------------------------------
+
+# @name CreateComment (Requires Auth)
+POST http://127.0.0.1:5000/api/comments
+Content-Type: application/json
+Authorization: Bearer {{JWT_TOKEN}}
+
+{
+    "text": "¡Excelente post! Me ayudó mucho."
+}
+
+# @name DeleteComment (Requires Auth + Permissions)
+DELETE http://127.0.0.1:5000/api/comments/25
+Authorization: Bearer {{JWT_TOKEN}}
+
+
+# --------------------------------------------------------------------------
+# 4. ADMIN (Requires 'admin' role)
+# --------------------------------------------------------------------------
+
+# @name ListAllUsers (Admin Only)
+GET http://127.0.0.1:5000/api/users
+Authorization: Bearer {{JWT_TOKEN}} # Usa el token del admin
+
+
+# @name DeleteUser (Admin Only)
+DELETE http://127.0.0.1:5000/api/users/2
+Authorization: Bearer {{JWT_TOKEN}}

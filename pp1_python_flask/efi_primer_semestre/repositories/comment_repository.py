@@ -1,4 +1,3 @@
-# repositories/comment_repository.py
 from app import db
 from models.models import Comment
 
@@ -7,7 +6,6 @@ class CommentRepository:
     @staticmethod
     def get_by_post_id(post_id):
         """Devuelve solo los comentarios visibles para un post."""
-        # Esto podría modificarse para que moderador/admin vean todos, pero por defecto solo visibles
         return Comment.query.filter_by(post_id=post_id, is_visible=True).order_by(Comment.created_at.asc()).all()
 
     @staticmethod
@@ -21,7 +19,7 @@ class CommentRepository:
             post_id=post_id,
             user_id=user_id,
             text=text,
-            is_visible=True # Por defecto es visible, hasta que sea moderado
+            is_visible=True #x default son visibles
         )
         db.session.add(new_comment)
         db.session.commit()

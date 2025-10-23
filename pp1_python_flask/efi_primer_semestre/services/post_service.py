@@ -1,4 +1,3 @@
-# services/post_service.py
 from repositories.post_repository import PostRepository
 
 class PostService:
@@ -11,17 +10,16 @@ class PostService:
         return self.repo.get_all_published()
 
     def get_post_detail(self, post_id):
-        """Obtiene un post específico. Podrías agregar aquí lógica si el post no está publicado."""
+        """Obtiene un post específico."""
         post = self.repo.get_by_id(post_id)
         if post and post.is_published:
             return post
-        # Opcional: Si es admin o moderador, podría verlo aunque no esté publicado.
-        # Por ahora, solo devolvemos los publicados para público.
+        # si no es público o no existe, retorna None
         return None 
 
     def create_new_post(self, user_id, data):
         """Crea un nuevo post."""
-        # La validación ya se hizo con Marshmallow en la vista
+        # validacion previa con marshmallow ya realizada en la vista
         return self.repo.create_post(
             user_id,
             data['title'],
@@ -44,7 +42,7 @@ class PostService:
         if not check_ownership_func(post.user_id):
             raise PermissionError("Acceso denegado. No eres el autor ni un administrador.")
 
-        # Lógica de actualización delegada al repositorio
+        # logica de actualizacion
         return self.repo.update_post(
             post,
             data['title'],
@@ -61,7 +59,7 @@ class PostService:
 
         # Verificar la propiedad
         if not check_ownership_func(post.user_id):
-            # El requerimiento dice: "Solo el autor o admin". Los moderadores no pueden borrar posts.
+            # solo el autor y el admin pueden eliminar el post
             raise PermissionError("Acceso denegado. Solo el autor o el administrador pueden eliminar este post.")
         
         self.repo.delete_post(post)

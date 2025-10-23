@@ -1,4 +1,3 @@
-# services/category_service.py
 from repositories.category_repository import CategoryRepository
 
 class CategoryService:
@@ -23,7 +22,7 @@ class CategoryService:
         return self.repo.update_category(category, data['name'])
 
     def delete_category_by_id(self, category_id):
-        """Elimina una categoría. Lógica simple, el control de rol es crucial."""
+        """Elimina una categoría."""
         category = self.repo.get_by_id(category_id)
         if not category:
             raise ValueError("Categoría no encontrada.")

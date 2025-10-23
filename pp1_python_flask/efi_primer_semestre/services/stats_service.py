@@ -1,4 +1,3 @@
-# services/stats_service.py (Nuevo Archivo)
 from repositories.stats_repository import StatsRepository
 
 class StatsService:
@@ -14,7 +13,7 @@ class StatsService:
             "total_users": self.repo.get_total_users()
         }
         
-        # El requisito de 'posts_last_week' es solo para el administrador
+        # el requisito de 'posts_last_week' es solo para el administrador
         if current_user_role == 'admin':
             stats["posts_last_week"] = self.repo.get_posts_last_week()
             

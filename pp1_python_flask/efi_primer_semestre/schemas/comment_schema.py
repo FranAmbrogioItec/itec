@@ -1,4 +1,3 @@
-# schemas/comment_schema.py
 from marshmallow import Schema, fields, validate
 
 # --- Schemas de Entrada (Input) ---
@@ -17,7 +16,7 @@ class CommentOutputSchema(Schema):
     id = fields.Int(dump_only=True)
     text = fields.Str(dump_only=True)
     created_at = fields.DateTime(dump_only=True)
-    is_visible = fields.Bool(dump_only=True) # Para moderación
+    is_visible = fields.Bool(dump_only=True) # Para moderacion
     
     author = fields.Nested(CommentAuthorSchema, dump_only=True)
     post_id = fields.Int(dump_only=True)

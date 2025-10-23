@@ -1,4 +1,3 @@
-# schemas/category_schema.py
 from marshmallow import Schema, fields, validate
 
 # --- Schemas de Entrada (Input) ---

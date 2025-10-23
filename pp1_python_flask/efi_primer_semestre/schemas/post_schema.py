@@ -1,4 +1,3 @@
-# schemas/post_schema.py
 from marshmallow import Schema, fields, validate
 
 # --- Schemas de Entrada (Input) ---
@@ -6,7 +5,7 @@ class PostInputSchema(Schema):
     """Schema para validar la entrada de creación/edición de Posts."""
     title = fields.Str(required=True, validate=validate.Length(min=5, max=128))
     content = fields.Str(required=True, validate=validate.Length(min=10))
-    category_name = fields.Str(required=True, data_key="category", # Mapea 'category' de JSON a 'category_name'
+    category_name = fields.Str(required=True, data_key="category", # mapea 'category' de JSON a 'category_name'
                                validate=validate.Length(min=3, max=64))
     is_published = fields.Bool(load_default=True)
 
@@ -28,7 +27,7 @@ class PostOutputSchema(Schema):
     
     # Serialización de relaciones
     author = fields.Nested(PostAuthorSchema, dump_only=True)
-    category_name = fields.Str(attribute="category.name", dump_only=True) # Obtiene el nombre de la categoría
+    category_name = fields.Str(attribute="category.name", dump_only=True) # obtiene el nombre de la categoría 
     comments_count = fields.Method("get_comments_count", dump_only=True)
     
     def get_comments_count(self, obj):
@@ -37,4 +36,4 @@ class PostOutputSchema(Schema):
 # Instancias
 post_input_schema = PostInputSchema()
 post_output_schema = PostOutputSchema()
-posts_output_schema = PostOutputSchema(many=True) # Para listar multiples posts
+posts_output_schema = PostOutputSchema(many=True) # para listar multiples posts

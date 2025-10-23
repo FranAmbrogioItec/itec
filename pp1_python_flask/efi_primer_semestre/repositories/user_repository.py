@@ -1,4 +1,3 @@
-# repositories/user_repository.py
 from app import db
 from models.models import User, UserCredentials
 
@@ -19,17 +18,17 @@ class UserRepository:
         new_user = User(
             username=username, 
             email=email, 
-            role='user', # Rol por defecto
+            role='user', # por defecto siempre rol user
             is_active=True
         )
         
-        # Guardamos la sesión para obtener el ID del usuario antes de commit
+        # guardamos la sesión para obtener el ID del usuario antes de commit
         db.session.add(new_user)
         db.session.flush() 
 
-        # Creamos las credenciales
+        # creamos las credenciales
         new_credentials = UserCredentials(user_id=new_user.id)
-        new_credentials.set_password(password) # Cifra la contraseña
+        new_credentials.set_password(password) # cifra la contraseña
         
         db.session.add(new_credentials)
         db.session.commit()
@@ -57,6 +56,6 @@ class UserRepository:
     def deactivate_user(user):
         """Desactiva un usuario (soft-delete)."""
         user.is_active = False
-        # Nota: La consigna es 'eliminar', pero generalmente en sistemas con roles se hace una desactivación.
+        # la consigna es eliminar, pero mejor desactivar para mantener integridad
         db.session.commit()
         return user

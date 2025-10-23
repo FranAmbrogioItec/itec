@@ -1,4 +1,3 @@
-# repositories/post_repository.py
 from app import db
 from models.models import Post, Category
 
@@ -21,7 +20,6 @@ class PostRepository:
         if not category:
             category = Category(name=name)
             db.session.add(category)
-            # No hacemos commit aquí, el servicio lo hará junto con el post.
         return category
 
     def create_post(self, user_id, title, content, category_name, is_published=True):
@@ -55,6 +53,5 @@ class PostRepository:
     @staticmethod
     def delete_post(post):
         """Elimina un post."""
-        # Debido a cascade="all, delete-orphan", los comentarios se eliminan automáticamente.
         db.session.delete(post)
         db.session.commit()
