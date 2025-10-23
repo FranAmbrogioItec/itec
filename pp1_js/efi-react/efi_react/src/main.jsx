@@ -5,8 +5,8 @@ import { AuthProvider } from './context/AuthContext';
 import { SnackbarProvider } from 'notistack';
 import AppRouter from './router/AppRouter'; // Lo crearemos en la Parte 3
 
-import './index.css';
-
+/* import './index.css';
+ */
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>

@@ -15,7 +15,7 @@ const PostCard = ({ post, onDeleteSuccess }) => {
     // Roles 'admin' o 'moderator' pueden gestionar cualquier post (generalmente).
     const isPostOwner = user && user.id === post.author.id;
     const canEdit = isPostOwner || hasRole(['admin', 'moderator']);
-    const canDelete = isPostOwner || hasRole(['admin']); // Limito Delete solo a autor y admin.
+    const canDelete = isPostOwner || hasRole(['admin']); // Limito Delete solo a autor y admin. biobbbb 
 
     const handleDelete = async () => {
         if (window.confirm(`¿Estás seguro de que quieres eliminar el post: "${post.title}"?`)) {
