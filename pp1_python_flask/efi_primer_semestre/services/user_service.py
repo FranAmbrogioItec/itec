@@ -48,16 +48,5 @@ class UserService:
         if not user:
             raise ValueError("Usuario no encontrado.")
         
-        # Lógica de seguridad: Un administrador no debería degradar su propio rol
-        # Esto se puede hacer con get_jwt(), pero lo dejamos simple por ahora.
-        
-        # Simplemente actualizamos el rol. Asume que el repositorio tiene este método:
-        # Repositorio: self.repo.update_role(user, new_role) 
-        
-        # --- Lógica de Repositorio (Placeholder) ---
-        # Si usas SQLAlchemy, la lógica del repositorio sería algo así:
-        # user.role = new_role
-        # db.session.commit()
-        
         # Retorna el usuario actualizado
         return self.repo.update_role(user, new_role)

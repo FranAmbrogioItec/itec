@@ -25,8 +25,6 @@ class UserRegisterSchema(Schema):
     email = fields.Email(required=True)
     password = fields.Str(required=True, validate=validate.Length(min=6))
     
-    # *** 💥 CORRECCIÓN CRÍTICA: AÑADIR EL CAMPO ROLE 💥 ***
-    # Se añade el campo role con un valor por defecto.
     role = fields.Str(
         required=False,
         validate=validate.OneOf(ALLOWED_ROLES, error="Rol de registro inválido."),
