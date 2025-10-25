@@ -3,23 +3,11 @@
 import React, { useState } from 'react';
 import { Container, Typography, Box, Paper, Tabs, Tab } from '@mui/material';
 import { useAuth } from '../../context/AuthContext';
-// Componente importado para mostrar las estadísticas (Implementado en el paso anterior)
-import AnalyticsPanel from '../../components/admin/AnalyticsPanel'; 
 
-// --- Componentes Placeholder para Gestión ---
-// (Reemplaza estos con tus tablas reales de gestión cuando las implementes)
-const UsersTable = () => (
-    <Typography variant="h6" sx={{ p: 3 }}>
-        👥 Herramientas de Gestión de Usuarios (Pendiente de implementación)
-    </Typography>
-);
-
-const CategoriesManager = () => (
-    <Typography variant="h6" sx={{ p: 3 }}>
-        🏷️ Herramientas de Gestión de Categorías (Pendiente de implementación)
-    </Typography>
-);
-// ------------------------------------------
+// 1. Componentes de Gestión COMPLETADOS
+import AnalyticsPanel from '../../components/admin/AnalyticsPanel'; // Para las estadísticas
+import UsersManager from '../../components/admin/UsersManager';     // Para la gestión de usuarios
+import CategoriesManager from '../../components/admin/CategoriesManager'; // Para la gestión de categorías
 
 // Componente auxiliar para el contenido de las pestañas
 function TabPanel(props) {
@@ -45,11 +33,12 @@ function TabPanel(props) {
 
 /**
  * Panel de Control del Administrador.
- * Muestra las diferentes herramientas de gestión y estadísticas en pestañas.
+ * Implementa la navegación con pestañas para las herramientas de gestión.
  */
 const AdminDashboard = () => {
     const { user } = useAuth();
-    // 0 = Estadísticas, 1 = Usuarios, 2 = Categorías
+    
+    // Estado para controlar la pestaña activa: 0 = Estadísticas, 1 = Usuarios, 2 = Categorías
     const [value, setValue] = useState(0); 
 
     const handleChange = (event, newValue) => {
@@ -59,7 +48,7 @@ const AdminDashboard = () => {
     return (
         <Container maxWidth="xl" sx={{ py: 4 }}>
             
-            {/* Título de Bienvenida */}
+            {/* Título y Bienvenida */}
             <Typography variant="h3" color="primary" gutterBottom>
                 Panel de Administración
             </Typography>
@@ -79,18 +68,17 @@ const AdminDashboard = () => {
                 
                 {/* Contenido de la Pestaña 0: Estadísticas */}
                 <TabPanel value={value} index={0}>
-                    {/* 🚀 CRÍTICO: Aquí se integra el componente de análisis */}
                     <AnalyticsPanel />
                 </TabPanel>
 
-                {/* Contenido de la Pestaña 1: Usuarios */}
+                {/* Contenido de la Pestaña 1: Gestión de Usuarios */}
                 <TabPanel value={value} index={1}>
-                    <UsersTable />
+                    <UsersManager /> {/* Componente funcional de gestión de usuarios */}
                 </TabPanel>
                 
-                {/* Contenido de la Pestaña 2: Categorías */}
+                {/* Contenido de la Pestaña 2: Gestión de Categorías */}
                 <TabPanel value={value} index={2}>
-                    <CategoriesManager />
+                    <CategoriesManager /> {/* Componente funcional de gestión de categorías */}
                 </TabPanel>
                 
             </Paper>
