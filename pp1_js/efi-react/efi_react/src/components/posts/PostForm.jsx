@@ -4,103 +4,127 @@ import { getCategories } from '../../api/postsApi';
 import { useSnackbar } from 'notistack';
 
 const PostForm = ({ initialData = {}, onSubmit, isEdit = false, isSubmitting }) => {
+    
+    // --- 1. Inicialización Robusta del Estado ---
+    // El campo 'category' almacena el NOMBRE de la categoría para enviarlo al backend,
+    // que es lo que Marshmallow espera (data_key="category").
     const [formData, setFormData] = useState({
         title: initialData.title || '',
         content: initialData.content || '',
-        // Usamos el ID de la categoría para enviarlo al backend, no el nombre
-        category_id: initialData.category?.id || '', 
+        // Al editar (isEdit=true), usa el nombre. Al crear (isEdit=false), inicia vacío.
+        category: initialData.category_name || '', 
     });
+    
     const [categories, setCategories] = useState([]);
     const [validationErrors, setValidationErrors] = useState({});
     const { enqueueSnackbar } = useSnackbar();
-
-    // 1. Cargar la lista de categorías al montar el componente
+    
+    // 2. Cargar Categorías y Establecer Valor por Defecto (Solución al 400 en Creación)
     useEffect(() => {
         const fetchCategories = async () => {
-            const cats = await getCategories();
-            setCategories(cats);
+            try {
+                const cats = await getCategories();
+                setCategories(cats);
+
+                // *** Lógica para establecer la categoría por defecto en la CREACIÓN ***
+                // Si es un nuevo post (isEdit=false) Y no hay una categoría seleccionada (formData.category es ""),
+                // entonces forzamos la selección de la primera categoría cargada.
+                if (!isEdit && cats.length > 0 && !formData.category) {
+                    setFormData(prev => ({ ...prev, category: cats[0].name }));
+                }
+            } catch (error) {
+                enqueueSnackbar('Error al cargar categorías.', { variant: 'error' });
+            }
         };
         fetchCategories();
-    }, []);
-
-    // 2. Manejar cambios en el formulario
+    // Agregamos isEdit y formData.category a las dependencias si queremos que re-evalúe la inicialización.
+    }, [isEdit, enqueueSnackbar]); 
+    
+    // 3. Manejar cambios en el formulario
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
-        // Limpiar errores de validación al escribir
         setValidationErrors({ ...validationErrors, [name]: '' });
     };
 
-    // 3. Validación básica del formulario
+    // 4. Validación básica del formulario (Reforzada)
     const validate = () => {
         const errors = {};
-        if (!formData.title.trim()) errors.title = 'El título es obligatorio.';
-        if (!formData.content.trim()) errors.content = 'El contenido es obligatorio.';
-        if (!formData.category_id) errors.category_id = 'La categoría es obligatoria.';
+        if (!formData.title.trim()) errors.title = 'El título es requerido.';
+        if (!formData.content.trim()) errors.content = 'El contenido es requerido.';
         
-        setValidationErrors(errors);
-        return Object.keys(errors).length === 0; // Retorna true si no hay errores
-    };
+        // La categoría es requerida SÓLO si no se ha seleccionado un valor (no importa si es edición o creación,
+        // aunque en edición el backend acepta vacío gracias al PostUpdateSchema).
+        if (!formData.category.trim()) errors.category = 'Debe seleccionar una categoría.';
 
-    // 4. Manejar el envío
+        setValidationErrors(errors);
+        return Object.keys(errors).length === 0;
+    };
+    
+    // 5. Manejar el envío
     const handleSubmit = (e) => {
         e.preventDefault();
         if (validate()) {
-            // Llama a la función `onSubmit` que maneja la lógica de la API (crear/actualizar)
-            onSubmit(formData);
+            // El payload que se envía a la API ya tiene la clave 'category' con el NOMBRE
+            onSubmit(formData); 
         } else {
-            enqueueSnackbar('Por favor, complete todos los campos requeridos correctamente.', { variant: 'error' });
+            enqueueSnackbar('Por favor, corrige los errores del formulario.', { variant: 'error' });
         }
     };
 
     return (
-        <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
-            <Typography variant="h4" gutterBottom>
-                {isEdit ? 'Editar Post' : 'Crear Nuevo Post'}
-            </Typography>
-
-            {/* Título */}
+        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+            
+            {/* Campo Título */}
             <TextField
                 margin="normal"
                 required
                 fullWidth
-                label="Título"
+                id="title"
+                label="Título del Post"
                 name="title"
+                autoFocus
                 value={formData.title}
                 onChange={handleChange}
                 error={!!validationErrors.title}
                 helperText={validationErrors.title}
             />
 
-            {/* Contenido */}
+            {/* Campo Contenido */}
             <TextField
                 margin="normal"
                 required
                 fullWidth
-                label="Contenido"
                 name="content"
+                label="Contenido"
+                id="content"
                 multiline
-                rows={8}
+                rows={6}
                 value={formData.content}
                 onChange={handleChange}
                 error={!!validationErrors.content}
                 helperText={validationErrors.content}
             />
 
-            {/* Categoría (Menú Desplegable) */}
-            <FormControl fullWidth margin="normal" required error={!!validationErrors.category_id}>
+            {/* Campo Categoría (Select) */}
+            <FormControl fullWidth margin="normal" required error={!!validationErrors.category}>
                 <InputLabel id="category-label">Categoría</InputLabel>
                 <Select
                     labelId="category-label"
-                    id="category_id"
-                    name="category_id"
-                    value={formData.category_id}
+                    id="category" // <-- ID del componente
+                    name="category" // <-- NOMBRE de la clave del JSON que el backend espera
+                    value={formData.category} // <-- Usa el valor del NOMBRE de la categoría (string)
                     label="Categoría"
                     onChange={handleChange}
                 >
+                    {/* Al crear, este item está deshabilitado si ya inicializamos con la primera cat. */}
+                    {/* Al editar, ofrece la opción de no seleccionar, aunque la validación lo hará requerido si no se cambia. */}
+                    <MenuItem value="">{isEdit ? 'Mantener Categoría' : 'Seleccione una categoría'}</MenuItem> 
+                    
                     {categories.length > 0 ? (
                         categories.map((cat) => (
-                            <MenuItem key={cat.id} value={cat.id}>
+                            // *** VALUE DEBE SER EL NOMBRE DE LA CATEGORÍA (STRING) ***
+                            <MenuItem key={cat.id} value={cat.name}>
                                 {cat.name}
                             </MenuItem>
                         ))
@@ -108,7 +132,7 @@ const PostForm = ({ initialData = {}, onSubmit, isEdit = false, isSubmitting }) 
                         <MenuItem disabled>Cargando categorías...</MenuItem>
                     )}
                 </Select>
-                {validationErrors.category_id && <Typography color="error" variant="caption">{validationErrors.category_id}</Typography>}
+                {validationErrors.category && <Typography color="error" variant="caption">{validationErrors.category}</Typography>}
             </FormControl>
 
             {/* Botón de Enviar */}
