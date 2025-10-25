@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, Blueprint
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager, create_access_token, get_jwt_identity, set_access_cookies
@@ -36,6 +36,12 @@ from views.comment_views import CommentListAPI, CommentDetailAPI
 from views.category_views import CategoryListAPI, CategoryDetailAPI
 from views.user_views import UserListAPI, UserDetailAPI
 from views.stats_views import StatsAPI
+from views.analytics_views import AnalyticsSummaryAPI
+
+admin_bp = Blueprint('admin', __name__, url_prefix='/api/admin')
+
+admin_bp.add_url_rule('/stats', view_func=AnalyticsSummaryAPI.as_view('analytics_summary_api'))
+app.register_blueprint(admin_bp)
 
 # --- Configuración de Claims JWT  ---
 @jwt.additional_claims_loader

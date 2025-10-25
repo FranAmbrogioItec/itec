@@ -22,3 +22,4 @@ class StatsRepository:
         """Cuenta los posts creados en los últimos 7 días."""
         last_week = datetime.utcnow() - timedelta(days=7)
         return Post.query.filter(Post.created_at >= last_week).count()
+    

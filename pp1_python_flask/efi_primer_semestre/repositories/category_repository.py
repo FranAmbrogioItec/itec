@@ -40,3 +40,8 @@ class CategoryRepository:
         """Elimina una categoría."""
         db.session.delete(category)
         db.session.commit()
+
+    def count_all(self):
+        """Cuenta todas las categorías en la base de datos."""
+        return Category.query.count()
+    

@@ -55,3 +55,11 @@ class PostRepository:
         """Elimina un post."""
         db.session.delete(post)
         db.session.commit()
+
+    def count_all(self):
+        """Cuenta todos los posts en la base de datos."""
+        return Post.query.count()
+    
+    def count_published(self):
+        """Cuenta todos los posts publicados en la base de datos."""
+        return Post.query.filter_by(is_published=True).count()

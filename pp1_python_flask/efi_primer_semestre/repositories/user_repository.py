@@ -59,3 +59,7 @@ class UserRepository:
         # la consigna es eliminar, pero mejor desactivar para mantener integridad
         db.session.commit()
         return user
+    
+    def count_all(self):
+        """Cuenta todos los usuarios en la base de datos."""
+        return User.query.count()
