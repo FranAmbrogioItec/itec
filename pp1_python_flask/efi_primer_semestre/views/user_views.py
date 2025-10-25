@@ -9,21 +9,25 @@ from schemas.user_schema import user_output_schema, UserOutputSchema, user_role_
 # Instancia many=True para listar usuarios
 users_output_schema = UserOutputSchema(many=True)
 
+# --- Endpoint para Listar Todos los Usuarios (Solo Admin) ---
 class UserListAPI(MethodView):
     """
-    GET /api/users - Listar todos los usuarios (Solo admin)
+    GET /api/users - Listar todos los usuarios (Solo Admin)
     """
     def __init__(self):
         self.user_service = UserService()
 
-    # GET /api/users (Solo admin)
-    @roles_required("admin")
+    @roles_required("admin") # <--- Protege la ruta: solo admin puede acceder
     def get(self):
-        """Listar todos los usuarios."""
-        users = self.user_service.get_all_users()
-        result = users_output_schema.dump(users)
-        return jsonify(result), 200
-
+        """Lista todos los usuarios para la gestión administrativa."""
+        try:
+            users = self.user_service.get_all_users()
+            # Asume que users_output_schema serializa una lista de usuarios
+            result = users_output_schema.dump(users) 
+            return jsonify(result), 200
+        except Exception as e:
+            # En un entorno real, logging.error(e)
+            return jsonify({"message": f"Error al listar usuarios: {str(e)}"}), 500
 
 class UserDetailAPI(MethodView):
     """
