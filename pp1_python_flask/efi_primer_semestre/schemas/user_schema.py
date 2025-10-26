@@ -1,5 +1,3 @@
-# schemas/user_schema.py
-
 from marshmallow import Schema, fields, validate
 
 ALLOWED_ROLES = ["user", "moderator", "admin"]
@@ -26,9 +24,8 @@ class UserRegisterSchema(Schema):
     password = fields.Str(required=True, validate=validate.Length(min=6))
     
     role = fields.Str(
-        required=False,
-        validate=validate.OneOf(ALLOWED_ROLES, error="Rol de registro inválido."),
-        load_default='user' # Si el JSON no lo envía (o envía None), se establece en 'user'
+        required=True, 
+        validate=validate.OneOf(ALLOWED_ROLES, error="Rol inválido. Los roles permitidos son: {choices}.")
     )
     
 class UserLoginSchema(Schema):

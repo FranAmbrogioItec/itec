@@ -37,6 +37,7 @@ class PostService:
         post = self.repo.get_by_id(post_id)
         if not post:
             raise ValueError("Post no encontrado.")
+        
             
         # Verificar la propiedad usando la función del decorador
         if not check_ownership_func(post.user_id):

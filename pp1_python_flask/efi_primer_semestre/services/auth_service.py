@@ -1,18 +1,30 @@
+# services/auth_service.py
+
 from repositories.user_repository import UserRepository
 
 class AuthService:
     
     def __init__(self):
+        # La instancia del repositorio se llama 'repo'
         self.repo = UserRepository()
 
-    def register_user(self, username, email, password):
-        """Lógica para registrar un usuario. Verifica si ya existe."""
+    def register_user(self, username, email, password, role): 
+        """
+        Registra un nuevo usuario verificando que el email no esté duplicado.
+        """
+        # ✅ CORRECCIÓN: Usar self.repo
         if self.repo.get_by_email(email):
-            raise ValueError("El correo electrónico ya está registrado.")
-                    
-        # la creacion y el hash se delegan al repositorio
-        new_user = self.repo.create_user(username, email, password)
-        return new_user
+            raise ValueError("El email ya está registrado.")
+
+        # 1. Validación de Roles permitidos (Aunque Marshmallow lo hace, es una buena capa de seguridad)
+        if role not in ['user', 'moderator', 'admin']:
+             # Si el rol viene mal del frontend, lo asignamos por defecto a 'user'
+             # Opcional: Podrías lanzar un error 
+             role = 'user' 
+        
+        # 2. Llama al repositorio, pasando el nuevo argumento 'role'
+        # ✅ CORRECCIÓN: Usar self.repo
+        return self.repo.create_user(username, email, password, role)
 
     def authenticate_user(self, email, password):
         """Lógica para iniciar sesión."""

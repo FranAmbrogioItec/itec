@@ -13,12 +13,12 @@ class UserRepository:
         """Obtiene las credenciales (password_hash) de un usuario por su ID."""
         return UserCredentials.query.filter_by(user_id=user_id).one_or_none()
 
-    def create_user(self, username, email, password):
+    def create_user(self, username, email, password, role='user'):
         """Crea un nuevo usuario y sus credenciales asociadas."""
         new_user = User(
             username=username, 
             email=email, 
-            role='user', # por defecto siempre rol user
+            role=role,
             is_active=True
         )
         

@@ -15,20 +15,20 @@ class AuthRegisterAPI(MethodView):
         self.auth_service = AuthService()
 
     def post(self):
-        # 1. Validación de Datos de Entrada
+        # 1. Validación de Datos de Entrada (Marshmallow)
         try:
             data = register_schema.load(request.json)
         except ValidationError as err:
-            # Manejo de errores de validación de Marshmallow
             return jsonify({"errors": err.messages}), 400
 
         username = data.get('username')
         email = data.get('email')
         password = data.get('password')
+        role = data.get('role') 
 
         # 2. Lógica de Negocio
         try:
-            new_user = self.auth_service.register_user(username, email, password)
+            new_user = self.auth_service.register_user(username, email, password, role) 
             
             # 3. Respuesta API
             return jsonify({
@@ -40,7 +40,6 @@ class AuthRegisterAPI(MethodView):
             # Captura errores de negocio (ej: email duplicado)
             return jsonify({"message": str(e)}), 409
         except Exception as e:
-            # Error interno del servidor
             return jsonify({"message": "Error interno del servidor al registrar."}), 500
 
 
