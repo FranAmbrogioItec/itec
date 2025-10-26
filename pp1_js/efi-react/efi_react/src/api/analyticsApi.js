@@ -18,4 +18,6 @@ export const getAdminStats = async () => {
         // Maneja errores de permisos (403) o fallas de red/servidor
         throw error.response?.data || { message: 'Error al cargar las estadísticas.' };
     }
+
+
 };

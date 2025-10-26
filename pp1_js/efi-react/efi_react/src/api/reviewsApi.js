@@ -1,7 +1,7 @@
 import api from './axiosConfig';
 
 const POSTS_URL = '/posts';
-const COMMENTS_URL = '/comments'; // Para eliminación, usamos la URL base de comentarios
+const COMMENTS_URL = '/comments';
 
 /**
  * [CRUD] Obtiene la lista de comentarios para un post específico.
@@ -10,7 +10,6 @@ const COMMENTS_URL = '/comments'; // Para eliminación, usamos la URL base de co
 export const getReviewsByPostId = async (postId) => {
     try {
         const response = await api.get(`${POSTS_URL}/${postId}${COMMENTS_URL}`);
-        // Asumo que Flask devuelve una lista de objetos Comment.
         return response.data; 
     } catch (error) {
         throw error.response?.data || { message: 'Error al cargar los comentarios.' };
@@ -25,7 +24,6 @@ export const createReview = async (postId, reviewData) => {
     try {
         // reviewData: { text }
         const response = await api.post(`${POSTS_URL}/${postId}${COMMENTS_URL}`, reviewData);
-        // El backend devuelve el objeto del comentario recién creado
         return response.data.comment; 
     } catch (error) {
         throw error.response?.data || { message: 'Error al crear el comentario.' };
@@ -39,7 +37,7 @@ export const createReview = async (postId, reviewData) => {
 export const deleteReview = async (reviewId) => {
     try {
         const response = await api.delete(`${COMMENTS_URL}/${reviewId}`);
-        return response.data; // Mensaje de éxito o 204
+        return response.data; // 204
     } catch (error) {
         // El backend de Flask debe manejar el error 403 (Permiso denegado) o 404 (No encontrado)
         throw error.response?.data || { message: 'Error al eliminar el comentario.' };

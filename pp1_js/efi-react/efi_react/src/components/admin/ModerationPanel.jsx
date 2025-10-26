@@ -21,7 +21,6 @@ const ModerationPanel = () => {
         setLoading(true);
         setError(null);
         try {
-            // Reemplaza con tu API: await adminApi.getReportedContent();
             const data = await getReportedContent(); 
             setContent(data);
         } catch (err) {
@@ -37,7 +36,6 @@ const ModerationPanel = () => {
 
     const handleAction = async (contentId, action) => {
         try {
-            // Reemplaza con tu API: await adminApi.takeAction(contentId, action);
             await takeAction(contentId, action); 
             
             // Elimina el elemento de la lista después de la acción exitosa

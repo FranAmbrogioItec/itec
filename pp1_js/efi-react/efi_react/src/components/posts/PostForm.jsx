@@ -11,7 +11,6 @@ const PostForm = ({ initialData = {}, onSubmit, isEdit = false, isSubmitting }) 
     const [formData, setFormData] = useState({
         title: initialData.title || '',
         content: initialData.content || '',
-        // Al editar (isEdit=true), usa el nombre. Al crear (isEdit=false), inicia vacío.
         category: initialData.category_name || '', 
     });
     
@@ -37,7 +36,6 @@ const PostForm = ({ initialData = {}, onSubmit, isEdit = false, isSubmitting }) 
             }
         };
         fetchCategories();
-    // Agregamos isEdit y formData.category a las dependencias si queremos que re-evalúe la inicialización.
     }, [isEdit, enqueueSnackbar]); 
     
     // 3. Manejar cambios en el formulario
@@ -65,7 +63,6 @@ const PostForm = ({ initialData = {}, onSubmit, isEdit = false, isSubmitting }) 
     const handleSubmit = (e) => {
         e.preventDefault();
         if (validate()) {
-            // El payload que se envía a la API ya tiene la clave 'category' con el NOMBRE
             onSubmit(formData); 
         } else {
             enqueueSnackbar('Por favor, corrige los errores del formulario.', { variant: 'error' });
@@ -111,9 +108,9 @@ const PostForm = ({ initialData = {}, onSubmit, isEdit = false, isSubmitting }) 
                 <InputLabel id="category-label">Categoría</InputLabel>
                 <Select
                     labelId="category-label"
-                    id="category" // <-- ID del componente
-                    name="category" // <-- NOMBRE de la clave del JSON que el backend espera
-                    value={formData.category} // <-- Usa el valor del NOMBRE de la categoría (string)
+                    id="category" 
+                    name="category" 
+                    value={formData.category} 
                     label="Categoría"
                     onChange={handleChange}
                 >
@@ -123,7 +120,6 @@ const PostForm = ({ initialData = {}, onSubmit, isEdit = false, isSubmitting }) 
                     
                     {categories.length > 0 ? (
                         categories.map((cat) => (
-                            // *** VALUE DEBE SER EL NOMBRE DE LA CATEGORÍA (STRING) ***
                             <MenuItem key={cat.id} value={cat.name}>
                                 {cat.name}
                             </MenuItem>

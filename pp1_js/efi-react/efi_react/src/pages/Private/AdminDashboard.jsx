@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import { Container, Typography, Box, Paper, Tabs, Tab } from '@mui/material';
 import { useAuth } from '../../context/AuthContext';
 
-// 1. Componentes de Gestión COMPLETADOS
 import AnalyticsPanel from '../../components/admin/AnalyticsPanel'; // Para las estadísticas
 import UsersManager from '../../components/admin/UsersManager';     // Para la gestión de usuarios
 import CategoriesManager from '../../components/admin/CategoriesManager'; // Para la gestión de categorías
@@ -38,7 +37,6 @@ function TabPanel(props) {
 const AdminDashboard = () => {
     const { user } = useAuth();
     
-    // Estado para controlar la pestaña activa: 0 = Estadísticas, 1 = Usuarios, 2 = Categorías
     const [value, setValue] = useState(0); 
 
     const handleChange = (event, newValue) => {
@@ -53,7 +51,7 @@ const AdminDashboard = () => {
                 Panel de Administración
             </Typography>
             <Typography variant="h6" color="text.secondary" sx={{ mb: 3 }}>
-                Bienvenido, Administrador {user?.username}. Tu rol es **{user?.role}**.
+                Bienvenido, Administrador {user?.username}. Tu rol es *{user?.role}*.
             </Typography>
 
             <Paper elevation={3}>

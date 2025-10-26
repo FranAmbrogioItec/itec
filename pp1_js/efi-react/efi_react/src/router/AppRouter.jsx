@@ -1,11 +1,11 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import ProtectedRoute from './ProtectedRoute'; // Importamos el componente de seguridad
+import ProtectedRoute from './ProtectedRoute'; 
 
 // Vistas Públicas (Login y Registro)
 import LoginPage from '../pages/Public/LoginPage';
 import RegisterPage from '../pages/Public/RegisterPage';
-import HomePage from '../pages/Public/HomePage'; // Página pública de Listado de Posts
+import HomePage from '../pages/Public/HomePage'; 
 
 // Vistas Privadas (CRUD y Dashboard Admin)
 import PostListPage from '../pages/Private/PostListPage';
@@ -48,7 +48,6 @@ const AppRouter = () => {
             {/* Aquí irían otras rutas de gestión de usuarios/roles solo para admins */}
           </Route>
 
-          {/* Ruta de 404 (No encontrado) */}
           <Route path="*" element={<h1>404: Página No Encontrada</h1>} />
         </Routes>
       </main>

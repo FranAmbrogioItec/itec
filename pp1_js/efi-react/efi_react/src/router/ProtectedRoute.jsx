@@ -24,7 +24,7 @@ const ProtectedRoute = ({ allowedRoles }) => {
         return <Navigate to="/login" replace />;
     }
 
-    // 2. Verificar el Rol (Requisito 3)
+    // 2. Verificar el Rol 
     // El checkeo de rol es necesario solo si se especificaron roles permitidos
     if (allowedRoles && !hasRole(allowedRoles)) {
         enqueueSnackbar('Acceso denegado. No tienes los permisos necesarios.', { variant: 'error' });

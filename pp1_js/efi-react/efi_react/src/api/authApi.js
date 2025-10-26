@@ -1,7 +1,6 @@
-import api from './axiosConfig'; // Instancia de Axios configurada
+import api from './axiosConfig';
 
-const AUTH_URL = '/auth'; // Prefijo de tus rutas de autenticación si lo tienes. 
-                         // Si usas /api/login directamente, omite el prefijo.
+const AUTH_URL = '/auth'; 
 
 /**
  * Llama al endpoint de registro.
@@ -28,7 +27,6 @@ export const loginUser = async (credentials) => {
     try {
         // Asumiendo que tu endpoint es POST /api/login
         const response = await api.post('/login', credentials);
-        // Tu API Flask devuelve un objeto { access_token: "..." }
         return response.data.access_token; 
     } catch (error) {
         // Manejo de errores (ej: credenciales inválidas)

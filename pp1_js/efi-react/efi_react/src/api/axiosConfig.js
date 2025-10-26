@@ -34,5 +34,4 @@ api.interceptors.request.use(
   }
 );
 
-// Exportar la instancia configurada
 export default api;

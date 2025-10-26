@@ -1,4 +1,4 @@
-    import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { Container, Box, Typography, TextField, Button, CircularProgress } from '@mui/material';
@@ -14,7 +14,7 @@ const LoginPage = () => {
     // Si el usuario ya está logueado, redirigir inmediatamente
     if (isLoggedIn) {
         navigate('/');
-        return null;
+        return null
     }
 
     const handleSubmit = async (e) => {
@@ -30,7 +30,6 @@ const LoginPage = () => {
             // Navegar a la página principal después del login exitoso
             navigate('/'); 
         }
-        // Si no fue exitoso, el error ya fue manejado y notificado por el AuthContext/Snackbar
     };
 
     return (

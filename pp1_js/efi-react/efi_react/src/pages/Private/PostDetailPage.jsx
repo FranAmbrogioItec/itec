@@ -140,7 +140,7 @@ const PostDetailPage = () => {
 
             {/* Gestión de Comentarios (Reviews) */}
             {isLoggedIn ? (
-                // Requisito 2: CRUD de Reviews - Formulario de creación
+                // CRUD de Reviews - Formulario de creación
                 <ReviewForm postId={id} onReviewCreated={handleReviewCreated} />
             ) : (
                 <Alert severity="info" sx={{ mb: 4 }}>
@@ -148,7 +148,7 @@ const PostDetailPage = () => {
                 </Alert>
             )}
 
-            {/* Requisito 2: CRUD de Reviews - Listado */}
+            {/* CRUD de Reviews - Listado */}
             <ReviewList reviews={reviews} setReviews={setReviews} />
             
         </Container>

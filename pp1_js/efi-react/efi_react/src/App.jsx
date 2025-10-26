@@ -12,9 +12,8 @@ const Layout = () => (
     <>
         <Navbar />
         <main className="flex-grow max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8">
-            <Outlet /> {/* Aquí se renderizarán las rutas hijas */}
+            <Outlet /> 
         </main>
-        {/* Aquí iría un componente Footer.jsx si lo crearas */}
         <footer className="bg-gray-800 text-white mt-auto py-6 shadow-inner text-center">
             &copy; 2024 Miniblog. Todos los derechos reservados.
         </footer>
@@ -23,7 +22,6 @@ const Layout = () => (
 
 
 const App = () => {
-  // Asegúrate de tener los estilos de Tailwind o CSS aplicados globalmente.
   const globalStyles = `
     body {
         font-family: 'Inter', sans-serif;

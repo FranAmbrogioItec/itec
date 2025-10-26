@@ -9,12 +9,11 @@ const ReviewList = ({ reviews, setReviews }) => {
     const { user, hasRole } = useAuth();
     const { enqueueSnackbar } = useSnackbar();
 
-    // Requisito 3: Verifica si el usuario puede eliminar el comentario
+    // Verifica si el usuario puede eliminar el comentario
     const canDeleteReview = (review) => {
         if (!user) return false;
         
         const isOwner = user.id === review.author.id;
-        // Según la lógica de tu backend, el moderador/admin también puede eliminar comentarios.
         const isPrivileged = hasRole(['moderator', 'admin']); 
         
         return isOwner || isPrivileged;

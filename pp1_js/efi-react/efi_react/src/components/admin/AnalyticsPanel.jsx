@@ -1,13 +1,13 @@
-// components/admin/AnalyticsPanel.jsx
-
 import React, { useState, useEffect } from 'react';
 import { Typography, Box, Grid, CircularProgress, Alert, Card, CardContent } from '@mui/material';
-// Importar íconos para las tarjetas
+
+// iconos para las tarjetas
 import PeopleIcon from '@mui/icons-material/People';
 import DescriptionIcon from '@mui/icons-material/Description';
 import CategoryIcon from '@mui/icons-material/Category';
 import PublicIcon from '@mui/icons-material/Public';
-import { getAdminStats } from '../../api/analyticsApi'; // <-- Importar la nueva API
+import CommentIcon from '@mui/icons-material/Comment';
+import { getAdminStats } from '../../api/analyticsApi'; 
 
 // Componente auxiliar para mostrar una métrica
 const StatCard = ({ title, value, icon, color }) => (
@@ -101,6 +101,16 @@ const AnalyticsPanel = () => {
                         color="#f57c00" 
                     />
                 </Grid>
+                <Grid item xs={12} sm={4}>
+                    <StatCard 
+                        title="Comentarios" 
+                        value={stats.total_comments} 
+                        Icon={<CommentIcon fontSize="inherit" />} 
+                        color="#ff9800" // Naranja
+                    />
+                </Grid>
+
+                
             </Grid>
             
             <Alert severity="info" sx={{ mt: 4 }}>

@@ -1,8 +1,7 @@
-// components/admin/CategoriesManager.jsx
 import React, { useState, useEffect } from 'react';
 import { Button, TextField, Box, Typography, CircularProgress, Alert, Paper, List, ListItem, ListItemText, ListItemSecondaryAction, IconButton, Divider } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { getCategories } from '../../api/postsApi'; // Asumo que getCategories existe
+import { getCategories } from '../../api/postsApi'; 
 import { createCategory, deleteCategory } from '../../api/categoriesApi';
 import { useSnackbar } from 'notistack';
 
@@ -16,7 +15,7 @@ const CategoriesManager = () => {
 
     const fetchCategories = async () => {
         try {
-            const data = await getCategories(); // Asumo que esta función existe
+            const data = await getCategories();
             setCategories(data);
         } catch (err) {
             setError(err.message || 'Fallo al cargar la lista de categorías.');
@@ -40,7 +39,7 @@ const CategoriesManager = () => {
         setIsSubmitting(true);
         try {
             const newCat = await createCategory(newCategoryName);
-            setCategories([...categories, newCat]); // Añade la nueva categoría al estado
+            setCategories([...categories, newCat]);
             setNewCategoryName('');
             enqueueSnackbar(`Categoría '${newCategoryName}' creada.`, { variant: 'success' });
         } catch (err) {

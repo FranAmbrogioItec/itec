@@ -1,15 +1,14 @@
 import React, { createContext, useContext, useState, useEffect, useMemo } from 'react';
 import { decodeToken } from '../utils/jwtDecoder';
 import { loginUser } from '../api/authApi';
-import { useSnackbar } from 'notistack'; // Usamos Notistack para los toasts (Requisito UI)
+import { useSnackbar } from 'notistack'; // Notistack para los toasts (Requisito UI)
 
-// 1. Crear el Contexto
 const AuthContext = createContext();
 
 // Custom Hook para un acceso fácil y limpio al contexto
 export const useAuth = () => useContext(AuthContext);
 
-// 2. Definir el Proveedor del Contexto
+// Definir el Proveedor del Contexto
 export const AuthProvider = ({ children }) => {
     // user: { id, name, email, role, exp } o null
     const [user, setUser] = useState(null); 
@@ -51,13 +50,13 @@ export const AuthProvider = ({ children }) => {
             } else {
                 throw new Error("Token inválido recibido del servidor.");
             }
-            return true; // Éxito
+            return true; 
         } catch (error) {
             // Muestra mensaje de error del backend (Credenciales inválidas, etc.)
             const errorMessage = error.message || 'Error al iniciar sesión.';
             enqueueSnackbar(errorMessage, { variant: 'error' });
             logout(); // Asegura la limpieza si hay error
-            return false; // Fallo
+            return false; 
         } finally {
             setLoading(false);
         }
@@ -69,7 +68,7 @@ export const AuthProvider = ({ children }) => {
         enqueueSnackbar('Sesión cerrada correctamente.', { variant: 'info' });
     };
     
-    // Función para verificar roles (Requisito 3)
+    // Función para verificar roles 
     const hasRole = (roles) => {
         if (!user) return false;
         // Si `roles` es un string, lo convierte a array
@@ -87,11 +86,10 @@ export const AuthProvider = ({ children }) => {
         loading,
         login,
         logout,
-        hasRole // Exporta la función de verificación de roles
+        hasRole 
     }), [user, loading]);
 
     if (loading) {
-        // Aquí podrías mostrar un spinner global mientras se carga la sesión
         return <div>Cargando sesión...</div>; 
     }
 

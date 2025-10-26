@@ -11,7 +11,7 @@ const PostFormPage = () => {
     const { id } = useParams(); // Obtiene 'id' si estamos en /posts/edit/:id
     const navigate = useNavigate();
     const { enqueueSnackbar } = useSnackbar();
-    const { user, isLoggedIn } = useAuth(); // Usado para asegurar la carga
+    const { user, isLoggedIn } = useAuth(); 
 
     const [post, setPost] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -28,7 +28,7 @@ const PostFormPage = () => {
                     setPost(data);
                 } catch (err) {
                     setError('No se pudo cargar el post para editar. Verifique el ID.');
-                    // El mensaje de error visible al usuario (aunque el 404 de /undefined aún podría estar en la consola)
+                    // El mensaje de error visible al usuario 
                     enqueueSnackbar('No se pudo cargar el post. El ID puede ser inválido o la API no está disponible.', { variant: 'error' });
                 } finally {
                     setLoading(false);
@@ -36,7 +36,7 @@ const PostFormPage = () => {
             };
             fetchPost();
         } else {
-            setLoading(false); // Modo creación, no hay que cargar nada
+            setLoading(false); 
         }
     }, [id, isEditMode, enqueueSnackbar]); // Dependencia 'id' asegura que el efecto se dispara
 
@@ -50,7 +50,6 @@ const PostFormPage = () => {
                 // Modo Creación (CREATE)
                 const newPostResponse = await createPost(formData);
                 
-                // *** CORRECCIÓN CRÍTICA: Acceder al ID anidado ***
                 // El backend devuelve { message: "...", post: { id: X, ... } }
                 const newPostId = newPostResponse?.post?.id; 
 

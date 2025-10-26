@@ -78,10 +78,8 @@ export const deletePost = async (id) => {
 export const getCategories = async () => {
     try {
         const response = await api.get(CATEGORIES_URL);
-        // Asumo que Flask devuelve una lista de objetos Category: [{id: 1, name: "Tech"}, ...]
         return response.data; 
     } catch (error) {
-        // No lanzamos error si fallan las categorías, solo devolvemos un array vacío.
         console.error("No se pudieron cargar las categorías:", error);
         return []; 
     }

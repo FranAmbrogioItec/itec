@@ -2,18 +2,16 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { registerUser } from '../../api/authApi';
 import { useAuth } from '../../context/AuthContext';
-import { Container, Box, Typography, TextField, Button, CircularProgress, Select, MenuItem, InputLabel, FormControl, Alert } from '@mui/material';
+import { Container, Box, Typography, TextField, Button, CircularProgress, Select, MenuItem, InputLabel, FormControl } from '@mui/material';
 import { useSnackbar } from 'notistack';
 
 const RegisterPage = () => {
-    // Definimos el estado inicial
     const [formData, setFormData] = useState({
         username: '',
         email: '',
         password: '',
-        role: 'user', // <--- MANTENER EL ROL FIJO PARA REGISTROS PÚBLICOS
+        role: 'user', // Valor por defecto
     });
-    const [validationErrors, setValidationErrors] = useState({}); // Nuevo estado para errores de validación local
     const [isSubmitting, setIsSubmitting] = useState(false);
     
     const navigate = useNavigate();
@@ -27,46 +25,21 @@ const RegisterPage = () => {
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
-        setValidationErrors({ ...validationErrors, [e.target.name]: '' }); // Limpia el error al escribir
-    };
-    
-    // Función de validación local (CRÍTICA para evitar el 400 por campos vacíos)
-    const validate = () => {
-        const errors = {};
-        if (!formData.username.trim()) errors.username = 'El nombre de usuario es requerido.';
-        if (!formData.email.trim()) errors.email = 'El email es requerido.';
-        if (!formData.password.trim()) errors.password = 'La contraseña es requerida.';
-        
-        // Puedes añadir aquí validaciones de formato (ej: email válido, longitud de contraseña)
-        
-        setValidationErrors(errors);
-        return Object.keys(errors).length === 0;
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
-        if (!validate()) {
-            enqueueSnackbar('Por favor, completa todos los campos requeridos.', { variant: 'warning' });
-            return;
-        }
-
         setIsSubmitting(true);
 
         try {
-            // Se envía el JSON completo, incluyendo el rol fijo 'user'.
             await registerUser(formData);
             
             enqueueSnackbar('Registro exitoso. ¡Ahora puedes iniciar sesión!', { variant: 'success' });
             navigate('/login'); // Redirigir al login
         } catch (error) {
-            // El error incluye el mensaje de Flask (ej: email duplicado, validación de Marshmallow)
-            // NOTA: Si la API devuelve un mensaje de error detallado de Marshmallow,
-            // podrías usarlo aquí: const errorMessage = error.response?.data?.message || 'Error...';
-            const errorMessage = error.message || 'Error al registrar el usuario. El email o username pueden estar duplicados.';
+            // El error incluye el mensaje de Flask (ej: email duplicado, validación)
+            const errorMessage = error.message || 'Error al registrar el usuario.';
             enqueueSnackbar(errorMessage, { variant: 'error' });
-            // Mostrar el error globalmente si es un error del servidor
-            setValidationErrors({ server: errorMessage }); 
         } finally {
             setIsSubmitting(false);
         }
@@ -83,12 +56,9 @@ const RegisterPage = () => {
                 }}
             >
                 <Typography component="h1" variant="h5">
-                    Registro de Usuario
+                    Registro
                 </Typography>
-                {validationErrors.server && <Alert severity="error" sx={{ width: '100%', mt: 2 }}>{validationErrors.server}</Alert>}
-                
                 <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-                    
                     {/* Campo Username */}
                     <TextField
                         margin="normal"
@@ -97,13 +67,12 @@ const RegisterPage = () => {
                         id="username"
                         label="Nombre de Usuario"
                         name="username"
+                        autoComplete="username"
                         autoFocus
                         value={formData.username}
                         onChange={handleChange}
-                        error={!!validationErrors.username}
-                        helperText={validationErrors.username}
                     />
-                    
+
                     {/* Campo Email */}
                     <TextField
                         margin="normal"
@@ -112,15 +81,12 @@ const RegisterPage = () => {
                         id="email"
                         label="Correo Electrónico"
                         name="email"
-                        type="email"
                         autoComplete="email"
                         value={formData.email}
                         onChange={handleChange}
-                        error={!!validationErrors.email}
-                        helperText={validationErrors.email}
                     />
-
-                    {/* Campo Password */}
+                    
+                    {/* Campo Contraseña */}
                     <TextField
                         margin="normal"
                         required
@@ -132,13 +98,26 @@ const RegisterPage = () => {
                         autoComplete="new-password"
                         value={formData.password}
                         onChange={handleChange}
-                        error={!!validationErrors.password}
-                        helperText={validationErrors.password}
                     />
 
-                    {/* ❌ REMOVIDO: Eliminado el selector de rol para registro público. */}
-                    {/* El rol se envía automáticamente como 'user' en formData.role */}
-                    
+                    {/* Campo de Rol (Menú Desplegable) */}
+                    <FormControl fullWidth margin="normal" required>
+                        <InputLabel id="role-label">Rol</InputLabel>
+                        <Select
+                            labelId="role-label"
+                            id="role"
+                            name="role"
+                            value={formData.role}
+                            label="Rol"
+                            onChange={handleChange}
+                        >
+                            <MenuItem value="user">Usuario (user)</MenuItem>
+                            <MenuItem value="moderator">Moderador (moderator)</MenuItem>
+                            <MenuItem value="admin">Administrador (admin)</MenuItem>
+                        </Select>
+                    </FormControl>
+
+                    {/* Botón de Enviar */}
                     <Button
                         type="submit"
                         fullWidth

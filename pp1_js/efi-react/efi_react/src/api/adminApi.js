@@ -13,8 +13,6 @@ const USERS_URL = '/users';
 export const getAllUsers = async () => {
     try {
         const response = await api.get(`${ADMIN_URL}${USERS_URL}`);
-        // Asume que el backend devuelve un objeto { users: [...] }
-        // Si el backend devuelve solo un array, ajusta a: return response.data;
         return response.data; 
     } catch (error) {
         // Devuelve el mensaje de error del backend o uno por defecto
@@ -33,7 +31,6 @@ export const updateUserRole = async (userId, newRole) => {
     try {
         // Enviar el nuevo rol en el cuerpo de la solicitud
         const response = await api.put(`${ADMIN_URL}${USERS_URL}/${userId}/role`, { role: newRole });
-        // Asume que el backend devuelve el usuario actualizado en response.data.user
         return response.data.user; 
     } catch (error) {
         throw error.response?.data || { message: 'Error al actualizar el rol.' };

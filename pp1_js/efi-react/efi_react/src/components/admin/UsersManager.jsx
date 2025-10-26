@@ -1,4 +1,3 @@
-// components/admin/UsersManager.jsx
 import React, { useState, useEffect } from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography, CircularProgress, Alert, Select, MenuItem, FormControl, Box} from '@mui/material';
 import { getAllUsers, updateUserRole } from '../../api/adminApi';

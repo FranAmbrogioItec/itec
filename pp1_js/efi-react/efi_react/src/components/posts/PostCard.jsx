@@ -11,11 +11,11 @@ const PostCard = ({ post, onDeleteSuccess }) => {
     const navigate = useNavigate();
 
     // Lógica para verificar si el usuario actual puede modificar el post.
-    // Requisito 3: Usuarios con rol 'user' solo pueden gestionar sus propios posts.
+    // Usuarios con rol 'user' solo pueden gestionar sus propios posts.
     // Roles 'admin' o 'moderator' pueden gestionar cualquier post (generalmente).
     const isPostOwner = user && user.id === post.author.id;
     const canEdit = isPostOwner || hasRole(['admin', 'moderator']);
-    const canDelete = isPostOwner || hasRole(['admin']); // Limito Delete solo a autor y admin. biobbbb 
+    const canDelete = isPostOwner || hasRole(['admin']); // Limito Delete solo a autor y admin. 
 
     const handleDelete = async () => {
         if (window.confirm(`¿Estás seguro de que quieres eliminar el post: "${post.title}"?`)) {

@@ -1,8 +1,6 @@
 import React from 'react';
 import { Container, Typography, Alert } from '@mui/material';
 import { useAuth } from '../../context/AuthContext';
-// NOTA: Aquí se usaría una función de la API como `getPostsByUserId(user.id)`
-// y se listaría usando el componente PostCard.
 
 const PostListPage = () => {
     const { user } = useAuth();
