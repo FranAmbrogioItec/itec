@@ -22,8 +22,6 @@ class UserService:
             
         raise PermissionError("Acceso denegado. Solo puedes ver tu perfil o un administrador puede ver este.")
 
-    # El método 'change_user_role' (anteriormente duplicado) fue eliminado para simplificar.
-
     def deactivate_user(self, target_user_id):
         """Desactiva un usuario (solo para admin)."""
         user = self.repo.get_by_id(target_user_id)
@@ -46,7 +44,6 @@ class UserService:
             raise ValueError(f"Usuario con ID {user_id} no encontrado.")
             
         if user.role == new_role:
-            # No hay cambio, devuelve el usuario actual
             return user
             
         # 3. Llamada correcta al repositorio

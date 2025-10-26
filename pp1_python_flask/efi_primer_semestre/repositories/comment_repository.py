@@ -30,3 +30,7 @@ class CommentRepository:
         """Elimina un comentario."""
         db.session.delete(comment)
         db.session.commit()
+
+    def count_all(self):
+        """Cuenta todos los comentarios en la base de datos."""
+        return Comment.query.count()

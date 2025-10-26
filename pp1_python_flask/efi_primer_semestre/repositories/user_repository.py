@@ -46,7 +46,7 @@ class UserRepository:
         return User.query.get(user_id)
 
     @staticmethod
-    def update_role(user, new_role):  # 🚨 CORRECCIÓN: Se eliminó el argumento 'self'
+    def update_role(user, new_role):  
             """
             Actualiza el campo 'role' de un objeto User y guarda los cambios en la DB.
             """

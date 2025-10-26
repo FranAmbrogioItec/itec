@@ -66,7 +66,6 @@ class AuthLoginAPI(MethodView):
 
         if user:
             # 3. Creación del Token JWT
-            # El objeto 'user' se pasa al @additional_claims_loader en app.py
             """ access_token = create_access_token(identity=user.id) # <-- ¡SOLUCIÓN!  """
             access_token = create_access_token(identity=str(user.id))
 

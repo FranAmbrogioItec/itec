@@ -10,13 +10,12 @@ class AnalyticsSummaryAPI(MethodView):
     def __init__(self):
         self.service = AnalyticsService()
 
-    @roles_required("admin") 
+    @roles_required("admin", "moderator") 
     def get(self):
         """Devuelve un resumen de estadísticas del sistema."""
         try:
             stats = self.service.get_summary_stats()
             
-            # Nota: No necesitamos un schema de Marshmallow si el dict es simple
             return jsonify({
                 "message": "Estadísticas cargadas exitosamente.",
                 "stats": stats

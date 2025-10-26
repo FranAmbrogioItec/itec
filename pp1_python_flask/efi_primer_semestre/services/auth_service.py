@@ -5,14 +5,13 @@ from repositories.user_repository import UserRepository
 class AuthService:
     
     def __init__(self):
-        # La instancia del repositorio se llama 'repo'
         self.repo = UserRepository()
 
     def register_user(self, username, email, password, role): 
         """
         Registra un nuevo usuario verificando que el email no esté duplicado.
         """
-        # ✅ CORRECCIÓN: Usar self.repo
+
         if self.repo.get_by_email(email):
             raise ValueError("El email ya está registrado.")
 
@@ -23,7 +22,6 @@ class AuthService:
              role = 'user' 
         
         # 2. Llama al repositorio, pasando el nuevo argumento 'role'
-        # ✅ CORRECCIÓN: Usar self.repo
         return self.repo.create_user(username, email, password, role)
 
     def authenticate_user(self, email, password):

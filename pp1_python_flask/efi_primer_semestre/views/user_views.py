@@ -102,7 +102,6 @@ class UserManagementAPI(MethodView):
     def __init__(self):
         self.user_service = UserService()
 
-    # 🛑 CRÍTICO: Proteger contra acceso no autorizado
     @roles_required("admin")
     def get(self):
         """Devuelve la lista completa de usuarios."""
@@ -128,7 +127,6 @@ class UserRoleUpdateAPI(MethodView):
         self.user_service = UserService()
 
     @roles_required("admin")
-    # 🚨 CRÍTICO: Asegúrate de que esta función se llama 'put' y está correctamente indentada
     def put(self, user_id): 
         """Actualiza el rol de un usuario por su ID."""
         # 1. Validación del Rol entrante
@@ -144,7 +142,6 @@ class UserRoleUpdateAPI(MethodView):
             updated_user = self.user_service.update_user_role(user_id, data['role'])
             
             # 3. Serialización y Respuesta
-            # Asegúrate de importar user_output_schema
             from schemas.user_schema import user_output_schema 
             return jsonify({
                 "message": "Rol actualizado exitosamente.",
