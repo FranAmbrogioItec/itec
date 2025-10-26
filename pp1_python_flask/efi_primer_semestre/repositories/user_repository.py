@@ -46,11 +46,22 @@ class UserRepository:
         return User.query.get(user_id)
 
     @staticmethod
-    def update_user_role(user, new_role):
-        """Cambia el rol de un usuario."""
-        user.role = new_role
-        db.session.commit()
-        return user
+    def update_role(user, new_role):  # 🚨 CORRECCIÓN: Se eliminó el argumento 'self'
+            """
+            Actualiza el campo 'role' de un objeto User y guarda los cambios en la DB.
+            """
+            try:
+                # 1. Asigna el nuevo rol al objeto User de SQLAlchemy
+                user.role = new_role
+                
+                # 2. Persiste los cambios en la base de datos
+                db.session.commit() 
+                
+                return user
+            except Exception as e:
+                # 3. En caso de error, haz un rollback y propaga la excepción
+                db.session.rollback()
+                raise Exception(f"Fallo al guardar el cambio de rol en la DB: {str(e)}")
         
     @staticmethod
     def deactivate_user(user):

@@ -25,6 +25,7 @@ class UserListAPI(MethodView):
             # Asume que users_output_schema serializa una lista de usuarios
             result = users_output_schema.dump(users) 
             return jsonify(result), 200
+        
         except Exception as e:
             # En un entorno real, logging.error(e)
             return jsonify({"message": f"Error al listar usuarios: {str(e)}"}), 500
@@ -92,3 +93,66 @@ class UserDetailAPI(MethodView):
             return jsonify({"message": str(e)}), 404
         except Exception as e:
             return jsonify({"message": f"Error al desactivar el usuario: {str(e)}"}), 500
+        
+
+class UserManagementAPI(MethodView):
+    """
+    GET /api/admin/users: Lista todos los usuarios.
+    """
+    def __init__(self):
+        self.user_service = UserService()
+
+    # 🛑 CRÍTICO: Proteger contra acceso no autorizado
+    @roles_required("admin")
+    def get(self):
+        """Devuelve la lista completa de usuarios."""
+        try:
+            users = self.user_service.get_all_users()
+            # 1. Serialización de la LISTA de objetos
+            result = users_output_schema.dump(users) 
+            
+            # 2. Responde con el array de usuarios directamente (para el frontend)
+            return jsonify(result), 200 
+            
+        except Exception as e:
+            return jsonify({"message": f"Error al listar usuarios: {str(e)}"}), 500
+
+
+class UserRoleUpdateAPI(MethodView):
+    """
+    PUT /api/admin/users/<int:user_id>/role: Actualiza el rol de un usuario.
+    """
+    def __init__(self):
+        # Asegúrate de importar UserService si es necesario
+        from services.user_service import UserService 
+        self.user_service = UserService()
+
+    @roles_required("admin")
+    # 🚨 CRÍTICO: Asegúrate de que esta función se llama 'put' y está correctamente indentada
+    def put(self, user_id): 
+        """Actualiza el rol de un usuario por su ID."""
+        # 1. Validación del Rol entrante
+        try:
+            # Asegúrate de importar user_role_update_schema
+            from schemas.user_schema import user_role_update_schema 
+            data = user_role_update_schema.load(request.json)
+        except ValidationError as err:
+            return jsonify({"errors": err.messages}), 400
+        
+        try:
+            # 2. Lógica de negocio
+            updated_user = self.user_service.update_user_role(user_id, data['role'])
+            
+            # 3. Serialización y Respuesta
+            # Asegúrate de importar user_output_schema
+            from schemas.user_schema import user_output_schema 
+            return jsonify({
+                "message": "Rol actualizado exitosamente.",
+                "user": user_output_schema.dump(updated_user)
+            }), 200
+
+        except ValueError as e:
+            # Maneja errores de negocio, como usuario no encontrado (404)
+            return jsonify({"message": str(e)}), 404
+        except Exception as e:
+            return jsonify({"message": f"Error interno al actualizar el rol: {str(e)}"}), 500

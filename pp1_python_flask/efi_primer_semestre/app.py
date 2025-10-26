@@ -34,7 +34,7 @@ from views.post_views import PostListAPI, PostDetailAPI
 
 from views.comment_views import CommentListAPI, CommentDetailAPI
 from views.category_views import CategoryListAPI, CategoryDetailAPI
-from views.user_views import UserListAPI, UserDetailAPI
+from views.user_views import UserListAPI, UserDetailAPI, UserManagementAPI, UserRoleUpdateAPI
 from views.stats_views import StatsAPI
 from views.analytics_views import AnalyticsSummaryAPI
 
@@ -42,6 +42,7 @@ admin_bp = Blueprint('admin', __name__, url_prefix='/api/admin')
 
 admin_bp.add_url_rule('/stats', view_func=AnalyticsSummaryAPI.as_view('analytics_summary_api'))
 app.register_blueprint(admin_bp)
+
 
 # --- Configuración de Claims JWT  ---
 @jwt.additional_claims_loader
@@ -128,19 +129,19 @@ app.add_url_rule(
 
 # Endpoints de Usuarios (Admin)
 app.add_url_rule(
-    '/api/users', 
+    '/api/admin/users', 
     view_func=UserListAPI.as_view('user_list_api'), 
     methods=['GET']
 )
 app.add_url_rule(
-    '/api/users/<int:user_id>', 
+    '/api/admin/users/<int:user_id>', 
     view_func=UserDetailAPI.as_view('user_detail_api'), 
     methods=['GET', 'DELETE']
 )
 app.add_url_rule(
-    '/api/users/<int:user_id>/role', # patch para cambiar el rol
-    view_func=UserDetailAPI.as_view('user_role_api'), 
-    methods=['PATCH']
+    '/api/admin/users/<int:user_id>/role', 
+    view_func=UserRoleUpdateAPI.as_view('user_detail_role_api'), 
+    methods=['PUT'] # <--- ¡Debe permitir el método 'PUT'!
 )
 
 # Endpoint de Estadísticas
