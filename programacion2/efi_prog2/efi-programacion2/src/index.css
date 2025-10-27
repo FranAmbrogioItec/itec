@@ -1,106 +1,198 @@
-/* Importar fuentes de Google */
+/* Importar fuentes de Google - DEBE ESTAR AL PRINCIPIO */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
-@import "tailwindcss";
-/* Puedes eliminar o conservar el CSS que tenías previamente */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-/* Estilos base personalizados */
-@layer base {
-  html {
-    scroll-behavior: smooth;
-  }
+/* Variables de colores y fuentes */
+:root {
+  /* Colores principales basados en #06565F (verde azulado oscuro) */
+  --primary-dark: #05444C;
+  --primary: #06565F;
+  --primary-light: #0A7C8A;
+  --primary-lighter: #0EA3B5;
+  --primary-lightest: #E8F4F6;
   
-  body {
-    font-family: 'Inter', 'Segoe UI', sans-serif;
-    line-height: 1.6;
-    color: theme('colors.neutral.900');
-    overflow-x: hidden;
-    font-weight: 400;
-    background-color: #FFFFFF;
-  }
-
-  /* Scrollbar personalizado */
-  body::-webkit-scrollbar {
-    width: 8px;
-  }
-
-  body::-webkit-scrollbar-track {
-    background: #f1f1f1;
-  }
-
-  body::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 4px;
-  }
-
-  body::-webkit-scrollbar-thumb:hover {
-    background: #555;
-  }
+  /* Colores acento (complementarios) */
+  --accent: #ffffff;        /* Naranja vibrante */
+  --accent-light: #FB923C;  /* Naranja claro */
+  --accent-dark: #EA580C;   /* Naranja oscuro */
+  
+  /* Colores neutrales */
+  --neutral-900: #0F172A;
+  --neutral-800: #1E293B;
+  --neutral-700: #334155;
+  --neutral-600: #475569;
+  --neutral-500: #64748B;
+  --neutral-400: #94A3B8;
+  --neutral-300: #CBD5E1;
+  --neutral-200: #E2E8F0;
+  --neutral-100: #F1F5F9;
+  --neutral-50: #F8FAFC;
+  
+  /* Colores semánticos */
+  --success: #10B981;
+  --warning: #F59E0B;
+  --error: #EF4444;
+  --info: #3B82F6;
+  
+  /* Texto */
+  --text-dark: var(--neutral-900);
+  --text-medium: var(--neutral-700);
+  --text-light: var(--neutral-500);
+  --text-on-primary: #FFFFFF;
+  
+  /* Fondos */
+  --background: #FFFFFF;
+  --background-light: var(--neutral-50);
+  --background-dark: var(--neutral-100);
+  
+  /* Bordes */
+  --border-light: var(--neutral-200);
+  --border-medium: var(--neutral-300);
+  --border-dark: var(--neutral-400);
+  
+  /* Sombras */
+  --shadow-sm: 0 1px 3px 0 rgba(6, 86, 95, 0.1), 0 1px 2px 0 rgba(6, 86, 95, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(6, 86, 95, 0.1), 0 2px 4px -1px rgba(6, 86, 95, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(6, 86, 95, 0.1), 0 4px 6px -2px rgba(6, 86, 95, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(6, 86, 95, 0.1), 0 10px 10px -5px rgba(6, 86, 95, 0.04);
+  
+  /* Gradientes */
+  --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+  --gradient-accent: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+  --gradient-subtle: linear-gradient(135deg, var(--primary-lightest) 0%, #FFFFFF 100%);
+  
+  /* Bordes redondeados */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 20px;
+  --radius-full: 9999px;
 }
 
-/* Componentes personalizados que puedes migrar gradualmente */
-@layer components {
-  .container {
-    @apply max-w-[1200px] mx-auto px-5;
-  }
-  
-  /* Puedes mantener estas clases si las usas mucho, pero considera usar las de Tailwind */
-  .hover-primary:hover {
-    @apply bg-primary-dark text-white;
-  }
-  
-  .hover-accent:hover {
-    @apply bg-accent-dark text-white;
-  }
+/* Añadir estas clases de utilidad para la nueva paleta */
+.bg-primary { background-color: var(--primary); }
+.bg-primary-light { background-color: var(--primary-light); }
+.bg-primary-lighter { background-color: var(--primary-lighter); }
+.bg-primary-lightest { background-color: var(--primary-lightest); }
+
+.text-primary { color: var(--primary); }
+.text-primary-light { color: var(--primary-light); }
+.text-primary-lighter { color: var(--primary-lighter); }
+
+.bg-accent { background-color: var(--accent); }
+.bg-accent-light { background-color: var(--accent-light); }
+.text-accent { color: var(--accent); }
+.text-accent-light { color: var(--accent-light); }
+
+.bg-neutral-100 { background-color: var(--neutral-100); }
+.bg-neutral-200 { background-color: var(--neutral-200); }
+.text-neutral-600 { color: var(--neutral-600); }
+.text-neutral-500 { color: var(--neutral-500); }
+
+/* Estados de hover y focus */
+.hover-primary:hover {
+  background-color: var(--primary-dark);
+  color: var(--text-on-primary);
 }
 
-/* Utilidades personalizadas - MANTÉN SOLO LO QUE NO PUEDAS HACER CON TAILWIND */
-@layer utilities {
-  /* Animaciones que no están en la config de Tailwind */
-  .fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-  }
+.hover-accent:hover {
+  background-color: var(--accent-dark);
+  color: white;
+}
 
-  .fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Reset y estilos base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  .slide-in-left {
-    opacity: 0;
-    transform: translateX(-50px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-  }
+html {
+  scroll-behavior: smooth;
+}
 
-  .slide-in-left.visible {
-    opacity: 1;
-    transform: translateX(0);
-  }
+body {
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  line-height: 1.6;
+  color: var(--text-dark);
+  overflow-x: hidden;
+  font-weight: 400;
+  background-color: var(--background);
+}
 
-  .slide-in-right {
-    opacity: 0;
-    transform: translateX(50px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-  }
+.App {
+  text-align: center;
+}
 
-  .slide-in-right.visible {
-    opacity: 1;
-    transform: translateX(0);
-  }
+/* Contenedor general */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
 
-  .stagger-item {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
+/* Utilidades de texto */
+.text-center {
+  text-align: center;
+}
 
-  .stagger-item.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+/* Utilidades de espaciado */
+.mt-0 { margin-top: 0; }
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mt-3 { margin-top: 1.5rem; }
+.mt-4 { margin-top: 2rem; }
+.mt-5 { margin-top: 3rem; }
+
+.mb-0 { margin-bottom: 0; }
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+.mb-3 { margin-bottom: 1.5rem; }
+.mb-4 { margin-bottom: 2rem; }
+.mb-5 { margin-bottom: 3rem; }
+
+.pt-0 { padding-top: 0; }
+.pt-1 { padding-top: 0.5rem; }
+.pt-2 { padding-top: 1rem; }
+.pt-3 { padding-top: 1.5rem; }
+.pt-4 { padding-top: 2rem; }
+.pt-5 { padding-top: 3rem; }
+
+.pb-0 { padding-bottom: 0; }
+.pb-1 { padding-bottom: 0.5rem; }
+.pb-2 { padding-bottom: 1rem; }
+.pb-3 { padding-bottom: 1.5rem; }
+.pb-4 { padding-bottom: 2rem; }
+.pb-5 { padding-bottom: 3rem; }
+
+/* Asegurar que las imágenes sean responsivas */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Ocultar scrollbar pero mantener funcionalidad */
+body::-webkit-scrollbar {
+  width: 8px;
+}
+
+body::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
