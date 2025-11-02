@@ -3,11 +3,10 @@ import Hero from '../../components/Hero/Hero';
 import FeaturedProperties from '../../components/FeaturedProperties/FeaturedProperties';
 import AboutPreview from '../../components/AboutPreview/AboutPreview';
 import Services from '../../components/Services/Services';
-import './Home.css';
 
 const Home = ({ setCurrentPage, onSearch }) => {
   return (
-    <div className="home-page">
+    <div className="overflow-x-hidden">
       <Hero setCurrentPage={setCurrentPage} onSearch={onSearch} />
       <FeaturedProperties />
       <AboutPreview setCurrentPage={setCurrentPage} />

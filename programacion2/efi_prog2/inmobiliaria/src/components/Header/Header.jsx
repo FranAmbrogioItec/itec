@@ -36,7 +36,7 @@ const Header = ({ currentPage, setCurrentPage }) => {
       <TopBar />
       <header className={`
         w-full bg-white bg-opacity-98 backdrop-blur-lg transition-all duration-300
-        border-b border-gray-100 font-inter uppercase
+        border-b border-gray-100 font-inter uppercase 
         ${isScrolled ? 'py-3 shadow-lg' : 'py-4 shadow-sm'}
       `}>
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">

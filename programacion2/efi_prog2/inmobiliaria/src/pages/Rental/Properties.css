@@ -1,0 +1,164 @@
+/* Properties.css - Estilos compartidos para Rental, Sale y TemporaryRental */
+
+/* Animación flotante para los elementos de fondo */
+@keyframes floatEffect {
+  0% {
+    transform: translate(0px, 0px) rotate(0deg);
+  }
+  50% {
+    transform: translate(-10px, 15px) rotate(2deg);
+  }
+  100% {
+    transform: translate(5px, -10px) rotate(-1deg);
+  }
+}
+
+/* Estilos base para todas las páginas de propiedades */
+.properties-page {
+  background: linear-gradient(to bottom right, #f8fcfd, #becbce98);
+  padding: 6rem 0 4rem;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+}
+
+/* Elementos decorativos de fondo para Rental */
+.rental-page::before,
+.rental-page::after {
+  content: '';
+  position: absolute;
+  background-color: rgba(6, 86, 95, 0.09);
+  border-radius: 50%;
+  z-index: -1;
+  animation: floatEffect 15s ease-in-out infinite alternate;
+}
+
+.rental-page::before {
+  width: 350px;
+  height: 350px;
+  top: -50px;
+  left: -80px;
+  border-radius: 40% 60% 70% 30% / 30% 30% 70% 70%;
+  animation-duration: 18s;
+  animation-delay: 0s;
+}
+
+.rental-page::after {
+  width: 400px;
+  height: 400px;
+  bottom: -70px;
+  right: -100px;
+  border-radius: 60% 40% 30% 70% / 60% 70% 30% 40%;
+  animation-duration: 16s;
+  animation-delay: 2s;
+}
+
+/* Elementos decorativos de fondo para Sale */
+.sale-page::before,
+.sale-page::after {
+  content: '';
+  position: absolute;
+  background-color: rgba(6, 86, 95, 0.09);
+  border-radius: 50%;
+  z-index: -1;
+  animation: floatEffect 15s ease-in-out infinite alternate;
+}
+
+.sale-page::before {
+  width: 350px;
+  height: 350px;
+  top: -50px;
+  left: -80px;
+  border-radius: 40% 60% 70% 30% / 30% 30% 70% 70%;
+  animation-duration: 18s;
+  animation-delay: 0s;
+}
+
+.sale-page::after {
+  width: 400px;
+  height: 400px;
+  bottom: -70px;
+  right: -100px;
+  border-radius: 60% 40% 30% 70% / 60% 70% 30% 40%;
+  animation-duration: 16s;
+  animation-delay: 2s;
+}
+
+/* Elementos decorativos de fondo para TemporaryRental */
+.temporal-page::before,
+.temporal-page::after {
+  content: '';
+  position: absolute;
+  background-color: rgba(6, 86, 95, 0.09);
+  border-radius: 50%;
+  z-index: -1;
+  animation: floatEffect 15s ease-in-out infinite alternate;
+}
+
+.temporal-page::before {
+  width: 350px;
+  height: 350px;
+  top: -50px;
+  left: -80px;
+  border-radius: 40% 60% 70% 30% / 30% 30% 70% 70%;
+  animation-duration: 18s;
+  animation-delay: 0s;
+}
+
+.temporal-page::after {
+  width: 400px;
+  height: 400px;
+  bottom: -70px;
+  right: -100px;
+  border-radius: 60% 40% 30% 70% / 60% 70% 30% 40%;
+  animation-duration: 16s;
+  animation-delay: 2s;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .properties-page {
+    padding: 5rem 0 3rem;
+  }
+  
+  .rental-page::before,
+  .rental-page::after,
+  .sale-page::before,
+  .sale-page::after,
+  .temporal-page::before,
+  .temporal-page::after {
+    width: 250px;
+    height: 250px;
+  }
+  
+  .rental-page::before,
+  .sale-page::before,
+  .temporal-page::before {
+    top: -30px;
+    left: -50px;
+  }
+  
+  .rental-page::after,
+  .sale-page::after,
+  .temporal-page::after {
+    bottom: -40px;
+    right: -60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .properties-page {
+    padding: 4rem 0 2rem;
+  }
+  
+  .rental-page::before,
+  .rental-page::after,
+  .sale-page::before,
+  .sale-page::after,
+  .temporal-page::before,
+  .temporal-page::after {
+    width: 200px;
+    height: 200px;
+  }
+}

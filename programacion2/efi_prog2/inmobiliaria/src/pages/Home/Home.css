@@ -1,8 +1,7 @@
-.home-page {
+/* .home-page {
   overflow-x: hidden;
 }
 
-/* Featured Properties Section */
 .featured-properties {
   padding: 100px 0;
   background-color: var(--background-light);
@@ -25,7 +24,7 @@
   text-align: center;
 }
 
-/* About Preview Section */
+
 .about-preview {
   padding: 100px 0;
   background-color: white;
@@ -89,7 +88,6 @@
   box-shadow: var(--shadow-xl);
 }
 
-/* Services Section */
 .services {
   padding: 100px 0;
   background-color: var(--background-light);
@@ -152,4 +150,4 @@
   .services-grid {
     grid-template-columns: 1fr;
   }
-}
+} */
