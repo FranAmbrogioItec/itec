@@ -1,0 +1,155 @@
+.home-page {
+  overflow-x: hidden;
+}
+
+/* Featured Properties Section */
+.featured-properties {
+  padding: 100px 0;
+  background-color: var(--background-light);
+}
+
+.featured-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.view-all-btn {
+  margin-top: 40px;
+  text-align: center;
+}
+
+/* About Preview Section */
+.about-preview {
+  padding: 100px 0;
+  background-color: white;
+}
+
+.about-preview-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.about-preview-text h3 {
+  font-size: 1.8rem;
+  margin-bottom: 24px;
+  color: var(--primary-dark);
+  font-weight: 600;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.about-preview-text p {
+  margin-bottom: 20px;
+  color: var(--text-light);
+  line-height: 1.8;
+}
+
+.about-preview-stats {
+  display: flex;
+  gap: 40px;
+  margin-top: 40px;
+}
+
+.about-preview-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.about-preview-stat-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 8px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.about-preview-stat-label {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.about-preview-image {
+  position: relative;
+}
+
+.about-preview-img {
+  width: 100%;
+  border-radius: 16px;
+  box-shadow: var(--shadow-xl);
+}
+
+/* Services Section */
+.services {
+  padding: 100px 0;
+  background-color: var(--background-light);
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.service-card {
+  background: white;
+  padding: 40px 30px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.service-icon {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.service-title {
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+  color: var(--primary-dark);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.service-description {
+  color: var(--text-light);
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .about-preview-content {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .about-preview-stats {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .featured-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+}

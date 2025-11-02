@@ -1,0 +1,41 @@
+/* PropertyCard.css - Solo utilidades específicas que no existen en Tailwind */
+
+/* Para el line-clamp-2 si no funciona en algunos navegadores */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Asegurar que las variables de color funcionen */
+.bg-primary {
+  background-color: var(--primary);
+}
+
+.text-primary {
+  color: var(--primary);
+}
+
+.text-primary-dark {
+  color: var(--primary-dark);
+}
+
+.border-primary-light {
+  border-color: var(--primary-light);
+}
+
+/* Responsive adjustments específicos */
+@media (max-width: 480px) {
+  .min-h-\[3rem\] {
+    min-height: 2.5rem;
+  }
+  
+  .text-2xl {
+    font-size: 1.5rem;
+  }
+  
+  .p-6 {
+    padding: 1rem;
+  }
+}

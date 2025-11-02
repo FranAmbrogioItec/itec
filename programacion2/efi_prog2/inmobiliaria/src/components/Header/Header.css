@@ -1,0 +1,28 @@
+/* Header.css - Solo animaciones específicas que necesitan CSS puro */
+
+/* Animación para elementos del menú móvil */
+.fade-in-right {
+  opacity: 0;
+  transform: translateX(-20px);
+  animation: fadeInRightMobile 0.4s ease-out forwards;
+}
+
+@keyframes fadeInRightMobile {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Asegurar que las clases de utilidad de colores funcionen */
+.bg-primary-lightest { 
+  background-color: var(--primary-lightest); 
+}
+
+.text-primary-dark { 
+  color: var(--primary-dark); 
+}
+
+.text-primary { 
+  color: var(--primary); 
+}

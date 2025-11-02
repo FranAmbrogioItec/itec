@@ -1,0 +1,8 @@
+/* Footer.css - Solo para estilos muy específicos si es necesario */
+
+/* Asegurar que las variables de color funcionen */
+.bg-\[\#033a41\] {
+  background-color: #033a41;
+}
+
+/* Si necesitas mantener algún efecto específico que no se pueda hacer con Tailwind */

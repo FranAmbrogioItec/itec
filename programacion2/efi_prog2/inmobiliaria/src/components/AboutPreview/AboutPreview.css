@@ -1,0 +1,12 @@
+/* AboutPreview.css - Solo estilos específicos si son necesarios */
+
+/* Si necesitas mantener alguna animación específica o efecto */
+.about-preview-img:hover {
+  transform: scale(1.05);
+  transition: transform 0.5s ease;
+}
+
+/* Para el shadow-3xl personalizado si no existe en Tailwind */
+.hover-shadow-3xl {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}

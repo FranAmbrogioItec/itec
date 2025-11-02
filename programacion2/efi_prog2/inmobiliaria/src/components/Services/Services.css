@@ -1,0 +1,15 @@
+/* Services.css - Solo utilidades específicas */
+/* Puedes eliminar este archivo si no necesitas CSS adicional */
+
+/* Asegurar que las variables de color funcionen */
+.bg-primary {
+  background-color: var(--primary);
+}
+
+.bg-primary-light {
+  background-color: var(--primary-light);
+}
+
+.text-primary {
+  color: var(--primary);
+}
