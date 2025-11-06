@@ -116,7 +116,10 @@ const Hero = ({ setCurrentPage, onSearch }) => {
             mb-8 animate-fade-in-down
           ">
             <span className="
-              inline-block bg-white/15 backdrop-blur-lg
+            hidden 
+  
+            // ⚠️ MOSTRAR a partir de tablet/escritorio (breakpoint md)
+              md:inline-block bg-white/15 backdrop-blur-lg
               px-6 py-3 rounded-full text-sm font-medium
               border border-white/20 tracking-wide
             ">
@@ -256,43 +259,43 @@ const Hero = ({ setCurrentPage, onSearch }) => {
             </form>
           </div>
 
-          {/* Action Buttons */}
-          <div className="
-            flex flex-col sm:flex-row gap-6 justify-center items-center
-            animate-fade-in-up animation-delay-600
-          ">
-            <button 
-              className="
-                bg-transparent text-white border-2 border-white/30
-                backdrop-blur-lg px-8 py-4 rounded-xl font-semibold
-                hover:bg-white/10 hover:border-white/50 hover:scale-105
-                transition-all duration-300 focus:outline-none focus:ring-3 focus:ring-white/30
-                flex items-center justify-center min-h-[60px] w-full sm:w-auto
-              "
-              onClick={scrollToProperties}
-            >
-              Ver todas las propiedades
-            </button>
-            
-            <button 
-              className="
-                bg-accent text-white px-8 py-4 rounded-xl font-semibold
-                shadow-lg hover:bg-accent-dark hover:scale-105
-                transition-all duration-300 flex items-center justify-center gap-3
-                focus:outline-none focus:ring-3 focus:ring-white/30
-                min-h-[60px] w-full sm:w-auto
-              "
-              onClick={scrollToContact}
-            >
-              <FaPhoneAlt className="text-lg" />
-              Contactar Ahora
-            </button>
-          </div>
+{/* Action Buttons */}
+<div className="
+  flex justify-center items-center gap-6
+  animate-fade-in-up animation-delay-600 
+">
+  <button 
+    className="
+      bg-transparent text-white border-2 border-white/30
+      backdrop-blur-lg px-8 py-4 rounded-xl font-semibold
+      hover:bg-white/10 hover:border-white/50 hover:scale-105
+      transition-all duration-300 focus:outline-none focus:ring-3 focus:ring-white/30
+      flex items-center justify-center min-h-[60px] flex-1 sm:w-auto mb-12
+    "
+    onClick={scrollToProperties}
+  >
+    Ver todas las propiedades
+  </button>
+  
+  <button 
+    className="
+      bg-accent text-white px-8 py-4 rounded-xl font-semibold
+      shadow-lg hover:bg-accent-dark hover:scale-105
+      transition-all duration-300 flex items-center justify-center gap-3
+      focus:outline-none focus:ring-3 focus:ring-white/30
+      min-h-[60px] flex-1 sm:w-auto mb-12
+    "
+    onClick={scrollToContact}
+  >
+    <FaPhoneAlt className="text-lg" />
+    Contactar Ahora
+  </button>
+</div>
         </div>
       </div>
 
       {/* Scroll Indicator */}
-      <div className="
+{/*       <div className="
         absolute bottom-10 left-1/2 transform -translate-x-1/2
         text-white flex flex-col items-center gap-2 opacity-70
         animate-bounce
@@ -302,7 +305,7 @@ const Hero = ({ setCurrentPage, onSearch }) => {
           w-0.5 h-10 bg-gradient-to-b from-transparent via-white to-transparent
           rounded-full
         "></div>
-      </div>
+      </div> */}
     </section>
   );
 };

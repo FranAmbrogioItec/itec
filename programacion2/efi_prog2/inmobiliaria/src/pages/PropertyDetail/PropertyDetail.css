@@ -36,7 +36,31 @@
     padding-right: 1rem;
   }
   
-  .sticky.top-24 {
+  .sticky-top-24-mobile-fix {
     position: static;
+  }
+  
+  /* Ajustes para el botón volver en móviles */
+  .back-button-mobile {
+    position: static !important;
+    transform: none !important;
+    margin-bottom: 1rem;
+    align-self: flex-start;
+  }
+  
+  /* Ajustes para la galería en móviles pequeños */
+  .gallery-thumbnails-mobile {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 0.5rem !important;
+  }
+  
+  /* Mejoras para textos en móviles pequeños */
+  .text-responsive-mobile {
+    font-size: 1.75rem !important;
+  }
+  
+  .title-responsive-mobile {
+    font-size: 1.875rem !important;
+    line-height: 2.25rem !important;
   }
 }

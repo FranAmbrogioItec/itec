@@ -81,19 +81,59 @@ const AboutPreview = ({ setCurrentPage }) => {
             </Link>
           </div>
           
-          {/* Imagen */}
-          <div className="
-            relative rounded-xl overflow-hidden
-            shadow-2xl hover:shadow-3xl
-            transition-all duration-500
-            hover:scale-[1.02]
-          ">
+{/* INICIO DE LA MODIFICACIÓN: 
+            Enlace con Relación de Aspecto Fija
+          */}
+          <a 
+            href="https://www.instagram.com/p/DO__0CgElkv/"
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="
+              relative block group // <-- 'relative' es clave para posicionar la img
+              rounded-xl overflow-hidden
+              shadow-2xl hover:shadow-3xl
+              transition-all duration-500
+              hover:scale-[1.02]
+              
+              aspect-[4/3] // <-- LA SOLUCIÓN PRINCIPAL (16:9)
+            "
+          >
+            {/* Imagen de portada del Reel */}
             <img 
-              src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" 
-              alt="Oficina de Echenique Soluciones Inmobiliarias" 
-              className="w-full h-full object-cover block"
+              src="/public/reel3.jpeg"
+              alt="Vista previa del Reel 'Quiénes Somos' de Echenique Soluciones Inmobiliarias" 
+              className="
+                absolute inset-0 // <-- Rellena el 'a'
+                w-full h-full 
+                object-cover // <-- EVITA QUE SE DEFORME
+              "
             />
-          </div>
+
+            {/* Overlay y Botón de "Play" */}
+            <div className="
+              absolute inset-0 // <-- Rellena el 'a'
+              z-10 // <-- Se asegura que esté SOBRE la imagen
+              bg-black bg-opacity-30 
+              flex items-center justify-center
+              transition-all duration-300
+              opacity-80 group-hover:opacity-100 group-hover:bg-opacity-40
+            ">
+              <svg 
+                className="w-20 h-20 text-white opacity-90 drop-shadow-lg" 
+                fill="currentColor" 
+                viewBox="0 0 20 20" 
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path 
+                  fillRule="evenodd" 
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" 
+                  clipRule="evenodd" 
+                />
+              </svg>
+            </div>
+          </a>
+          {/* FIN DE LA MODIFICACIÓN */}
+          
         </div>
       </div>
     </section>
