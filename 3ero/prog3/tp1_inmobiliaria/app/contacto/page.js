@@ -1,42 +1,59 @@
 export default function Contacto() {
   return (
-    <div className="max-w-2xl mx-auto bg-white p-8 rounded-lg border shadow-sm mt-4">
-      <h1 className="text-3xl font-bold text-slate-800 mb-6">Contáctanos</h1>
-      <p className="text-gray-600 mb-6">
-        ¿Estás interesado en algún proyecto o necesitas asesoramiento para invertir? Déjanos tu mensaje.
-      </p>
+    <div className="max-w-3xl mx-auto py-8">
+      <div className="bg-white p-10 rounded-3xl border border-slate-100 shadow-lg">
+        <div className="text-center mb-10">
+          <h1 className="text-4xl font-extrabold text-slate-800 mb-3">Hablemos de tu inversión</h1>
+          <p className="text-slate-500">
+            Completa el formulario y uno de nuestros asesores se comunicará contigo a la brevedad.
+          </p>
+        </div>
+        
+        <form className="space-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="space-y-2">
+              <label className="text-sm font-semibold text-slate-700">Nombre completo</label>
+              <input 
+                type="text" 
+                placeholder="Ej. Juan Pérez" 
+                className="w-full bg-slate-50 border border-slate-200 p-3.5 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all" 
+              />
+            </div>
+            <div className="space-y-2">
+              <label className="text-sm font-semibold text-slate-700">Correo electrónico</label>
+              <input 
+                type="email" 
+                placeholder="tucorreo@email.com" 
+                className="w-full bg-slate-50 border border-slate-200 p-3.5 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all" 
+              />
+            </div>
+          </div>
+          
+          <div className="space-y-2">
+            <label className="text-sm font-semibold text-slate-700">Asunto o Inmueble de interés</label>
+            <input 
+              type="text" 
+              placeholder="Ej. Información sobre Torre Central" 
+              className="w-full bg-slate-50 border border-slate-200 p-3.5 rounded-xl focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all" 
+            />
+          </div>
 
-      <form className="flex flex-col gap-4">
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Nombre completo</label>
-          <input
-            type="text"
-            placeholder="Ej. Juan Pérez"
-            className="w-full border p-2 rounded focus:ring-2 focus:ring-blue-500 outline-none"
-          />
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Correo electrónico</label>
-          <input
-            type="email"
-            placeholder="tucorreo@email.com"
-            className="w-full border p-2 rounded focus:ring-2 focus:ring-blue-500 outline-none"
-          />
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Mensaje</label>
-          <textarea
-            placeholder="Consulta sobre el edificio en pozo..."
-            className="w-full border p-2 rounded h-32 focus:ring-2 focus:ring-blue-500 outline-none"
-          ></textarea>
-        </div>
-        <button
-          type="button"
-          className="bg-blue-600 text-white font-semibold py-2 px-4 rounded hover:bg-blue-700 transition duration-300"
-        >
-          Enviar Mensaje
-        </button>
-      </form>
+          <div className="space-y-2">
+            <label className="text-sm font-semibold text-slate-700">Mensaje</label>
+            <textarea 
+              placeholder="Escribe tu consulta aquí..." 
+              className="w-full bg-slate-50 border border-slate-200 p-3.5 rounded-xl h-32 resize-none focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 outline-none transition-all"
+            ></textarea>
+          </div>
+
+          <button 
+            type="button" 
+            className="w-full bg-slate-800 text-white font-bold text-lg py-4 rounded-xl hover:bg-slate-700 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
+          >
+            Enviar Mensaje
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
