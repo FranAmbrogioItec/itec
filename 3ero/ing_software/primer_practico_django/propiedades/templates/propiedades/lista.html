@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Inmobiliaria - Catálogo</title>
+</head>
+
+<body>
+    <h1>Catálogo de Propiedades</h1>
+    <hr>
+
+    {% if propiedades %}
+    <ul>
+        {% for p in propiedades %}
+        <li>
+            <strong>{{ p.titulo }}</strong> - ${{ p.precio }} <br>
+            <p>{{ p.descripcion }}</p>
+            <small>Dirección: {{ p.direccion }}</small>
+        </li>
+        <hr>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No hay propiedades disponibles por el momento.</p>
+    {% endif %}
+
+    <br>
+    <a href="{% url 'home' %}">Volver al Inicio</a>
+</body>
+
+</html>

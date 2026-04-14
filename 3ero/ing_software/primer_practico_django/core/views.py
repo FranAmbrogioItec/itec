@@ -1,5 +1,4 @@
 from django.shortcuts import render
 
-# Create your views here.
-def bienvenida(request):
-    return render(request, "core/bienvenida.html")
+def home(request):
+    return render(request, 'core/home.html')
