@@ -1,31 +1,88 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
-    <title>Inmobiliaria - Catálogo</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Propiedades</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body>
-    <h1>Catálogo de Propiedades</h1>
-    <hr>
+<body class="bg-gray-900 p-8">
+    <div class="max-w-5xl mx-auto bg-gray-800 p-6 rounded-lg shadow-2xl border border-gray-700 mt-10">
 
-    {% if propiedades %}
-    <ul>
-        {% for p in propiedades %}
-        <li>
-            <strong>{{ p.titulo }}</strong> - ${{ p.precio }} <br>
-            <p>{{ p.descripcion }}</p>
-            <small>Dirección: {{ p.direccion }}</small>
-        </li>
-        <hr>
-        {% endfor %}
-    </ul>
-    {% else %}
-    <p>No hay propiedades disponibles por el momento.</p>
-    {% endif %}
+        <div class="mb-4">
+            <a href="{% url 'home' %}"
+                class="inline-flex items-center text-sm font-medium text-indigo-400 hover:text-indigo-300 transition-colors duration-200">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                </svg>
+                Volver al Inicio
+            </a>
+        </div>
 
-    <br>
-    <a href="{% url 'home' %}">Volver al Inicio</a>
+        <div class="flex justify-between items-center mb-6 pb-4 border-b border-gray-700">
+            <h1 class="text-3xl font-extrabold text-white tracking-tight">Catálogo de Propiedades</h1>
+            <a href="{% url 'crear_propiedad' %}"
+                class="bg-green-500 hover:bg-green-400 text-white font-semibold py-2 px-5 rounded-md shadow-md transition duration-200 flex items-center">
+                <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                </svg>
+                Nueva Propiedad
+            </a>
+        </div>
+
+        {% if propiedades %}
+        <div class="overflow-x-auto rounded-lg border border-gray-700 shadow">
+            <table class="min-w-full bg-gray-800">
+                <thead class="bg-gray-700">
+                    <tr>
+                        <th class="py-3 px-4 text-left text-sm font-semibold text-gray-200">Título</th>
+                        <th class="py-3 px-4 text-left text-sm font-semibold text-gray-200">Dirección</th>
+                        <th class="py-3 px-4 text-left text-sm font-semibold text-gray-200">Precio</th>
+                        <th class="py-3 px-4 text-left text-sm font-semibold text-gray-200">Propietario</th>
+                        <th class="py-3 px-4 text-center text-sm font-semibold text-gray-200">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-700">
+                    {% for propiedad in propiedades %}
+                    <tr class="hover:bg-gray-700 transition duration-150">
+                        <td class="py-3 px-4 text-gray-100">{{ propiedad.titulo }}</td>
+                        <td class="py-3 px-4 text-gray-400">{{ propiedad.direccion }}</td>
+                        <td class="py-3 px-4 text-gray-100 font-medium">${{ propiedad.precio }}</td>
+                        <td class="py-3 px-4 text-gray-400">
+                            {% if propiedad.propietario %}
+                            {{ propiedad.propietario }}
+                            {% else %}
+                            <span class="text-gray-500 italic">Sin asignar</span>
+                            {% endif %}
+                        </td>
+                        <td class="py-3 px-4 text-center space-x-2">
+                            <a href="{% url 'editar_propiedad' propiedad.pk %}"
+                                class="inline-block bg-blue-600 hover:bg-blue-500 text-white px-3 py-1 rounded text-sm transition shadow">
+                                Editar
+                            </a>
+                            <a href="{% url 'eliminar_propiedad' propiedad.pk %}"
+                                class="inline-block bg-red-600 hover:bg-red-500 text-white px-3 py-1 rounded text-sm transition shadow">
+                                Eliminar
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="text-center py-10 bg-gray-800 rounded border border-dashed border-gray-600 mt-4">
+            <p class="text-gray-400 text-lg">No hay propiedades cargadas todavía.</p>
+            <p class="text-gray-500 text-sm mt-2">Haz clic en "Nueva Propiedad" para empezar.</p>
+        </div>
+        {% endif %}
+
+    </div>
 </body>
 
 </html>
