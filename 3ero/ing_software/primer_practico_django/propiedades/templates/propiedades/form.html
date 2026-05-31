@@ -38,7 +38,7 @@
             {% if object %}Editar Propiedad{% else %}Nueva Propiedad{% endif %}
         </h2>
 
-        <form method="post" class="space-y-4 text-gray-300">
+        <form method="post" enctype="multipart/form-data" class="space-y-4 text-gray-300">
             {% csrf_token %}
             {{ form.as_p }}
 

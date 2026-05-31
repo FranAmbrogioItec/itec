@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Iniciar Sesión</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        label {
+            color: #d1d5db;
+            font-weight: 500;
+        }
+
+        input {
+            background-color: #374151 !important;
+            color: white !important;
+            border-color: #4b5563 !important;
+        }
+
+        input:focus {
+            border-color: #6366f1 !important;
+            outline: none;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-900 flex items-center justify-center min-h-screen">
+    <div class="max-w-md w-full bg-gray-800 p-8 rounded-xl shadow-2xl border border-gray-700">
+        <h2 class="text-3xl font-extrabold text-white mb-6 text-center">Iniciar Sesión</h2>
+
+        <form method="post" class="space-y-4 text-gray-300">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <button type="submit"
+                class="w-full bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-3 px-4 rounded-lg shadow-lg transition duration-300 mt-4">
+                Entrar
+            </button>
+        </form>
+
+        <p class="text-gray-400 mt-6 text-center text-sm">
+            ¿No tienes cuenta? <a href="{% url 'registro' %}" class="text-indigo-400 hover:text-indigo-300">Regístrate
+                aquí</a>
+        </p>
+    </div>
+</body>
+
+</html>

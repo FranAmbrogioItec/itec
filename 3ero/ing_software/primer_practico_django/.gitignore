@@ -1,0 +1,46 @@
+# =========================
+# Entornos Virtuales
+# =========================
+venv/
+env/
+ENV/
+.venv/
+
+# =========================
+# Python y Django
+# =========================
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+.pytest_cache/
+
+# =========================
+# Base de datos local
+# =========================
+db.sqlite3
+db.sqlite3-journal
+
+# =========================
+# Archivos Multimedia (Pillow)
+# =========================
+media/
+
+# =========================
+# Variables de entorno
+# =========================
+.env
+
+# =========================
+# Archivos del Sistema (Linux)
+# =========================
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+
+# =========================
+# Editores de Código
+# =========================
+.vscode/
+.idea/

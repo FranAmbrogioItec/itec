@@ -9,7 +9,7 @@
 </head>
 
 <body class="bg-gray-900 p-8">
-    <div class="max-w-5xl mx-auto bg-gray-800 p-6 rounded-lg shadow-2xl border border-gray-700 mt-10">
+    <div class="max-w-6xl mx-auto bg-gray-800 p-6 rounded-lg shadow-2xl border border-gray-700 mt-10">
 
         <div class="mb-4">
             <a href="{% url 'home' %}"
@@ -21,6 +21,23 @@
                 </svg>
                 Volver al Inicio
             </a>
+        </div>
+
+        <div class="flex justify-end items-center mb-4 space-x-4 border-b border-gray-700 pb-2">
+            {% if user.is_authenticated %}
+            <span class="text-gray-300 text-sm">Hola, <span class="font-bold text-white">
+                    {{ user.username }}</span></span>
+            <form method="post" action="{% url 'logout' %}" class="inline">
+                {% csrf_token %}
+                <button type="submit" class="text-red-400 hover:text-red-300 text-sm font-medium transition">Cerrar
+                    Sesión</button>
+            </form>
+            {% else %}
+            <a href="{% url 'login' %}"
+                class="text-indigo-400 hover:text-indigo-300 text-sm font-medium transition">Iniciar Sesión</a>
+            <a href="{% url 'registro' %}"
+                class="bg-indigo-600 hover:bg-indigo-500 text-white px-3 py-1 rounded text-sm transition">Registrarse</a>
+            {% endif %}
         </div>
 
         <div class="flex justify-between items-center mb-6 pb-4 border-b border-gray-700">
@@ -41,6 +58,7 @@
                 <thead class="bg-gray-700">
                     <tr>
                         <th class="py-3 px-4 text-left text-sm font-semibold text-gray-200">Título</th>
+                        <th class="py-3 px-4 text-center text-sm font-semibold text-gray-200">Imagen</th>
                         <th class="py-3 px-4 text-left text-sm font-semibold text-gray-200">Dirección</th>
                         <th class="py-3 px-4 text-left text-sm font-semibold text-gray-200">Precio</th>
                         <th class="py-3 px-4 text-left text-sm font-semibold text-gray-200">Propietario</th>
@@ -51,6 +69,16 @@
                     {% for propiedad in propiedades %}
                     <tr class="hover:bg-gray-700 transition duration-150">
                         <td class="py-3 px-4 text-gray-100">{{ propiedad.titulo }}</td>
+
+                        <td class="py-3 px-4 text-center">
+                            {% if propiedad.imagen %}
+                            <img src="{{ propiedad.imagen.url }}" alt="{{ propiedad.titulo }}"
+                                class="w-16 h-16 object-cover rounded-md shadow-sm mx-auto border border-gray-600">
+                            {% else %}
+                            <span class="text-xs text-gray-500 italic">Sin foto</span>
+                            {% endif %}
+                        </td>
+
                         <td class="py-3 px-4 text-gray-400">{{ propiedad.direccion }}</td>
                         <td class="py-3 px-4 text-gray-100 font-medium">${{ propiedad.precio }}</td>
                         <td class="py-3 px-4 text-gray-400">

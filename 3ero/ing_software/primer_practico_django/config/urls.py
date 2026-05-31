@@ -1,13 +1,15 @@
 from django.contrib import admin
 from django.urls import path, include
-from core.views import home # Asegúrate de que así se llama la función en tu core/views.py
+from django.conf import settings
+from django.conf.urls.static import static 
+from core.views import home
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    
-    # 1. Restauramos tu página de inicio en la ruta raíz
-    path('', home, name='home'), 
-    
-    # 2. Movemos todo el CRUD de propiedades a la sub-ruta 'propiedades/'
-    path('propiedades/', include('propiedades.urls')), 
+    path('', home, name='home'),
+    path('propiedades/', include('propiedades.urls')),
+    path('usuarios/', include('usuarios.urls')),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

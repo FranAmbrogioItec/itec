@@ -16,6 +16,7 @@ class Propiedad(models.Model):
     direccion = models.CharField(max_length=255)
     fecha_publicacion = models.DateTimeField(auto_now_add=True)
     propietario = models.ForeignKey(Propietario, on_delete=models.CASCADE, related_name='propiedades', null=True, blank=True)
+    imagen = models.ImageField(upload_to='propiedades_img/', null=True, blank=True)
 
     def __str__(self):
         return self.titulo
