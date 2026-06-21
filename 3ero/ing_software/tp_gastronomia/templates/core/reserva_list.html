@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}Mis Reservas | RestoManager{% endblock %}
+
+{% block content %}
+<div class="flex justify-between items-center mb-6">
+    <h1 class="text-3xl font-bold text-gray-800">Mis Reservas</h1>
+    <a href="{% url 'core:reserva_create' %}"
+        class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        Hacer Reserva
+    </a>
+</div>
+
+<div class="bg-white shadow-md rounded my-6 overflow-x-auto">
+    <table class="min-w-full bg-white">
+        <thead class="bg-gray-800 text-white">
+            <tr>
+                <th class="w-1/4 text-left py-3 px-4 uppercase font-semibold text-sm">Mesa</th>
+                <th class="w-1/4 text-left py-3 px-4 uppercase font-semibold text-sm">Fecha</th>
+                <th class="w-1/4 text-left py-3 px-4 uppercase font-semibold text-sm">Hora</th>
+                <th class="w-1/4 text-left py-3 px-4 uppercase font-semibold text-sm">Estado</th>
+                <th class="w-1/4 text-left py-3 px-4 uppercase font-semibold text-sm">Acción</th>
+            </tr>
+        </thead>
+        <tbody class="text-gray-700">
+            {% for reserva in reservas %}
+            <tr class="border-b hover:bg-gray-50">
+                <td class="w-1/4 py-3 px-4">{{ reserva.mesa }}</td>
+                <td class="w-1/4 py-3 px-4">{{ reserva.fecha|date:"d/m/Y" }}</td>
+                <td class="w-1/4 py-3 px-4">{{ reserva.hora|time:"H:i" }}</td>
+                <td class="w-1/4 py-3 px-4">
+                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
+                        {% if reserva.estado == 'Confirmada' %} bg-green-100 text-green-800
+                        {% elif reserva.estado == 'Pendiente' %} bg-yellow-100 text-yellow-800
+                        {% else %} bg-red-100 text-red-800 {% endif %}">
+                        {{ reserva.estado }}
+                    </span>
+                </td>
+                <td class="w-1/4 py-3 px-4">
+                    <a href="{% url 'core:reserva_delete' reserva.pk %}"
+                        class="text-red-500 hover:text-red-700 font-bold">Cancelar</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5" class="py-4 text-center text-gray-500">No tienes reservas activas.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Cancelar Reserva | RestoManager{% endblock %}
+
+{% block content %}
+<div class="max-w-md mx-auto bg-white rounded-lg shadow-md p-8 text-center mt-10">
+    <h1 class="text-2xl font-bold text-red-600 mb-4">Cancelar Reserva</h1>
+    <p class="text-gray-700 mb-6">
+        Estás a punto de cancelar tu reserva para el día <strong>{{ object.fecha }}</strong> a las <strong>{{
+            object.hora }}</strong>.<br>¿Deseas continuar?
+    </p>
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="flex justify-center space-x-4">
+            <button type="submit" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                Sí, cancelar
+            </button>
+            <a href="{% url 'core:reserva_list' %}"
+                class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded">
+                Mantener reserva
+            </a>
+        </div>
+    </form>
+</div>
+{% endblock %}
