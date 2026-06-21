@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Registro | RestoManager{% endblock %}
+
+{% block content %}
+<div class="max-w-md mx-auto bg-white rounded-lg shadow-md p-8 mt-10">
+    <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Crear Cuenta</h2>
+    <form method="post" class="space-y-4">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+            Registrarse
+        </button>
+    </form>
+</div>
+{% endblock %}
