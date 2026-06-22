@@ -55,8 +55,17 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-gray-400 py-6 text-center">
-        <p>&copy; 2026 RestoITEC. TP Evaluativo Django.</p>
+    <footer class="bg-gray-900 text-gray-400 py-6 text-center mt-auto">
+        <p class="mb-2">&copy; 2026 RestoManager. TP Evaluativo Django.</p>
+        <p class="text-sm">📍 {{ direccion_resto }} | 📞 Tel: {{ telefono_contacto }}</p>
+        <div class="mt-2 text-xs text-gray-500">
+            Categorías disponibles:
+            {% for cat in categorias_globales %}
+            <span class="mx-1 bg-gray-800 px-2 py-0.5 rounded">{{ cat.nombre }}</span>
+            {% empty %}
+            <span>Ninguna creada aún</span>
+            {% endfor %}
+        </div>
     </footer>
 
 </body>
