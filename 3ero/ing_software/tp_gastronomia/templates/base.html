@@ -27,12 +27,15 @@
                         class="hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Menú</a>
                     <a href="{% url 'core:reserva_list' %}"
                         class="hover:bg-gray-700 px-3 py-2 rounded-md text-sm font-medium">Mis Reservas</a>
-                    <span class="text-gray-400 text-sm ml-4 border-l border-gray-600 pl-4">Hola, {{ user.username
-                        }}</span>
+
+                    <span class="text-gray-400 text-sm ml-4 border-l border-gray-600 pl-4">
+                        Hola, {{ user.username }}
+                    </span>
+
                     <form method="post" action="{% url 'logout' %}" class="inline">
                         {% csrf_token %}
                         <button type="submit"
-                            class="hover:bg-red-700 text-red-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition">
+                            class="hover:bg-red-700 text-red-400 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition ml-2">
                             Salir
                         </button>
                     </form>
@@ -45,7 +48,6 @@
                     {% endif %}
                 </div>
             </div>
-        </div>
     </nav>
 
     <!-- Contenido Principal -->
@@ -56,7 +58,7 @@
 
     <!-- Footer -->
     <footer class="bg-gray-900 text-gray-400 py-6 text-center mt-auto">
-        <p class="mb-2">&copy; 2026 RestoManager. TP Evaluativo Django.</p>
+        <p class="mb-2">&copy; 2026 RestoITEC. TP Evaluativo Django.</p>
         <p class="text-sm">📍 {{ direccion_resto }} | 📞 Tel: {{ telefono_contacto }}</p>
         <div class="mt-2 text-xs text-gray-500">
             Categorías disponibles:

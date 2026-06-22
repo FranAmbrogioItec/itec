@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ plato.nombre }} | RestoManager{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto mt-6">
+    <div class="bg-white rounded-lg shadow-md overflow-hidden flex flex-col md:flex-row mb-8">
+        <div class="md:w-1/2">
+            {% if plato.imagen %}
+            <img src="{{ plato.imagen.url }}" alt="{{ plato.nombre }}" class="w-full h-full object-cover min-h-[300px]">
+            {% else %}
+            <div class="w-full h-full min-h-[300px] bg-gray-200 flex items-center justify-center text-gray-500">Sin
+                imagen</div>
+            {% endif %}
+        </div>
+        <div class="p-8 md:w-1/2 flex flex-col justify-center">
+            <span class="text-sm text-blue-600 font-bold uppercase tracking-wider">{{ plato.categoria.nombre }}</span>
+            <h1 class="text-4xl font-bold text-gray-800 mt-2 mb-4">{{ plato.nombre }}</h1>
+            <p class="text-gray-600 mb-6 text-lg">{{ plato.descripcion }}</p>
+            <p class="text-3xl font-bold text-green-600">${{ plato.precio }}</p>
+        </div>
+    </div>
+
+    <div class="bg-white rounded-lg shadow-md p-8">
+        <h2 class="text-2xl font-bold text-gray-800 mb-6 border-b pb-2">Reseñas de Clientes</h2>
+
+        {% if user.is_authenticated %}
+        <div class="bg-gray-50 p-6 rounded-lg mb-8 border border-gray-100">
+            <h3 class="font-bold text-lg mb-4">Dejar una reseña</h3>
+            <form method="post" class="space-y-4">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit"
+                    class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded transition">
+                    Publicar Reseña
+                </button>
+            </form>
+        </div>
+        {% else %}
+        <div class="bg-yellow-50 text-yellow-800 p-4 rounded mb-8">
+            Debes <a href="{% url 'login' %}?next={{ request.path }}" class="font-bold underline">iniciar sesión</a>
+            para dejar una reseña.
+        </div>
+        {% endif %}
+
+        <div class="space-y-6">
+            {% for resena in resenas %}
+            <div class="border-b pb-6 last:border-0">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="font-bold text-gray-800">{{ resena.usuario.username }}</span>
+                    <div class="flex text-yellow-400">
+                        {% for i in "12345" %}
+                        {% if forloop.counter <= resena.calificacion %} ★ {% else %} <span class="text-gray-300">
+                            ★</span>
+                            {% endif %}
+                            {% endfor %}
+                    </div>
+                </div>
+                <p class="text-gray-600">{{ resena.comentario }}</p>
+            </div>
+            {% empty %}
+            <p class="text-gray-500 italic text-center py-4">Aún no hay reseñas para este plato. ¡Sé el primero en
+                opinar!</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,9 +1,11 @@
 # core/views.py
-from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DeleteView
+from django.shortcuts import redirect 
+from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DeleteView, DetailView 
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from .models import Plato, Reserva
-from .forms import UsuarioRegistroForm
+
+from .models import Plato, Reserva, Resena 
+from .forms import UsuarioRegistroForm, ResenaForm
 
 class IndexView(TemplateView):
     template_name = 'core/index.html'
@@ -76,3 +78,40 @@ class ReservaDeleteView(LoginRequiredMixin, DeleteView):
     def get_queryset(self):
         # Medida de seguridad: solo puede eliminar si es su propia reserva
         return Reserva.objects.filter(usuario=self.request.user)
+
+
+# --- DETALLE DE PLATO Y RESEÑAS ---
+
+class PlatoDetailView(DetailView):
+    model = Plato
+    template_name = 'core/plato_detail.html'
+    context_object_name = 'plato'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Pasamos las reseñas ordenadas por las más recientes
+        context['resenas'] = self.object.resenas.all().order_by('-id')
+        # Pasamos el formulario vacío si el usuario está logueado
+        if self.request.user.is_authenticated:
+            context['form'] = ResenaForm()
+        return context
+
+    def post(self, request, *args, **kwargs):
+        # Este método procesa el formulario de reseña cuando se envía
+        if not request.user.is_authenticated:
+            return redirect('login')
+            
+        self.object = self.get_object()
+        form = ResenaForm(request.POST)
+        
+        if form.is_valid():
+            resena = form.save(commit=False)
+            resena.plato = self.object
+            resena.usuario = request.user
+            resena.save()
+            return redirect('core:plato_detail', pk=self.object.pk)
+            
+        # Si hay error en el form, recargamos la página con los errores
+        context = self.get_context_data()
+        context['form'] = form
+        return self.render_to_response(context)

@@ -1,38 +1,88 @@
-<!-- templates/core/plato_list.html -->
 {% extends 'base.html' %}
 
 {% block title %}Menú | RestoManager{% endblock %}
 
 {% block content %}
-<div class="flex justify-between items-center mb-6">
-    <h1 class="text-3xl font-bold text-gray-800">Nuestro Menú</h1>
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+    <div>
+        <h1 class="text-3xl font-bold text-gray-800">Nuestro Menú</h1>
+        <p class="text-gray-600 text-sm mt-1">Explora nuestras especialidades gastronómicas y opiniones de clientes.</p>
+    </div>
+
+    {% if perms.core.add_plato %}
     <a href="{% url 'core:plato_create' %}"
-        class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+        class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded shadow transition duration-200 ease-in-out transform hover:-translate-y-0.5">
         + Nuevo Plato
     </a>
+    {% endif %}
 </div>
 
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
     {% for plato in platos %}
-    <div class="bg-white rounded-lg shadow-md overflow-hidden">
-        {% if plato.imagen %}
-        <img src="{{ plato.imagen.url }}" alt="{{ plato.nombre }}" class="w-full h-48 object-cover">
-        {% else %}
-        <div class="w-full h-48 bg-gray-200 flex items-center justify-center text-gray-500">Sin imagen</div>
-        {% endif %}
-        <div class="p-4">
-            <h2 class="text-xl font-bold mb-2">{{ plato.nombre }}</h2>
-            <p class="text-gray-600 text-sm mb-2">{{ plato.descripcion|truncatewords:15 }}</p>
-            <p class="text-blue-600 font-bold mb-4">${{ plato.precio }}</p>
-            <div class="flex justify-between">
-                <a href="{% url 'core:plato_update' plato.pk %}"
-                    class="text-yellow-600 hover:text-yellow-800">Editar</a>
-                <a href="{% url 'core:plato_delete' plato.pk %}" class="text-red-600 hover:text-red-800">Eliminar</a>
+    <div
+        class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 flex flex-col justify-between transition duration-300 hover:shadow-lg">
+
+        <div>
+            {% if plato.imagen %}
+            <img src="{{ plato.imagen.url }}" alt="{{ plato.nombre }}" class="w-full h-48 object-cover">
+            {% else %}
+            <div class="w-full h-48 bg-gray-100 flex flex-col items-center justify-center text-gray-400">
+                <span class="text-3xl">🍽️</span>
+                <span class="text-xs mt-1">Sin imagen disponible</span>
+            </div>
+            {% endif %}
+
+            <div class="p-5">
+                <span class="text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2 py-1 rounded">
+                    {{ plato.categoria.nombre }}
+                </span>
+                <h2 class="text-xl font-bold text-gray-800 mt-2 mb-2">{{ plato.nombre }}</h2>
+                <p class="text-gray-600 text-sm mb-4 line-clamp-3">{{ plato.descripcion }}</p>
             </div>
         </div>
+
+        <div class="px-5 pb-5">
+            <div class="flex justify-between items-center mb-4">
+                <span class="text-sm text-gray-500 font-medium">Precio</span>
+                <span class="text-2xl font-black text-green-600">${{ plato.precio }}</span>
+            </div>
+
+            <div class="flex flex-col sm:flex-row justify-between items-center gap-2 border-t pt-4">
+                <a href="{% url 'core:plato_detail' plato.pk %}"
+                    class="text-blue-600 hover:text-blue-800 font-semibold text-sm transition">
+                    Ver detalles y reseñas &rarr;
+                </a>
+
+                {% if perms.core.change_plato or perms.core.delete_plato %}
+                <div class="flex space-x-3 border-l border-gray-200 pl-3 sm:pl-4">
+                    {% if perms.core.change_plato %}
+                    <a href="{% url 'core:plato_update' plato.pk %}"
+                        class="text-yellow-600 hover:text-yellow-800 text-sm font-medium transition"
+                        title="Editar plato">
+                        Editar
+                    </a>
+                    {% endif %}
+
+                    {% if perms.core.delete_plato %}
+                    <a href="{% url 'core:plato_delete' plato.pk %}"
+                        class="text-red-600 hover:text-red-700 text-sm font-medium transition" title="Eliminar plato">
+                        Eliminar
+                    </a>
+                    {% endif %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
     </div>
     {% empty %}
-    <p class="text-gray-600 col-span-3 text-center">No hay platos registrados en el sistema.</p>
+    <div
+        class="col-span-1 sm:col-span-2 lg:col-span-3 bg-white rounded-xl p-12 text-center shadow-sm border border-gray-100">
+        <span class="text-4xl">👨‍🍳</span>
+        <h3 class="mt-4 text-lg font-bold text-gray-800">El menú está en preparación</h3>
+        <p class="text-gray-500 text-sm mt-1 max-w-sm mx-auto">No hay platos registrados actualmente en el sistema.
+            Vuelve a ingresar más tarde o inicia sesión como administrador para añadir contenido.</p>
+    </div>
     {% endfor %}
 </div>
 {% endblock %}
