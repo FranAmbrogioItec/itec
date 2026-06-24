@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'saludo',
-    'saludar2',
+    'todolist',
 ]
 
 MIDDLEWARE = [
